@@ -22,7 +22,7 @@ export default function Login() {
         
           <div className="remember">
           <input type="checkbox" id="remember-me" />
-          <label for="vehicle1"> Remember me</label>
+          <label htmlFor="vehicle1"> Remember me</label>
           </div>
 
           <div className="forgot-password">
