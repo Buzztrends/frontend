@@ -1,7 +1,7 @@
 "use client";
 
 import React,{useState} from 'react'
-import './index.css';
+import './sidebar.css';
 import { FaSearch } from 'react-icons/fa';
 import { MdAdd } from 'react-icons/md';
 import { FaUserCircle } from 'react-icons/fa';
