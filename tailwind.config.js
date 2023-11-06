@@ -13,6 +13,12 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'gradient-linear': 'linear-gradient(175deg, #211A2A 0%, #321178 100%);',
       },
+      colors:{
+        'primary-color': '#3F1F74',
+      },
+      boxShadow:{
+        'primary': '0px 1px 10px 0px rgba(0, 0, 0, 0.25)'
+      }
     },
   },
   plugins: [],
