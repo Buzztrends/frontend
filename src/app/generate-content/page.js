@@ -2,6 +2,7 @@
 import Header from "@/components/header";
 import InputText from "@/components/inputText";
 import Dropdown from "@/components/dropdown";
+import Button from "@/components/button";
 import { useState } from "react";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
@@ -119,7 +120,7 @@ export default function GenerateContent() {
                         <InputText name="moment-for-generation" id="moment-input" />
                     </div>
 
-                    <div className="mt-10">
+                    <div className="my-10">
                         <p className="text-xl font-medium text-primary-color">Content Generation:</p>
                         <div className="border border-solid border-primary-color rounded-lg shadow-primary block w-10/12 h-auto px-8 mt-2">
                             <div className="mt-5 mb-10">
@@ -158,7 +159,11 @@ export default function GenerateContent() {
 
                             <div className="my-10">
                                 <p className="text-l font-semibold">Similar Content:</p>
-                                <InputText name="similar-content" id="similar-content" height={64}/>
+                                <textarea name="similar-content" id="similar content" className="border border-solid border-primary-color rounded-lg shadow-primary block w-10/12 h-64 px-5 py-2 mt-2 font-medium overflow-y-auto"/>
+                            </div>
+
+                            <div className="mt-10 mb-5 flex justify-center">
+                                <Button buttonText="Generate Content"/>
                             </div>
                         </div>
                     </div>
