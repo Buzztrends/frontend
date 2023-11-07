@@ -110,6 +110,10 @@ export default function GenerateContent() {
     ]
 
 
+    // To check if content is generated or not
+    const [isContentGenerated, setIsContentGenerated] = useState(false);
+
+
     return (
         <>
             <Header header="Create Content" />
