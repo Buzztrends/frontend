@@ -11,6 +11,8 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaRegEnvelope } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
+import { BsChevronRight } from "react-icons/bs"
+import { BsChevronDown } from "react-icons/bs";
 
 export default function GenerateContent() {
     // To toggle moment customization
@@ -114,10 +116,8 @@ export default function GenerateContent() {
     ]
 
 
-    // To check if content is generated or not
-    const [isContentGenerated, setIsContentGenerated] = useState(false);
-    
-
+    // To show or not show content generation form
+    const [contentFormVisible, setContentFormVisible] = useState(true);
 
     return (
         <>
@@ -136,8 +136,12 @@ export default function GenerateContent() {
                     </div>
 
                     <div className="my-10">
-                        <p className="text-xl font-medium text-primary-color">Content Generation:</p>
-                        <div className="border border-solid border-primary-color rounded-lg shadow-primary block w-10/12 h-auto px-8 my-2">
+                        <div className={`flex item-center justify-between w-10/12 py-5 px-5 rounded-xl ${contentFormVisible ? 'border': 'border-2 border-primary-color'}`} onClick={(e)=>setContentFormVisible(!contentFormVisible)}>
+                            <p className="cursor-default text-xl font-medium text-primary-color" >Content Generation:</p>
+                            <span className={`${contentFormVisible ? 'hidden':null}`}><BsChevronRight size={28}/></span>
+                            <span className={`${contentFormVisible ? null:'hidden'}`}><BsChevronDown size={28}/></span>
+                        </div>
+                        <div className={`border border-solid border-primary-color rounded-lg shadow-primary w-10/12 h-auto px-8 my-2 ${contentFormVisible ? 'block':'hidden'}`}>
                             <div className="mt-5 mb-10">
                                 <p className="text-l font-semibold">Content for (select one or multiple):</p>
                                 <div className="flex space-x-10 my-3">

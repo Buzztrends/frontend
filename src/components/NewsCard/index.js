@@ -10,7 +10,7 @@ export default function NewsCard({ height, width, src, Trendscore, engScore }) {
   {/* <img src='/images/Buzztrend logo 1.png'></img> */ }
   return (
     <div style={cardStyle}>
-      <div className="max-w-sm rounded overflow-hidden shadow-lg" style={{ borderRadius: '10px' }}>
+      <div className="max-w-sm rounded border m-4 border-black overflow-hidden shadow-lg" style={{ borderRadius: '10px' }}>
         <img className="w-full" src={src} alt="Sunset in the mountains" ></img>
         <div className="px-6 py-4">
           <div style={{
