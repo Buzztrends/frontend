@@ -8,7 +8,7 @@ import { FaEdit } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { FaRegEnvelope } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 
@@ -58,7 +58,7 @@ export default function GenerateContent() {
         } else if (label === "linkedin") {
             return <FaLinkedin size={40} />
         } else if (label === "twitter") {
-            return <FaTwitter size={40} />
+            return <FaXTwitter size={40} />
         } else if (label === "email") {
             return <FaRegEnvelope size={40} />
         } else if (label === "whatsapp") {
