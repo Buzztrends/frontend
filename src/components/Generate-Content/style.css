@@ -1,0 +1,8 @@
+.bg-custom-gradient {
+  background: radial-gradient(#250061, #211A2A);
+}
+
+.bg-linear-gradient{
+  background: radial-gradient(#601ECC, #321178);
+}
+
