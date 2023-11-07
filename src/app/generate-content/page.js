@@ -4,6 +4,7 @@ import InputText from "@/components/inputText";
 import Dropdown from "@/components/dropdown";
 import Button from "@/components/button";
 import { useState } from "react";
+import { FaEdit } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
@@ -12,6 +13,9 @@ import { FaRegEnvelope } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 
 export default function GenerateContent() {
+    // To toggle moment customization
+    const [momentCustomization, setMomentCustomization] = useState(false);
+
     // To select one/multiple social media platforms to generate content for-
     const [selectedSocials, setSelectedSocials] = useState([]);
 
@@ -112,21 +116,28 @@ export default function GenerateContent() {
 
     // To check if content is generated or not
     const [isContentGenerated, setIsContentGenerated] = useState(false);
+    
 
 
     return (
         <>
             <Header header="Create Content" />
-            <div className="h-24 w-10/12 float-right">
+            <div className="h-24 w-10/12 mb-10 float-right">
                 <form action="" className="ml-6">
                     <div className="mt-5">
                         <label htmlFor="moment-input" className="text-xl font-medium text-primary-color">Moment:</label>
-                        <InputText name="moment-for-generation" id="moment-input" />
+                        <div className="flex items-center space-x-2 w-10/12">
+                            <InputText name="moment-for-generation" id="moment-input" isDisabled={momentCustomization ? undefined:true}/>
+                            <span className={`select-none cursor-pointer inline-flex items-center space-x-1 px-5 py-2 mt-2 rounded-lg hover:bg-gray-200 font-medium ${momentCustomization ? "border-2 border-black border-solid bg-gray-200":"border-2 border-transparent border-solid bg-gray-300"}`} onClick={(e)=>setMomentCustomization(!momentCustomization)}>
+                                <span><FaEdit/></span>
+                                <span>Customize</span>
+                            </span>
+                        </div>
                     </div>
 
                     <div className="my-10">
                         <p className="text-xl font-medium text-primary-color">Content Generation:</p>
-                        <div className="border border-solid border-primary-color rounded-lg shadow-primary block w-10/12 h-auto px-8 mt-2">
+                        <div className="border border-solid border-primary-color rounded-lg shadow-primary block w-10/12 h-auto px-8 my-2">
                             <div className="mt-5 mb-10">
                                 <p className="text-l font-semibold">Content for (select one or multiple):</p>
                                 <div className="flex space-x-10 my-3">
