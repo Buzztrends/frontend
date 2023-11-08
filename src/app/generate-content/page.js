@@ -14,6 +14,9 @@ import { FaWhatsapp } from "react-icons/fa";
 import { BsChevronRight } from "react-icons/bs"
 import { BsChevronDown } from "react-icons/bs";
 
+import PostText from "@/components/Generate-Content/post-text";
+import AiImages from "@/components/Generate-Content/ai-images";
+
 export default function GenerateContent() {
     // To toggle moment customization
     const [momentCustomization, setMomentCustomization] = useState(false);
@@ -121,74 +124,93 @@ export default function GenerateContent() {
 
     return (
         <>
-            <Header header="Create Content" />
-            <div className="h-24 w-10/12 mb-10 float-right">
-                <form action="" className="ml-6">
-                    <div className="mt-5">
-                        <label htmlFor="moment-input" className="text-xl font-medium text-primary-color">Moment:</label>
-                        <div className="flex items-center space-x-2 w-10/12">
-                            <InputText name="moment-for-generation" id="moment-input" isDisabled={momentCustomization ? undefined:true}/>
-                            <span className={`select-none cursor-pointer inline-flex items-center space-x-1 px-5 py-2 mt-2 rounded-lg hover:bg-gray-200 font-medium ${momentCustomization ? "border-2 border-black border-solid bg-gray-200":"border-2 border-transparent border-solid bg-gray-300"}`} onClick={(e)=>setMomentCustomization(!momentCustomization)}>
-                                <span><FaEdit/></span>
-                                <span>Customize</span>
-                            </span>
-                        </div>
-                    </div>
+            <div className="flex">
+                <div className="w-1/6 bg-gray-300">
+                    sidebar
+                </div>
 
-                    <div className="my-10">
-                        <div className={`flex item-center justify-between w-10/12 py-5 px-5 rounded-xl ${contentFormVisible ? 'border': 'border-2 border-primary-color'}`} onClick={(e)=>setContentFormVisible(!contentFormVisible)}>
-                            <p className="cursor-default text-xl font-medium text-primary-color" >Content Generation:</p>
-                            <span className={`${contentFormVisible ? 'hidden':null}`}><BsChevronRight size={28}/></span>
-                            <span className={`${contentFormVisible ? null:'hidden'}`}><BsChevronDown size={28}/></span>
-                        </div>
-                        <div className={`border border-solid border-primary-color rounded-lg shadow-primary w-10/12 h-auto px-8 my-2 ${contentFormVisible ? 'block':'hidden'}`}>
-                            <div className="mt-5 mb-10">
-                                <p className="text-l font-semibold">Content for (select one or multiple):</p>
-                                <div className="flex space-x-10 my-3">
-                                    {
-                                        socials.map((social) => {
-                                            return (
-                                                <div key={social.id} className={`cursor-pointer ${selectedSocials.includes(social.id)
-                                                    ? "bg-linear-gradient text-white"
-                                                    : null
-                                                    } p-1.5 rounded-lg`} onClick={() => toggleSocial(social.id)}>
-                                                    {displaySocial(social.label)}
-                                                </div>
-                                            );
-                                        })
-                                    }
+                <div className="w-10/12">
+                    <Header header="Create Content" />
+                    <div className="w-full float-right">
+                        <form action="" className="ml-6">
+                            <div className="mt-5">
+                                <label htmlFor="moment-input" className="text-xl font-medium text-primary-color">Moment:</label>
+                                <div className="flex items-center space-x-2 w-10/12">
+                                    <InputText name="moment-for-generation" id="moment-input" isDisabled={momentCustomization ? undefined : true} />
+                                    <span className={`select-none cursor-pointer inline-flex items-center space-x-1 px-5 py-2 mt-2 rounded-lg hover:bg-gray-200 font-medium ${momentCustomization ? "border-2 border-black border-solid bg-gray-200" : "border-2 border-transparent border-solid bg-gray-300"}`} onClick={(e) => setMomentCustomization(!momentCustomization)}>
+                                        <span><FaEdit /></span>
+                                        <span>Customize</span>
+                                    </span>
                                 </div>
                             </div>
 
                             <div className="my-10">
-                                <p className="text-l font-semibold">Select product:</p>
-                                <Dropdown name="product" id="select-product" options={products} selectedOption={selectedProduct} handleSelectChange={handleSelectProduct}/>
+                                <div className={`flex item-center justify-between w-10/12 py-5 px-5 rounded-xl ${contentFormVisible ? 'border' : 'border-2 border-primary-color'}`} onClick={(e) => setContentFormVisible(!contentFormVisible)}>
+                                    <p className="cursor-default text-xl font-medium text-primary-color" >Content Generation:</p>
+                                    <span className={`${contentFormVisible ? 'hidden' : null}`}><BsChevronRight size={28} /></span>
+                                    <span className={`${contentFormVisible ? null : 'hidden'}`}><BsChevronDown size={28} /></span>
+                                </div>
+                                <div className={`border border-solid border-primary-color rounded-lg shadow-primary w-10/12 h-auto px-8 mt-2 ${contentFormVisible ? 'block' : 'hidden'}`}>
+                                    <div className="mt-5 mb-10">
+                                        <p className="text-l font-semibold">Content for (select one or multiple):</p>
+                                        <div className="flex space-x-10 my-3">
+                                            {
+                                                socials.map((social) => {
+                                                    return (
+                                                        <div key={social.id} className={`cursor-pointer ${selectedSocials.includes(social.id)
+                                                            ? "bg-linear-gradient text-white"
+                                                            : null
+                                                            } p-1.5 rounded-lg`} onClick={() => toggleSocial(social.id)}>
+                                                            {displaySocial(social.label)}
+                                                        </div>
+                                                    );
+                                                })
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div className="my-10">
+                                        <p className="text-l font-semibold">Select product:</p>
+                                        <Dropdown name="product" id="select-product" options={products} selectedOption={selectedProduct} handleSelectChange={handleSelectProduct} />
+                                    </div>
+
+
+                                    <div className="my-10">
+                                        <p className="text-l font-semibold">Content Tonality:</p>
+                                        <Dropdown name="tonality" id="select-tone" options={tones} selectedOption={selectedTone} handleSelectChange={handleSelectTone} />
+                                    </div>
+
+                                    <div className="my-10">
+                                        <p className="text-l font-semibold">Structure of Content:</p>
+                                        <InputText name="content-structure" id="content-structure" />
+                                    </div>
+
+                                    <div className="my-10">
+                                        <p className="text-l font-semibold">Similar Content:</p>
+                                        <textarea name="similar-content" id="similar content" className="border border-solid border-primary-color rounded-lg shadow-primary block w-10/12 h-64 px-5 py-2 mt-2 font-medium overflow-y-auto" />
+                                    </div>
+
+                                    <div className="my-10 flex justify-center">
+                                        <Button buttonText="Generate Content" />
+                                    </div>
+                                </div>
                             </div>
-
-
-                            <div className="my-10">
-                                <p className="text-l font-semibold">Content Tonality:</p>
-                                <Dropdown name="tonality" id="select-tone" options={tones} selectedOption={selectedTone} handleSelectChange={handleSelectTone}/>
+                        </form>
+                    </div>
+                    <div className="cursor-default my-4 ml-6 text-xl font-medium text-primary-color">
+                        Instagram :
+                    </div>
+                    <div>
+                        <div className="flex mb-10">
+                            <div className="w-1/2 mx-6">
+                                <PostText />
                             </div>
-
-                            <div className="my-10">
-                                <p className="text-l font-semibold">Structure of Content:</p>
-                                <InputText name="content-structure" id="content-structure" />
-                            </div>
-
-                            <div className="my-10">
-                                <p className="text-l font-semibold">Similar Content:</p>
-                                <textarea name="similar-content" id="similar content" className="border border-solid border-primary-color rounded-lg shadow-primary block w-10/12 h-64 px-5 py-2 mt-2 font-medium overflow-y-auto"/>
-                            </div>
-
-                            <div className="mt-10 mb-5 flex justify-center">
-                                <Button buttonText="Generate Content"/>
+                            <div className="w-1/2 mx-6">
+                                <AiImages />
                             </div>
                         </div>
                     </div>
-
-
-                </form>
+                </div>
             </div>
         </>
     )
