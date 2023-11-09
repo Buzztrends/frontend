@@ -16,6 +16,7 @@ import { BsChevronDown } from "react-icons/bs";
 
 import PostText from "@/components/Generate-Content/post-text";
 import AiImages from "@/components/Generate-Content/ai-images";
+import { ContentContextProvider, useContentContext } from "@/context/contentContext";
 
 export default function GenerateContent() {
     // To toggle moment customization
@@ -122,8 +123,10 @@ export default function GenerateContent() {
     // To show or not show content generation form
     const [contentFormVisible, setContentFormVisible] = useState(true);
 
+    // console.log(useContentContext());
+
     return (
-        <>
+        <ContentContextProvider>
             <div className="flex">
                 <div className="w-1/6 bg-gray-300">
                     sidebar
@@ -153,7 +156,7 @@ export default function GenerateContent() {
                                 <div className={`border border-solid border-primary-color rounded-lg shadow-primary w-10/12 h-auto px-8 mt-2 ${contentFormVisible ? 'block' : 'hidden'}`}>
                                     <div className="mt-5 mb-10">
                                         <p className="text-l font-semibold">Content for (select one or multiple):</p>
-                                        <div className="flex space-x-10 my-3">
+                                        <div className="flex flex-wrap space-x-10 my-3">
                                             {
                                                 socials.map((social) => {
                                                     return (
@@ -202,16 +205,20 @@ export default function GenerateContent() {
                     </div>
                     <div>
                         <div className="flex mb-10">
-                            <div className="w-1/2 mx-6">
+                            <div className="w-1/2 ml-6 mr-3">
                                 <PostText />
                             </div>
-                            <div className="w-1/2 mx-6">
+                            <div className="w-1/2 ml-3 mr-6">
                                 <AiImages />
                             </div>
+                        </div>
+                        <div className="mt-5 flex">
+                            <Button buttonText="Preview" strokeOnly={true}/>
+                            <Button buttonText="Publish" width="1/3"/>
                         </div>
                     </div>
                 </div>
             </div>
-        </>
+        </ContentContextProvider>
     )
 }
