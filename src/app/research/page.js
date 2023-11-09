@@ -1,6 +1,7 @@
 "use client";
 import NewsCard from "@/components/NewsCard";
 import { useState } from "react";
+import NewsCard from "@/components/NewsCard/index.js";
 
 export default function Research() {
   const [isModalOpen, setIsModalOpen] = useState(false);
