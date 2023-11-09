@@ -9,25 +9,18 @@ background-color: blue;
 .sidebar-active{
     background-color: rgba(255, 255, 255, 0.2);
         border-radius: 7.5px;
-        padding-top: 0.25rem;
+        /* padding-top: 0.25rem;
             padding-bottom: 0.25rem;
             padding-left: 0.75rem;
-            padding-right: 0.75rem;
+            padding-right: 0.75rem; */
 }
 
 .sidebar-research-item{
-    width: 100%;
-        /* Full width */
+
         background-color: rgba(255, 255, 255, 0.2);
         /* White color with 20% opacity */
         border-radius: 7.5px;
-        /* Rounded corners */
-        padding-top: 0.25rem;
-        /* 1/4 of the default line height */
-        padding-bottom: 0.25rem;
-        /* 1/4 of the default line height */
-        padding-left: 0.25rem;
-        /* 1/4 of the default letter spacing */
+      
         
 }
 

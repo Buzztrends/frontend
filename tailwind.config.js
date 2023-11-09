@@ -17,6 +17,8 @@ module.exports = {
       },
       colors:{
         'primary-color': '#3F1F74',
+        'font-color':'#230061',
+        'border-color':'#250061',
       },
       boxShadow:{
         'primary': '0px 1px 10px 0px rgba(0, 0, 0, 0.25)'
