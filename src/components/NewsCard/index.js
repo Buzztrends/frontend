@@ -1,7 +1,7 @@
 import { Engagement } from 'next/font/google';
 import React from 'react';
 
-export default function NewsCard({ height, width, src, Trendscore, engScore }) {
+export default function NewsCard({ height, width, src, Trendscore, engScore, toggleModal }) {
   // Define a style object to apply the height and width
   const cardStyle = {
     height: height,
@@ -12,7 +12,7 @@ export default function NewsCard({ height, width, src, Trendscore, engScore }) {
     <div style={cardStyle}>
       <div className="max-w-sm rounded border m-4 border-black overflow-hidden shadow-lg" style={{ borderRadius: '10px' }}>
         <img className="w-full" src={src} alt="Sunset in the mountains" ></img>
-        <div className="px-6 py-4">
+        <div className="px-6 py-4" style={{cursor: 'pointer'}} onClick={()=>{toggleModal()}}>
           <div style={{
             color: '#000',
             fontSize: '20px',
