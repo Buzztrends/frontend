@@ -14,12 +14,12 @@ export const Sidebar = () => {
     const [researchitem,setResearchitem]= useState(null);
 
   return (
-    <div className='gradient-sidebar w-[251px] h-screen px-4 py-5 text-white flex flex-col'>
+    <div className='gradient-sidebar w-1/5 h-screen px-4 py-5 text-white flex flex-col'>
         <img src='/images/Buzztrend logo 1.png'></img>
 
-        <div className='sidebar-top mt-[35px] flex flex-col gap-6'>
-        <div className='flex flex-col items-center gap-3'>
-            <button className={`${isresearch?"sidebar-active":""} w-full `} onClick={()=>{setIsresearch(true); setResearchitem(null)}}>
+        <div className='mt-[35px] flex flex-col gap-6 '>
+        <div className='flex flex-col items-start gap-3'>
+            <button className={`${isresearch?"sidebar-active":""} w-full py-1 px-3`} onClick={()=>{setIsresearch(true); setResearchitem(null)}}>
                 <div className='flex items-center justify-between px-2'>
                     <div className='flex justify-center items-center gap-1'>
                     <FaSearch />
@@ -29,17 +29,17 @@ export const Sidebar = () => {
                 </div>
             </button>
 
-           {isresearch &&  <div className='flex flex-col ml-4 items-start gap-2'>
-                <button onClick={()=>setResearchitem("news")} className={`${researchitem=="news"?"sidebar-research-item":""}`}>Trending News/Moments & Custom Topic</button>
-                <button onClick={()=>setResearchitem("socialmedia")} className={`${researchitem=="socialmedia"?"sidebar-research-item":""}`}>Social Media</button>
-                <button onClick={()=>setResearchitem("competition")} className={`${researchitem=="competition"?"sidebar-research-item":""}`}>Competition</button>
+           {isresearch &&  <div className='flex flex-col w-11/12 gap-2 self-end items-start'>
+                <button onClick={()=>setResearchitem("news")} className={`${researchitem=="news"?"sidebar-research-item":""} py-1 px-2 w-full text-left`}>Trending News</button>
+                <button onClick={()=>setResearchitem("socialmedia")} className={`${researchitem=="socialmedia"?"sidebar-research-item":""} py-1 px-2 w-full text-left`}>Social Media</button>
+                <button onClick={()=>setResearchitem("competition")} className={`${researchitem=="competition"?"sidebar-research-item":""} py-1 px-2 w-full text-left`}>Competition</button>
             </div>}
 
         </div> 
-        <button onClick={()=>{setIsresearch(false); setResearchitem(null)}} className={`${isresearch?"":"sidebar-active"} flex items-center gap-1 w-full`}><IoCreateOutline /><span>Create Content</span>  </button>
+        <button onClick={()=>{setIsresearch(false); setResearchitem(null)}} className={`${isresearch?"":"sidebar-active"} flex items-center gap-1 w-full py-1 px-3`}><IoCreateOutline /><span>Create Content</span>  </button>
         </div>
 
-        <div className='sidebar-bottom mt-auto flex flex-col justify-center items-center gap-3'>
+        <div className='sidebar-bottom mt-auto flex flex-col justify-center items-start gap-3'>
             <div className='profile flex items-center justify-center gap-2'>
               <FaUserCircle />   <span>Darshan Tailor</span>
             </div>
