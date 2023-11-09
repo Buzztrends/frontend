@@ -136,9 +136,9 @@ export default function GenerateContent() {
                     <Header header="Create Content" />
                     <div className="w-full float-right">
                         <form action="" className="ml-6">
-                            <div className="mt-5">
+                            <div className="mt-5 mr-8">
                                 <label htmlFor="moment-input" className="text-xl font-medium text-primary-color">Moment:</label>
-                                <div className="flex items-center space-x-2 w-10/12">
+                                <div className="flex items-center space-x-2 w-full">
                                     <InputText name="moment-for-generation" id="moment-input" isDisabled={momentCustomization ? undefined : true} />
                                     <span className={`select-none cursor-pointer inline-flex items-center space-x-1 px-5 py-2 mt-2 rounded-lg hover:bg-gray-200 font-medium ${momentCustomization ? "border-2 border-black border-solid bg-gray-200" : "border-2 border-transparent border-solid bg-gray-300"}`} onClick={(e) => setMomentCustomization(!momentCustomization)}>
                                         <span><FaEdit /></span>
@@ -147,13 +147,13 @@ export default function GenerateContent() {
                                 </div>
                             </div>
 
-                            <div className="my-10">
-                                <div className={`flex item-center justify-between w-10/12 py-5 px-5 rounded-xl ${contentFormVisible ? 'border' : 'border-2 border-primary-color'}`} onClick={(e) => setContentFormVisible(!contentFormVisible)}>
+                            <div className="my-10 mr-8">
+                                <div className={`flex item-center justify-between w-full py-5 px-5 rounded-xl ${contentFormVisible ? 'border' : 'border-2 border-primary-color'}`} onClick={(e) => setContentFormVisible(!contentFormVisible)}>
                                     <p className="cursor-default text-xl font-medium text-primary-color" >Content Generation:</p>
                                     <span className={`${contentFormVisible ? 'hidden' : null}`}><BsChevronRight size={28} /></span>
                                     <span className={`${contentFormVisible ? null : 'hidden'}`}><BsChevronDown size={28} /></span>
                                 </div>
-                                <div className={`border border-solid border-primary-color rounded-lg shadow-primary w-10/12 h-auto px-8 mt-2 ${contentFormVisible ? 'block' : 'hidden'}`}>
+                                <div className={`border border-solid border-primary-color rounded-lg w-full h-auto px-8 mt-2 ${contentFormVisible ? 'block' : 'hidden'}`}>
                                     <div className="mt-5 mb-10">
                                         <p className="text-l font-semibold">Content for (select one or multiple):</p>
                                         <div className="flex flex-wrap space-x-10 my-3">
@@ -190,7 +190,7 @@ export default function GenerateContent() {
 
                                     <div className="my-10">
                                         <p className="text-l font-semibold">Similar Content:</p>
-                                        <textarea name="similar-content" id="similar content" className="border border-solid border-primary-color rounded-lg shadow-primary block w-10/12 h-64 px-5 py-2 mt-2 font-medium overflow-y-auto" />
+                                        <textarea name="similar-content" id="similar content" className="border border-solid border-primary-color rounded-lg block w-full h-64 px-5 py-2 mt-2 font-medium overflow-y-auto" />
                                     </div>
 
                                     <div className="my-10 flex justify-center">
@@ -214,7 +214,7 @@ export default function GenerateContent() {
                         </div>
                         <div className="mt-5 flex">
                             <Button buttonText="Preview" strokeOnly={true}/>
-                            <Button buttonText="Publish" width="1/3"/>
+                            <Button buttonText="Publish" width="5/6"/>
                         </div>
                     </div>
                 </div>
