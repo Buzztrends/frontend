@@ -14,7 +14,7 @@ export const Sidebar = () => {
     const [researchitem,setResearchitem]= useState(null);
 
   return (
-    <div className='gradient-sidebar w-1/5 h-screen px-4 py-5 text-white flex flex-col'>
+    <div className='gradient-sidebar w-1/5 h-screen px-4 py-5 text-white flex flex-col fixed'>
         <img src='/images/Buzztrend logo 1.png'></img>
 
         <div className='mt-[35px] flex flex-col gap-6 '>

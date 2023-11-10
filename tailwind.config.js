@@ -12,6 +12,7 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'gradient-linear': 'linear-gradient(175deg, #211A2A 0%, #321178 100%);',
+        'gradient-linear-50': 'linear-gradient(175deg, #37303F 0%, #4517a5 100%);',
         'gradient-lineardown': 'linear-gradient(to bottom, #211A2A 0%, #321178 100%)'
       },
       colors:{
@@ -24,5 +25,5 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }
