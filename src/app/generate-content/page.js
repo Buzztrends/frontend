@@ -284,7 +284,7 @@ export default function GenerateContent() {
                                     <Button buttonText="Publish" width="full" />
                                 </span>
                             </div>
-                            <span className="w-10 bg-red-500" onClick={(e)=>console.log(selectedImages)}>click me</span>
+                            {/* <span className="w-10 bg-red-500" onClick={(e)=>console.log(selectedImages)}>click me</span> */}
                             
 
                             <dialog id="post-preview-modal" className="modal">
