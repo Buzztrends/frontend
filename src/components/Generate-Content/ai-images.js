@@ -17,7 +17,7 @@ export default function AiImages() {
         setSelectedImages((prevState) => prevState.includes(imageLink) ? prevState.filter((link) => link !== imageLink) : [...prevState, imageLink]);
     }
     
-    console.log(selectedImages);
+    // console.log(selectedImages);
     // const mapImageUrlToId = (imageId, imageUrl) => {
     //     setGeneratedImagesObj((prevState)=>{
     //         return {
@@ -46,15 +46,15 @@ export default function AiImages() {
         }
     ];
 
-    // useEffect(() => {
-    //     const preSelect = []
-    //     for (let image of images) {
-    //         preSelect.push(image.url);
-    //     }
+    useEffect(() => {
+        const preSelect = []
+        for (let image of images) {
+            preSelect.push(image.url);
+        }
 
-    //     setSelectedImages((prevState) => [...prevState, ...preSelect]);
-    //     console.log(selectedImages)
-    // }, [])
+        setSelectedImages((prevState) => [...prevState, ...preSelect]);
+        // console.log(selectedImages)
+    }, [])
 
     return (
         <>
@@ -65,10 +65,10 @@ export default function AiImages() {
                 <div className="px-6 py-4">
                     <div className="grid grid-cols-2 grid-rows-2 gap-4">
                         {
-                            images.map((image) => {
+                            images.map((image, index) => {
                                 // mapImageUrlToId(image.id, image.url);
                                 return (
-                                    <ImageDiv key={image.id} link={image.url} />
+                                    <ImageDiv key={image.id} link={image.url} id={index}/>
                                 );
                             })
                         }
@@ -78,7 +78,7 @@ export default function AiImages() {
         </>
     )
 
-    function ImageDiv({ link }) {
+    function ImageDiv({ id, link }) {
         return (
             <div className="relative select-none">
                 <span className="absolute top-0 right-0 mt-2 mr-2" onClick={(e) => toggleImageSelection(link)}>
@@ -86,13 +86,14 @@ export default function AiImages() {
                         selectedImages.includes(link) ? <BsCheckCircleFill color="green" size={28} /> : <BiSolidCircle color='white' size={28} />
                     }
                 </span>
-                <img src={link} className="rounded-xl w-full h-full object-cover" onClick={(e)=>document.getElementById('image-zoom').showModal()} />
+                <img src={link} className="rounded-xl w-full h-full object-cover" onClick={(e)=>document.getElementById(`${id}`).showModal()} />
 
-                <dialog id="image-zoom" className="modal">
-                    <div className="modal-box max-w-4xl">
+                <dialog id={id} className="modal">
+                    <div className="modal-box">
                         <form method="dialog">
                             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                         </form>
+                        <div className="h-8 font-medium">AI Generated Image</div>
                         <img src={link}/>
                     </div>
                 </dialog>

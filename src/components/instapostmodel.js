@@ -16,7 +16,7 @@ const Instapostmodel = () => {
     const { selectedImages } = useContentContext();
 
     const [num,setNum]=useState(0);
-    console.log(selectedImages, 'insta')
+    // console.log(selectedImages, 'insta')
 
     const handleImages=(val)=>{
         if(val=="inc"){
