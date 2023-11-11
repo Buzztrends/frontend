@@ -276,9 +276,13 @@ export default function GenerateContent() {
                                     <AiImages />
                                 </div>
                             </div>
-                            <div className="mt-5 flex">
+                            <div className="mb-5 flex justify-end">
+                                <div className="preview-button w-96">
                                 <Button buttonText="Preview" strokeOnly={true} />
-                                <Button buttonText="Publish" width="1/3" />
+                                </div>
+                                <div className="preview-button w-96">
+                                <Button className="" buttonText="Publish"/>
+                                </div>
                             </div>
                         </div>
                     </div>
