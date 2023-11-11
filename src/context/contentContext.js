@@ -8,6 +8,7 @@ const useContentContext = ()=>{
 
 const ContentContextProvider = ({children})=>{
     const [selectedImages, setSelectedImages] = useState([]);
+    // const [generatedImagesObj, setGeneratedImagesObj] = useState({});
 
     return (
         <ContentContext.Provider value={{selectedImages, setSelectedImages}}>

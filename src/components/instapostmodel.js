@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState } from 'react'
 import { FaEllipsisH } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
@@ -9,18 +8,23 @@ import { FaBookmark } from 'react-icons/fa';
 import {FaGreaterThan} from 'react-icons/fa6';
 import { FaLessThan } from 'react-icons/fa6';
 
+import { useContentContext } from "@/context/contentContext";
+
 
 const Instapostmodel = () => {
-    const images=['/images/card.png','/images/Instagram post - 1.png'];
+    // const images=[];
+    const { selectedImages } = useContentContext();
+
     const [num,setNum]=useState(0);
+    console.log(selectedImages, 'insta')
 
     const handleImages=(val)=>{
         if(val=="inc"){
-        setNum((num) => (num + 1) % images.length);
+        setNum((num) => (num + 1) % selectedImages.length);
         }
         else{
             if(num==0){
-                setNum(images.length-1);
+                setNum(selectedImages.length-1);
             }
             else{
                 setNum(num=>(num-1));
@@ -28,14 +32,15 @@ const Instapostmodel = () => {
         }
     }
   return (
-    <div className='flex flex-col p-5 rounded-lg border border-black-300 gap-2'>
+    <div className='flex flex-col p-5 rounded-lg border border-black gap-2'>
+      {/* {selectedImages} */}
       <div className=' flex items-center gap-3'>
-        <img src='/images/Elllipse 1 (1).png'></img>
+        <img src='/images/insta-dp.png'></img>
         <span className='font-roboto text-sm font-medium leading-5'>model.susan</span>
         <FaEllipsisH className='ml-auto'/>
       </div>
       <div className='relative'>
-    <img src={images[num]}></img>
+    <img src={selectedImages[num]}></img>
     <div  className='absolute right-0 top-1/2 cursor-pointer' onClick={()=>handleImages("inc")}><FaGreaterThan  /></div>
     <div  className='absolute left-0 top-1/2 cursor-pointer' onClick={()=>handleImages("dec")}><FaLessThan  /></div>
     </div>

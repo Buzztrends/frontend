@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import Header from "@/components/header";
 import InputText from "@/components/inputText";
 import Dropdown from "@/components/dropdown";
@@ -21,6 +22,7 @@ import {
     useContentContext,
 } from "@/context/contentContext";
 import { Sidebar } from "@/components/sidebar";
+import Instapost from "@/components/instapost";
 
 export default function GenerateContent() {
     // To toggle moment customization
@@ -127,7 +129,8 @@ export default function GenerateContent() {
     // To show or not show content generation form
     const [contentFormVisible, setContentFormVisible] = useState(true);
 
-    // console.log(useContentContext());
+
+    const {selectedImages} = useContentContext();
 
     return (
         <ContentContextProvider>
@@ -155,8 +158,8 @@ export default function GenerateContent() {
                                         />
                                         <span
                                             className={`select-none cursor-pointer inline-flex items-center space-x-1 px-5 py-2 mt-2 rounded-lg hover:bg-gray-200 font-medium ${momentCustomization
-                                                    ? "border-2 border-black border-solid bg-gray-200"
-                                                    : "border-2 border-transparent border-solid bg-gray-300"
+                                                ? "border-2 border-black border-solid bg-gray-200"
+                                                : "border-2 border-transparent border-solid bg-gray-300"
                                                 }`}
                                             onClick={(e) =>
                                                 setMomentCustomization(!momentCustomization)
@@ -173,8 +176,8 @@ export default function GenerateContent() {
                                 <div className="my-10 mr-4">
                                     <div
                                         className={`flex item-center justify-between w-full py-5 px-5 rounded-xl ${contentFormVisible
-                                                ? "border"
-                                                : "border-2 border-primary-color"
+                                            ? "border"
+                                            : "border-2 border-primary-color"
                                             }`}
                                         onClick={(e) => setContentFormVisible(!contentFormVisible)}
                                     >
@@ -202,8 +205,8 @@ export default function GenerateContent() {
                                                         <div
                                                             key={social.id}
                                                             className={`cursor-pointer ${selectedSocials.includes(social.id)
-                                                                    ? "bg-linear-gradient text-white"
-                                                                    : null
+                                                                ? "bg-linear-gradient text-white"
+                                                                : null
                                                                 } p-1.5 rounded-lg`}
                                                             onClick={() => toggleSocial(social.id)}
                                                         >
@@ -251,7 +254,7 @@ export default function GenerateContent() {
                                             <textarea
                                                 name="similar-content"
                                                 id="similar content"
-                                                className="border border-solid border-primary-color rounded-lg  block w-full h-64 px-5 py-2 mt-2 font-medium overflow-y-auto"
+                                                className="border border-solid border-primary-color rounded-lg  block w-full h-32 px-5 py-2 mt-2 font-medium overflow-y-auto"
                                             />
                                         </div>
 
@@ -268,18 +271,30 @@ export default function GenerateContent() {
                             </div>
                         </div>
                         <div>
-                            <div className="flex mb-10">
-                                <div className="w-1/2 ml-6 mr-3">
-                                    <PostText />
-                                </div>
-                                <div className="w-1/2 ml-3 mr-6">
-                                    <AiImages />
-                                </div>
+                            <div className="flex">
+                                <PostText />
+                                <AiImages />
                             </div>
-                            <div className="mt-5 flex">
-                                <Button buttonText="Preview" strokeOnly={true} />
-                                <Button buttonText="Publish" width="1/3" />
+                            
+                            <div className={`mt-5 flex justify-end gap-2 w-1/3 mr-4 float-right`}>
+                                <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none':null}`} onClick={() => document.getElementById('post-preview-modal').showModal()}>
+                                    <Button buttonText="Preview" strokeOnly={true} width="full" />
+                                </span>
+                                <span className={`w-1/2`}>
+                                    <Button buttonText="Publish" width="full" />
+                                </span>
                             </div>
+                            <span className="w-10 bg-red-500" onClick={(e)=>console.log(selectedImages)}>click me</span>
+                            
+
+                            <dialog id="post-preview-modal" className="modal">
+                                <div className="modal-box max-w-4xl">
+                                    <form method="dialog">
+                                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                    </form>
+                                    <Instapost/>
+                                </div>
+                            </dialog>
                         </div>
                     </div>
                 </div>
