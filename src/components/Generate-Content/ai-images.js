@@ -62,7 +62,7 @@ export default function AiImages() {
                 <div className="border-b text-primary-color text-lg border-neutral-900 px-6 py-3">
                     AI Generated Images:
                 </div>
-                <div className="px-6 py-4">
+                <div className="px-6 py-4 overflow-y-auto h-96 m-8">
                     <div className="grid grid-cols-2 grid-rows-2 gap-4">
                         {
                             images.map((image, index) => {
