@@ -34,6 +34,78 @@ export default function Home() {
         "url": "https://www.example.com/os-updates",
         "source": "OS Insights",
         "topic": "Technology"
+      },
+      {
+        "title": "Lorem Ipsum",
+        "url": "https://www.example.com",
+        "source": "Example News",
+        "topic": "Technology"
+      },
+      {
+        "title": "New Technology Advancements",
+        "url": "https://www.example.com/tech-advancements",
+        "source": "Tech Innovations Weekly",
+        "topic": "Technology"
+      },
+      {
+        "title": "Data Security in the Digital Age",
+        "url": "https://www.example.com/data-security",
+        "source": "Cybersecurity Times",
+        "topic": "Technology"
+      },
+      {
+        "title": "Latest Operating System Updates",
+        "url": "https://www.example.com/os-updates",
+        "source": "OS Insights",
+        "topic": "Technology"
+      },
+      {
+        "title": "Lorem Ipsum",
+        "url": "https://www.example.com",
+        "source": "Example News",
+        "topic": "Technology"
+      },
+      {
+        "title": "New Technology Advancements",
+        "url": "https://www.example.com/tech-advancements",
+        "source": "Tech Innovations Weekly",
+        "topic": "Technology"
+      },
+      {
+        "title": "Data Security in the Digital Age",
+        "url": "https://www.example.com/data-security",
+        "source": "Cybersecurity Times",
+        "topic": "Technology"
+      },
+      {
+        "title": "Latest Operating System Updates",
+        "url": "https://www.example.com/os-updates",
+        "source": "OS Insights",
+        "topic": "Technology"
+      },
+      {
+        "title": "Lorem Ipsum",
+        "url": "https://www.example.com",
+        "source": "Example News",
+        "topic": "Technology"
+      },
+      {
+        "title": "New Technology Advancements",
+        "url": "https://www.example.com/tech-advancements",
+        "source": "Tech Innovations Weekly",
+        "topic": "Technology"
+      },
+      {
+        "title": "Data Security in the Digital Age",
+        "url": "https://www.example.com/data-security",
+        "source": "Cybersecurity Times",
+        "topic": "Technology"
+      },
+      {
+        "title": "Latest Operating System Updates",
+        "url": "https://www.example.com/os-updates",
+        "source": "OS Insights",
+        "topic": "Technology"
       }
     ],
     "industry_news": [

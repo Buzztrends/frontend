@@ -58,11 +58,11 @@ export default function GenerateContent() {
         },
     ];
 
-    const toggleSocial = (socialId) => {
+    const toggleSocial = (socialLabel) => {
         setSelectedSocials((prevState) =>
-            prevState.includes(socialId)
-                ? prevState.filter((id) => id !== socialId)
-                : [...prevState, socialId]
+            prevState.includes(socialLabel)
+                ? prevState.filter((label) => label !== socialLabel)
+                : [...prevState, socialLabel]
         );
     };
 
@@ -130,172 +130,194 @@ export default function GenerateContent() {
     const [contentFormVisible, setContentFormVisible] = useState(true);
 
 
+    // Storing form data
+    const [formData, setFormData] = useState({});
+    const updateFormData = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+
+    const handleGenerateContentFormSubmission = (e) => {
+        e.preventDefault();
+
+        console.log({
+            ...formData,
+            'social-media': selectedSocials,
+            'product': selectedProduct,
+            'tone': selectedTone
+        });
+    }
+
+
     const { selectedImages } = useContentContext();
 
     return (
         <>
             <div className="flex">
-                <Sidebar  />
+                <Sidebar />
 
-                    <div className="w-4/5 flex flex-col ml-auto">
-                        <Header header="Create Content" />
-                        <div className="w-full mt-24">
-                            <form action="" className="ml-6">
-                                <div className="mt-5 mr-4">
-                                    <label
-                                        htmlFor="moment-input"
-                                        className="text-xl font-medium text-primary-color"
-                                    >
-                                        Moment:
-                                    </label>
-                                    <div className="flex items-center space-x-2 w-full">
-                                        <InputText
-                                            name="moment-for-generation"
-                                            id="moment-input"
-                                            isDisabled={momentCustomization ? undefined : true}
-                                        />
-                                        <span
-                                            className={`select-none cursor-pointer inline-flex items-center space-x-1 px-5 py-2 mt-2 rounded-lg hover:bg-gray-200 font-medium ${momentCustomization
-                                                ? "border-2 border-black border-solid bg-gray-200"
-                                                : "border-2 border-transparent border-solid bg-gray-300"
-                                                }`}
-                                            onClick={(e) =>
-                                                setMomentCustomization(!momentCustomization)
-                                            }
-                                        >
-                                            <span>
-                                                <FaEdit />
-                                            </span>
-                                            <span>Customize</span>
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div className="my-10 mr-4">
-                                    <div
-                                        className={`flex item-center justify-between w-full py-5 px-5 rounded-xl ${contentFormVisible
-                                            ? "border"
-                                            : "border-2 border-primary-color"
+                <div className="w-4/5 flex flex-col ml-auto">
+                    <Header header="Create Content" />
+                    <div className="w-full mt-24"></div>
+                    <div className="w-full">
+                        <form action="" className="ml-6" onSubmit={handleGenerateContentFormSubmission}>
+                            <div className="mt-5 mr-4">
+                                <label
+                                    htmlFor="moment-input"
+                                    className="text-xl font-medium text-primary-color"
+                                >
+                                    Moment:
+                                </label>
+                                <div className="flex items-center space-x-2 w-full">
+                                    <InputText
+                                        name="moment-for-generation"
+                                        id="moment-input"
+                                        isDisabled={momentCustomization ? undefined : true}
+                                        handleChange={updateFormData}
+                                    />
+                                    <span
+                                        className={`select-none cursor-pointer inline-flex items-center space-x-1 px-5 py-2 mt-2 rounded-lg hover:bg-gray-200 font-medium ${momentCustomization
+                                            ? "border-2 border-black border-solid bg-gray-200"
+                                            : "border-2 border-transparent border-solid bg-gray-300"
                                             }`}
-                                        onClick={(e) => setContentFormVisible(!contentFormVisible)}
+                                        onClick={(e) =>
+                                            setMomentCustomization(!momentCustomization)
+                                        }
                                     >
-                                        <p className="cursor-default text-xl font-medium text-primary-color">
-                                            Content Generation:
+                                        <span>
+                                            <FaEdit />
+                                        </span>
+                                        <span>Customize</span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className="my-10 mr-4">
+                                <div
+                                    className={`flex item-center justify-between w-full py-5 px-5 rounded-xl ${contentFormVisible
+                                        ? "border"
+                                        : "border-2 border-primary-color"
+                                        }`}
+                                    onClick={(e) => setContentFormVisible(!contentFormVisible)}
+                                >
+                                    <p className="cursor-default text-xl font-medium text-primary-color">
+                                        Content Generation:
+                                    </p>
+                                    <span className={`${contentFormVisible ? "hidden" : null}`}>
+                                        <BsChevronRight size={28} />
+                                    </span>
+                                    <span className={`${contentFormVisible ? null : "hidden"}`}>
+                                        <BsChevronDown size={28} />
+                                    </span>
+                                </div>
+                                <div
+                                    className={`border border-solid border-primary-color rounded-lg  w-full h-auto px-8 mt-2 ${contentFormVisible ? "block" : "hidden"
+                                        }`}
+                                >
+                                    <div className="mt-5 mb-10">
+                                        <p className="text-l font-semibold">
+                                            Content for (select one or multiple):
                                         </p>
-                                        <span className={`${contentFormVisible ? "hidden" : null}`}>
-                                            <BsChevronRight size={28} />
-                                        </span>
-                                        <span className={`${contentFormVisible ? null : "hidden"}`}>
-                                            <BsChevronDown size={28} />
-                                        </span>
-                                    </div>
-                                    <div
-                                        className={`border border-solid border-primary-color rounded-lg  w-full h-auto px-8 mt-2 ${contentFormVisible ? "block" : "hidden"
-                                            }`}
-                                    >
-                                        <div className="mt-5 mb-10">
-                                            <p className="text-l font-semibold">
-                                                Content for (select one or multiple):
-                                            </p>
-                                            <div className="flex flex-wrap space-x-10 my-3">
-                                                {socials.map((social) => {
-                                                    return (
-                                                        <div
-                                                            key={social.id}
-                                                            className={`cursor-pointer ${selectedSocials.includes(social.id)
-                                                                ? "bg-linear-gradient text-white"
-                                                                : null
-                                                                } p-1.5 rounded-lg`}
-                                                            onClick={() => toggleSocial(social.id)}
-                                                        >
-                                                            {displaySocial(social.label)}
-                                                        </div>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-
-                                        <div className="my-10">
-                                            <p className="text-l font-semibold">Select product:</p>
-                                            <Dropdown
-                                                name="product"
-                                                id="select-product"
-                                                options={products}
-                                                selectedOption={selectedProduct}
-                                                handleSelectChange={handleSelectProduct}
-                                            />
-                                        </div>
-
-                                        <div className="my-10">
-                                            <p className="text-l font-semibold">Content Tonality:</p>
-                                            <Dropdown
-                                                name="tonality"
-                                                id="select-tone"
-                                                options={tones}
-                                                selectedOption={selectedTone}
-                                                handleSelectChange={handleSelectTone}
-                                            />
-                                        </div>
-
-                                        <div className="my-10">
-                                            <p className="text-l font-semibold">
-                                                Structure of Content:
-                                            </p>
-                                            <InputText
-                                                name="content-structure"
-                                                id="content-structure"
-                                            />
-                                        </div>
-
-                                        <div className="my-10">
-                                            <p className="text-l font-semibold">Similar Content:</p>
-                                            <textarea
-                                                name="similar-content"
-                                                id="similar content"
-                                                className="border border-solid border-primary-color rounded-lg  block w-full h-32 px-5 py-2 mt-2 font-medium overflow-y-auto"
-                                            />
-                                        </div>
-
-                                        <div className="my-10 flex justify-center">
-                                            <Button buttonText="Generate Content" />
+                                        <div className="flex flex-wrap space-x-10 my-3">
+                                            {socials.map((social) => {
+                                                return (
+                                                    <div
+                                                        key={social.id}
+                                                        className={`cursor-pointer ${selectedSocials.includes(social.label)
+                                                            ? "bg-linear-gradient text-white"
+                                                            : null
+                                                            } p-1.5 rounded-lg`}
+                                                        onClick={() => toggleSocial(social.label)}
+                                                    >
+                                                        {displaySocial(social.label)}
+                                                    </div>
+                                                );
+                                            })}
                                         </div>
                                     </div>
+
+                                    <div className="my-10">
+                                        <p className="text-l font-semibold">Select product:</p>
+                                        <Dropdown
+                                            name="product"
+                                            id="select-product"
+                                            options={products}
+                                            selectedOption={selectedProduct}
+                                            handleSelectChange={handleSelectProduct}
+                                        />
+                                    </div>
+
+                                    <div className="my-10">
+                                        <p className="text-l font-semibold">Content Tonality:</p>
+                                        <Dropdown
+                                            name="tonality"
+                                            id="select-tone"
+                                            options={tones}
+                                            selectedOption={selectedTone}
+                                            handleSelectChange={handleSelectTone}
+                                        />
+                                    </div>
+
+                                    <div className="my-10">
+                                        <p className="text-l font-semibold">
+                                            Structure of Content:
+                                        </p>
+                                        <InputText
+                                            name="content-structure"
+                                            id="content-structure"
+                                            handleChange={updateFormData}
+                                        />
+                                    </div>
+
+                                    <div className="my-10">
+                                        <p className="text-l font-semibold">Similar Content:</p>
+                                        <textarea
+                                            name="similar-content"
+                                            id="similar content"
+                                            className="border border-solid border-primary-color rounded-lg  block w-full h-32 px-5 py-2 mt-2 font-medium overflow-y-auto"
+                                            onChange={updateFormData}
+                                        />
+                                    </div>
+
+                                    <div className="my-10 flex justify-center">
+                                        <Button buttonText="Generate Content" />
+                                    </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div className="cursor-default my-4 text-xl font-medium text-primary-color w-full">
-                            <div className="float-left ml-6">
-                                Instagram:
                             </div>
-                        </div>
-                        <div>
-                            <div className="flex">
-                                <PostText />
-                                <AiImages />
-                            </div>
-
-                            <div className={`mt-5 flex justify-end gap-2 w-1/3 mr-4 float-right`}>
-                                <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`} onClick={() => document.getElementById('post-preview-modal').showModal()}>
-                                    <Button buttonText="Preview" strokeOnly={true} width="full" />
-                                </span>
-                                <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`}>
-                                    <Button buttonText="Publish" width="full" />
-                                </span>
-                            </div>
-                            {/* <span className="w-10 bg-red-500" onClick={(e)=>console.log(selectedImages)}>click me</span> */}
-
-
-                            <dialog id="post-preview-modal" className="modal">
-                                <div className="modal-box max-w-4xl">
-                                    <form method="dialog">
-                                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                                    </form>
-                                    <Instapost />
-                                </div>
-                            </dialog>
+                        </form>
+                    </div>
+                    <div className="cursor-default my-4 text-xl font-medium text-primary-color w-full">
+                        <div className="float-left ml-6">
+                            Instagram:
                         </div>
                     </div>
-            
+                    <div>
+                        <div className="flex">
+                            <PostText />
+                            <AiImages />
+                        </div>
+
+                        <div className={`mt-5 flex justify-end gap-2 w-1/3 mr-4 float-right`}>
+                            <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`} onClick={() => document.getElementById('post-preview-modal').showModal()}>
+                                <Button buttonText="Preview" strokeOnly={true} width="full" />
+                            </span>
+                            <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`}>
+                                <Button buttonText="Publish" width="full" />
+                            </span>
+                        </div>
+                        {/* <span className="w-10 bg-red-500" onClick={(e)=>console.log(selectedImages)}>click me</span> */}
+
+
+                        <dialog id="post-preview-modal" className="modal">
+                            <div className="modal-box max-w-4xl">
+                                <form method="dialog">
+                                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                                </form>
+                                <Instapost />
+                            </div>
+                        </dialog>
+                    </div>
+                </div>
+
             </div>
         </>
     );
