@@ -2,7 +2,7 @@
 import React from 'react'
 import Socialmedia from '@/components/socialmedia'
 import Trendingnews from '@/components/trendingnews'
-import { Sidebar } from '@/components/sidebar';
+import  Sidebar  from '@/components/sidebar';
 import { useState } from 'react';
 // import TrendCard from '@/components/TrendCard';
 // import Hashtag from '@/components/Hashtag';
@@ -127,8 +127,6 @@ export default function Home() {
         <Trendingnews data={data} mapper={mapper} toggleModal={toggleModal} />
         <Socialmedia data={data} mapper={mapper} />
       </div>
-
-
 
       {/* Modal starts  */}
       {isModalOpen && (
