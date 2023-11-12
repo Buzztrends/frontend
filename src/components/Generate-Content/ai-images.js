@@ -1,7 +1,7 @@
 "use client";
 import { useContentContext } from "@/context/contentContext";
 import { useEffect } from "react";
-import { BiSolidCircle } from "react-icons/bi";
+import { BiSolidCircle,BiRefresh } from "react-icons/bi";
 import { BsCheckCircleFill } from "react-icons/bs";
 
 export default function AiImages() {
@@ -58,9 +58,10 @@ export default function AiImages() {
 
     return (
         <>
-            <div className="w-1/2 rounded-lg border-primary-color border font-medium ml-3 mr-4">
-                <div className="border-b text-primary-color text-lg border-neutral-900 px-6 py-3">
-                    AI Generated Images:
+            <div className="w-1/2 rounded-lg border-primary-color border ml-3 mr-4">
+                <div className="flex justify-between border-b text-primary-color text-lg border-neutral-900 px-6 py-3">
+                    <div className="font-medium items-center">AI Generated Images:</div>
+                    <button className="regenerate-btn p-1 px-4 border border-indigo-800 rounded-lg flex items-center text-base hover:bg-gradient-linear hover:text-white"><div className='mx-2 text-2xl'><BiRefresh/> </div> Regenerate</button>
                 </div>
                 <div className="px-4 py-2 overflow-y-auto h-96 m-8">
                     <div className="grid grid-cols-2 grid-rows-2 gap-4">
