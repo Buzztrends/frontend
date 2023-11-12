@@ -31,13 +31,12 @@ const GoogleTrendsWidget = () => {
     }, []);
 
     return (
-        <div>
+        <div className='w-1/4 h-1/4' >
             <h1>Google Trends Widget</h1>
             <div id="your-trends-container">
                 <iframe
                     title="Google Trends Widget"
                     id="google-trends-iframe"
-                    style={{ width: '30%', height: '500px', border: 'none' }}
                 />
             </div>
         </div>

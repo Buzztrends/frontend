@@ -67,6 +67,7 @@ export default function Research() {
                       <Hashtag tag="India" />
                     </div>
                     <div className="news-hashtags-card">
+                      happy diwali
                       <GoogleTrendsWidget/>
 
                     </div>
