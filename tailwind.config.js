@@ -17,6 +17,7 @@ module.exports = {
       },
       colors:{
         'primary-color': '#3F1F74',
+        'primary-color-dim': 'rgba(63, 31, 116, 0.75)',
         'font-color':'#230061',
         'border-color':'#250061',
       },

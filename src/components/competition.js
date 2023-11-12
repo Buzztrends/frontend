@@ -11,9 +11,8 @@ const Competition = () => {
             <Competitioncard />
             <Competitioncard />
         </div>
-      
-    </div>
-  )
-}
+        </div>
+)
+  }
 
-export default Competition
+export default Competition;

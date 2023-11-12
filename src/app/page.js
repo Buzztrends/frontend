@@ -1,4 +1,4 @@
-import {Sidebar} from '../components/sidebar';
+import { Sidebar } from '../components/sidebar';
 import Instapost from '../components/instapost';
 import Socialmedia from '../components/socialmedia';
 import Competition from '@/components/competition';

@@ -1,7 +1,7 @@
 "use client"
 import { ContentContextProvider } from "@/context/contentContext";
 
-export default function GenrateContentLayout({ children }) {
+export default function GenerateContentLayout({ children }) {
     return (
         <html lang="en">
             <body>

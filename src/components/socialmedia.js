@@ -5,52 +5,23 @@ import {LiaLessThanSolid, LiaGreaterThanSolid} from 'react-icons/lia';
 import './socialmedia.css';
 import Socialmediagraph from './socialmediagraph';
 
-const Socialmedia = () => {
-  const data = [
-  {
-    title: "Judge reimposes Trump gag order in federal election interface case",
-    num: "5"
-  },
-  {
-    title: "New Legislation on Voter ID Requirements",
-    num: "3"
-  },
-  {
-    title: "Supreme Court Rules on Campaign Finance Limits",
-    num: "7"
-  },
-  {
-    title: "Judge reimposes Trump gag order in federal election interface case",
-    num: "100"
-  },
-  {
-    title: "New Legislation on Voter ID Requirements",
-    num: "35"
-  },
-  {
-    title: "Supreme Court Rules on Campaign Finance Limits",
-    num: "70"
-  },
-  {
-    title: "Election Results Analysis",
-    num: "2"
-  },
-  {
-    title: "Voting System Security Updates",
-    num: "4"
-  }
-
-];
-
+const Socialmedia = ({data,mapper}) => {
+ 
+  data=data["social_media_trends"];
+ console.log(data,"data in sm");
 
 const [ind,setIndex]=useState(0);
+const [selected,setSelected]=useState(0);
 
 const changeContent= (val)=>{
+  const curr=ind;
   if(val=="prev"){
     setIndex(ind-1);
+    setSelected(3*(curr-1));
   }
   else{
     setIndex(ind+1);
+    setSelected(3*(curr+1));
   }
 }
 
@@ -60,12 +31,13 @@ const changeContent= (val)=>{
     <div className='flex gap-5 font-Poppins'>
 
       <div className='flex flex-col gap-2 w-1/2'>
-          <div className='text-24 font-semibold leading-3 tracking-tighter text-font-color'>Social Media</div>
+          <div className='text-2xl font-medium leading-9 tracking-wide text-font-color'>Social Media</div>
           <div className='w-full flex flex-col gap-3'>
               {data.slice(ind * 3, 3 * (ind + 1)).map((item, index) => 
-                 <Socialmediacard key={index} title={item.title} num={item.num} /> 
+                 <Socialmediacard key={index} title={item.title} hashtags={item.hashtags} selected={selected} setSelected={setSelected} position={ind * 3 + index}/> 
                )}
-
+               {data.slice(ind * 3, 3 * (ind + 1)).length === 2 && <div className='h-28'></div>}
+                {data.slice(ind * 3, 3 * (ind + 1)).length === 1 && <><div className='h-24'></div><div className='h-28'></div></>}
           <div className='flex justify-between items-center text-font-color font-bold'>
             <button className={`flex gap-1 items-center ${ind===0 ?"button-disable":""}`} disabled={ind===0} onClick={()=>changeContent("prev")}>
                 <LiaLessThanSolid />
@@ -80,8 +52,8 @@ const changeContent= (val)=>{
           </div>
       </div>
 
-      <div className='w-1/2 self-center'>
-              <Socialmediagraph />
+      <div className='w-1/2 mt-11 mb-9'>
+              <Socialmediagraph hashtags={data[selected].hashtags}/>
       </div>
     </div>
 
