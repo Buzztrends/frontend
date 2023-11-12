@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import NewsCard from "@/components/NewsCard/index.js";
+import GoogleTrendsWidget from "./googleTrends";
 
 export default function Research() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -65,7 +66,10 @@ export default function Research() {
                       <Hashtag tag="India" />
                       <Hashtag tag="India" />
                     </div>
-                    <div className="news-hashtags-card"></div>
+                    <div className="news-hashtags-card">
+                      <GoogleTrendsWidget/>
+
+                    </div>
                   </div>
                 </div>
               </div>
