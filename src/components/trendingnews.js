@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Newsbuttons from '../components/Newsbuttons';
 import NewsCard from './newscard';
 
-const Trendingnews = ({data,mapper}) => {
+const Trendingnews = ({data,mapper, toggleModal}) => {
    
 
     
@@ -18,9 +18,9 @@ const Trendingnews = ({data,mapper}) => {
              return    <Newsbuttons key={index} title={mapper[item]} actual={item} currentNews={currentNews} setCurrentNews={setCurrentNews}/> 
         })}
         </div>
-        <div className='flex flex-wrap gap-x-12 gap-y-5 '>
+        <div className='flex flex-wrap gap-x-12 gap-y-5'>
           {data[currentNews].map((item,index)=>
-          <NewsCard data={item} />
+            <NewsCard data={item} toggleModal={toggleModal} />
           )}
       
         </div>

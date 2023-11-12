@@ -55,7 +55,7 @@ export default function PostText() {
   const PostTabs = [
     {
       tab: (
-        <div className="flex justify-between px-4">
+        <div className="flex justify-center px-4">
           <div className="m-2 text-lg">
             <BsFillEyeFill />
           </div>
@@ -66,7 +66,7 @@ export default function PostText() {
     },
     {
       tab: (
-        <div className="flex justify-between mx-4">
+        <div className="flex justify-center mx-4">
           <div className="m-2 text-lg">
             <BsPencilSquare />
           </div>
@@ -83,7 +83,7 @@ export default function PostText() {
   return (
     <>
       <div className="w-1/2 ml-6 mr-3 block rounded-lg border-black border shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
-        <div className="border-b text-indigo-900 border-neutral-900 px-6 py-3">
+        <div className="border-b text-primary-color text-lg border-neutral-900 px-6 py-3 font-medium">
           Post Text
         </div>
         <div className="px-6 py-4 flex justify-between">
