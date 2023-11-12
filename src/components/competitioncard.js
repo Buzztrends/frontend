@@ -8,4 +8,4 @@ const Competitioncard = () => {
   )
 }
 
-export default Competitioncard
+export default Competitioncard;

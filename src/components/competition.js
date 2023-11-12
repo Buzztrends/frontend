@@ -9,4 +9,4 @@ const Competition = () => {
   )
 }
 
-export default Competition
+export default Competition;
