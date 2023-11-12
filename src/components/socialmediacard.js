@@ -3,7 +3,7 @@ import {  FaInstagram } from 'react-icons/fa';
 import {LiaGreaterThanSolid} from 'react-icons/lia';
 
 const Socialmediacard = ({title,hashtags,key,selected,setSelected,position}) => {
-  console.log("card called");
+  // console.log("card called");
   return (
     <button className='rounded-lg border-2 border-border-color border-solid p-5 shadow-primary flex flex-col gap-4 relative' onClick={()=>setSelected(position)}>
       <div className='text-lg font-semibold tracking-tighter'>{title}</div>
