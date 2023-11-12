@@ -134,12 +134,11 @@ export default function GenerateContent() {
 
     return (
         <ContentContextProvider>
-            <div className="flex"></div>
-            <div className="flex">
+    
+            <div className="">
                 <Sidebar />
 
-                <div className="flex flex-col items-end">
-                    <div className="w-4/5 flex flex-col items-end">
+                    <div className="w-4/5 flex flex-col ml-auto">
                         <Header header="Create Content" />
                         <div className="w-full">
                             <form action="" className="ml-6">
@@ -297,7 +296,7 @@ export default function GenerateContent() {
                             </dialog>
                         </div>
                     </div>
-                </div>
+            
             </div>
         </ContentContextProvider>
     );
