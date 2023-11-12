@@ -5,7 +5,7 @@ const Newscard = (props) => {
   const data=props.data;
 //   console.log(data);
   return (
-    <div className='flex flex-col w-[30%] rounded-lg border border-solid border-font-color shadow-primary'>
+    <div className='flex flex-col w-[30%] rounded-lg border border-black'>
         
         <img className='rounded-t-lg' src='/images/card.png'></img>
         <div className='flex flex-col gap-3 p-3 font-poppins'>
