@@ -46,15 +46,15 @@ export default function AiImages() {
         }
     ];
 
-    useEffect(() => {
-        const preSelect = []
-        for (let image of images) {
-            preSelect.push(image.url);
-        }
+    // useEffect(() => {
+    //     const preSelect = []
+    //     for (let image of images) {
+    //         preSelect.push(image.url);
+    //     }
 
-        setSelectedImages((prevState) => [...prevState, ...preSelect]);
-        // console.log(selectedImages)
-    }, [])
+    //     setSelectedImages((prevState) => [...prevState, ...preSelect]);
+    //     // console.log(selectedImages)
+    // }, [])
 
     return (
         <>
