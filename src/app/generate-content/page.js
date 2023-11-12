@@ -302,7 +302,7 @@ export default function GenerateContent({searchParams}) {
                             <AiImages />
                         </div>
 
-                        <div className={`mt-5 flex justify-end gap-2 w-1/3 mr-4 float-right`}>
+                        <div className={`mt-5 mb-5 flex justify-end gap-2 w-1/3 mr-4 float-right`}>
                             <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`} onClick={() => document.getElementById('post-preview-modal').showModal()}>
                                 <Button buttonText="Preview" strokeOnly={true} width="full" />
                             </span>
