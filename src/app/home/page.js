@@ -106,13 +106,25 @@ export default function Home() {
     "social_media_trends": "Social Media"
 
   };
+  const [title, setTitle] = useState("");
+  const [description , setDescription] = useState("");
+  const [event_name, setEvent_name] = useState("");
+  const [source, setSource] = useState("");
+  const [topic, setTopic] = useState("");
+  const [image, setImage] = useState("");
 
 
   // Modal 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const toggleModal = () => {
+  const toggleModal = ({data}) => {
     setIsModalOpen(!isModalOpen);
+    setTitle(data.title);
+    setEvent_name(data.event_name);
+    setSource(data.source);
+    setTopic(data.topic);
+    setImage("/images/card.png");
+    setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet dictum aliquam, nibh.");
   };
 
   const closeModal = () => {
@@ -135,8 +147,8 @@ export default function Home() {
             <div className="relative w-full max-w-6xl max-h-full">
               <div className="relative bg-white rounded-lg shadow-xl dark:bg-gray-700">
                 <div className="flex items-start justify-between p-4 rounded-t ">
-                  <h3 className="text-xl text-gray-900 dark:text-white">
-                    Title: Ind vs SA | Topic: Viral Instagram Trend
+                  <h3 className="text-xl text-gray-900 dark:text-white mx-4">
+                    {title}
                   </h3>
                   <button
                     onClick={closeModal}
@@ -161,15 +173,18 @@ export default function Home() {
                     <span className="sr-only">Close modal</span>
                   </button>
                 </div>
-                <div className="p-6 space-y-6 md:w-5/10">
+                <div className="px-6 space-y-6 md:w-5/10">
                   <div className="news-card flex">
                     <div className="h-full w-1/2 border p-4">
-                      <img className="w-full" src={"https://img.olympics.com/images/image/private/t_s_pog_staticContent_hero_lg_2x/f_auto/primary/owuigawygwwzwtpydh6f"}></img>
+                      <div className='source mb-4'>
+                        {source}
+                      </div>
+                      <img className="" src={image}></img>
                       <div className="mt-4">
-                        Description
+                        {/* {event_name} */}
                       </div>
                       <div className="mt-4 mb-4">
-                        Content .... <button>more</button>
+                        {description} <button>... more</button>
                       </div>
                     </div>
                     <div className="news-side-card w-auto">
