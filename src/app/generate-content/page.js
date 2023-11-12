@@ -18,10 +18,10 @@ import { BsChevronDown } from "react-icons/bs";
 import PostText from "@/components/Generate-Content/post-text";
 import AiImages from "@/components/Generate-Content/ai-images";
 import {
-    ContentContextProvider,
     useContentContext,
 } from "@/context/contentContext";
-import { Sidebar } from "@/components/sidebar";
+import { SidebarContextProvider } from "@/context/sidebarContext";
+import Sidebar from "@/components/sidebar";
 import Instapost from "@/components/instapost";
 
 export default function GenerateContent() {
@@ -130,16 +130,14 @@ export default function GenerateContent() {
     const [contentFormVisible, setContentFormVisible] = useState(true);
 
 
-    const {selectedImages} = useContentContext();
+    const { selectedImages } = useContentContext();
 
     return (
-        <ContentContextProvider>
-            <div className="flex"></div>
+        <>
             <div className="flex">
-                <Sidebar />
+                <Sidebar  />
 
-                <div className="flex flex-col items-end">
-                    <div className="w-4/5 flex flex-col items-end">
+                    <div className="w-4/5 flex flex-col ml-auto">
                         <Header header="Create Content" />
                         <div className="w-full">
                             <form action="" className="ml-6">
@@ -275,30 +273,30 @@ export default function GenerateContent() {
                                 <PostText />
                                 <AiImages />
                             </div>
-                            
+
                             <div className={`mt-5 flex justify-end gap-2 w-1/3 mr-4 float-right`}>
-                                <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none':null}`} onClick={() => document.getElementById('post-preview-modal').showModal()}>
+                                <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`} onClick={() => document.getElementById('post-preview-modal').showModal()}>
                                     <Button buttonText="Preview" strokeOnly={true} width="full" />
                                 </span>
-                                <span className={`w-1/2`}>
+                                <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`}>
                                     <Button buttonText="Publish" width="full" />
                                 </span>
                             </div>
                             {/* <span className="w-10 bg-red-500" onClick={(e)=>console.log(selectedImages)}>click me</span> */}
-                            
+
 
                             <dialog id="post-preview-modal" className="modal">
                                 <div className="modal-box max-w-4xl">
                                     <form method="dialog">
                                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                     </form>
-                                    <Instapost/>
+                                    <Instapost />
                                 </div>
                             </dialog>
                         </div>
                     </div>
-                </div>
+            
             </div>
-        </ContentContextProvider>
+        </>
     );
 }
