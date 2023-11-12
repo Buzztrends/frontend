@@ -7,17 +7,14 @@ import { FaShare } from 'react-icons/fa';
 import { FaBookmark } from 'react-icons/fa';
 import {FaGreaterThan} from 'react-icons/fa6';
 import { FaLessThan } from 'react-icons/fa6';
-import { IoLogoInstagram } from 'react-icons/io';
-
+import { IoLogoLinkedin } from 'react-icons/io';
 import { useContentContext } from "@/context/contentContext";
 
-
-const Instapostmodel = () => {
-    // const images=[];
+const Linkedincard = () => {
     const { selectedImages } = useContentContext();
-
     const [num,setNum]=useState(0);
-    // console.log(selectedImages, 'insta')
+
+
 
     const handleImages=(val)=>{
         if(val=="inc"){
@@ -32,39 +29,43 @@ const Instapostmodel = () => {
             }
         }
     }
-  return (
-    <div className='insta col-span-2 flex flex-col gap-2'>
+
+    return (
+       <div className='insta col-span-2 flex flex-col gap-2'>
                 <div className='flex justify-center items-center gap-2'>
-                    <IoLogoInstagram size={30} />
-                    <span className='font-roboto text-xl font-semibold leading-6'>Instagram Post</span>
+                    <IoLogoLinkedin size={30} />
+                    <span className='font-roboto text-xl font-semibold leading-6'>Linkedin Post</span>
                 </div>
-                <div className='flex flex-col p-5 rounded-lg border border-black gap-2'>
+    <div className='flex flex-col p-5 rounded-lg border border-black gap-3 font-roboto text-xs leading-4'>
       {/* {selectedImages} */}
-      <div className=' flex items-center gap-3'>
-        <img src='/images/insta-dp.png'></img>
-        <span className='font-roboto text-sm font-medium leading-5'>model.susan</span>
-        <FaEllipsisH className='ml-auto'/>
+      <div className=' flex  gap-1'>
+        <img src='/images/Logo (3).png'></img>
+        <div className='flex flex-col '>
+            <span className='font-bold'>ULTRA SAFE</span>
+            <span className=''>326 followers</span>
+            <div className=''>20h</div>
+        </div>
+         <FaEllipsisH className='ml-auto'/>
       </div>
+      <div className='flex flex-col gap-1'>
+      <div className='font-normal'>
+        Lacus amet, laoreet viverra id faucibus nisi cras est sit pellentesque amet in auctor ac sapien enim nulla tellus risus ornare lobortis commodo in proin in fermentum .
+
+      </div>
+      <div className='text-blue-500'>#hastag #hastag #hashtag </div>
+      <div className='text-blue-500'>See translation</div>
+      </div>
+
       <div className='relative'>
-    <img src={selectedImages[num]}></img>
+    <img src={selectedImages[num]} ></img>
     {selectedImages.length!=1 && <div  className='absolute right-0 top-1/2 cursor-pointer' onClick={()=>handleImages("inc")}><FaGreaterThan  /></div>}
     {selectedImages.length!=1 && <div  className='absolute left-0 top-1/2 cursor-pointer' onClick={()=>handleImages("dec")}><FaLessThan  /></div>}
     </div>
-    <div className='icons flex gap-2'>
-    <FaHeart />
-    <FaComment />
-    <FaShare />
-    <FaBookmark className='ml-auto'/>
-    </div>
-    <div className='font-roboto text-base font-medium leading-5'>1 like</div>
-    <div className='font-roboto text-xs leading-5'>
-       <span className='font-medium'> model.susan </span> If life were predictable it would cease to be lifehome we've ev...more
-    </div>
-    </div>
-            </div>
 
-    
+    <img src='/images/Group 168.png ' className='object-fill'></img> 
+    </div>
+    </div>
   )
 }
 
-export default Instapostmodel
+export default Linkedincard;
