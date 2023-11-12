@@ -24,8 +24,12 @@ import { SidebarContextProvider } from "@/context/sidebarContext";
 import Sidebar from "@/components/sidebar";
 import Instapost from "@/components/instapost";
 
-export default function GenerateContent() {
-    // To toggle moment customization
+export default function GenerateContent({searchParams}) {
+
+    // value from research page 
+    const postTitle = searchParams.title;
+
+        // To toggle moment customization
     const [momentCustomization, setMomentCustomization] = useState(false);
 
     // To select one/multiple social media platforms to generate content for-
@@ -131,7 +135,7 @@ export default function GenerateContent() {
 
 
     // Storing form data
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState("vfujv");
     const updateFormData = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
@@ -171,8 +175,10 @@ export default function GenerateContent() {
                                     <InputText
                                         name="moment-for-generation"
                                         id="moment-input"
+                                        defaultValue="Hello"
                                         isDisabled={momentCustomization ? undefined : true}
                                         handleChange={updateFormData}
+                                        defValue={postTitle}
                                     />
                                     <span
                                         className={`select-none cursor-pointer inline-flex items-center space-x-1 px-5 py-2 mt-2 rounded-lg hover:bg-gray-200 font-medium ${momentCustomization

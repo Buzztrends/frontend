@@ -5,6 +5,7 @@ import Trendingnews from '@/components/trendingnews'
 import Sidebar from '@/components/sidebar';
 import { useState } from 'react';
 import Competition from '@/components/competition';
+import Link from 'next/link';
 // import TrendCard from '@/components/TrendCard';
 // import Hashtag from '@/components/Hashtag';
 
@@ -178,7 +179,7 @@ export default function Home() {
     "social_media_trends": "Social Media"
 
   };
-  const [title, setTitle] = useState("");
+const [title, setTitle] = useState("");
   const [description , setDescription] = useState("");
   const [event_name, setEvent_name] = useState("");
   const [source, setSource] = useState("");
@@ -191,7 +192,7 @@ export default function Home() {
 
   const toggleModal = ({data}) => {
     setIsModalOpen(!isModalOpen);
-    setTitle(data.title);
+setTitle(data.title);
     setEvent_name(data.event_name);
     setSource(data.source);
     setTopic(data.topic);
@@ -201,7 +202,7 @@ export default function Home() {
 
   const closeModal = () => {
     setIsModalOpen(false);
-  };
+      };
 
 
 
@@ -272,13 +273,17 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex justify-end p-2 space-x-2 rounded-b dark:border-gray-600">
-                  <button
+                  <Link
+                    href={{
+                      pathname: "/generate-content",
+                      query: { title: title},
+                    }}
                     onClick={closeModal}
                     type="button"
                     className="text-white bg-linear-gradient hover:bg-blue-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     Generate Content
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
