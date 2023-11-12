@@ -11,14 +11,16 @@ export default function TabComponent({ items }) {
   }, []);
 
   return (
-    <div className="flex flex-col gap-y-2 md:w-full">
+    <div className="flex flex-col gap-y-2 md:w-full h-full">
       <div className="flex justify-between">
-        <div className="bg-gray-400 rounded-lg flex justify-between md:w-1/2 items-center gap-x-2">
+        <div className="bg-gray-400 rounded-lg flex justify-between items-center gap-x-2">
           {items.map((item, index) => (
             <button
               ref={index === 0 ? firstBtnRef : null}
               key={index}
-              onClick={() => setSelectedTab(index)}
+              onClick={() => {setSelectedTab(index)
+                
+              }}
               className={`outline-none w-full p-2 rounded-xl focus:bg-gradient-linear focus:text-white ${selectedTab === index ? 'bg-gradient-linear text-white' : ''}`}
             >
               {item.tab}
@@ -30,10 +32,11 @@ export default function TabComponent({ items }) {
         </div>
       </div>
 
-      <div>
+      <div className="text h-full">
         {items.map((item, index) => (
-          <div className={`${selectedTab === index ? "" : "hidden"}`}>
+          <div key={index} className={`${selectedTab === index ? "" : "hidden"}`}>
             {item.content}
+            {/* <div dangerouslySetInnerHTML={{__html:item.content}}></div> */}
           </div>
         ))}
       </div>
