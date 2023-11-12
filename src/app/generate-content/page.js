@@ -157,6 +157,7 @@ export default function GenerateContent() {
 
                 <div className="w-4/5 flex flex-col ml-auto">
                     <Header header="Create Content" />
+                    <div className="w-full mt-24"></div>
                     <div className="w-full">
                         <form action="" className="ml-6" onSubmit={handleGenerateContentFormSubmission}>
                             <div className="mt-5 mr-4">
