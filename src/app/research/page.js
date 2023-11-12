@@ -1,5 +1,4 @@
 "use client";
-import NewsCard from "@/components/NewsCard";
 import { useState } from "react";
 import NewsCard from "@/components/NewsCard/index.js";
 
