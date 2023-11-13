@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react'
+import Image from 'next/image';
 import { FaEllipsisH } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
 import { FaComment } from 'react-icons/fa';
@@ -39,7 +40,7 @@ const Linkedincard = () => {
     <div className='flex flex-col p-5 rounded-lg border border-black gap-3 font-roboto text-xs leading-4'>
       {/* {selectedImages} */}
       <div className=' flex  gap-1'>
-        <img src='/images/Logo (3).png'></img>
+        <Image src={'/images/Logo (3).png'} width={10} height={10}  />
         <div className='flex flex-col '>
             <span className='font-bold'>ULTRA SAFE</span>
             <span className=''>326 followers</span>
@@ -57,12 +58,12 @@ const Linkedincard = () => {
       </div>
 
       <div className='relative'>
-    <img src={selectedImages[num]} ></img>
+    <Image src={selectedImages[num]} width={300} height={100} />
     {selectedImages.length!=1 && <div  className='absolute right-0 top-1/2 cursor-pointer' onClick={()=>handleImages("inc")}><FaGreaterThan  /></div>}
     {selectedImages.length!=1 && <div  className='absolute left-0 top-1/2 cursor-pointer' onClick={()=>handleImages("dec")}><FaLessThan  /></div>}
     </div>
 
-    <img src='/images/Group 168.png ' className='object-fill'></img> 
+    <Image src={'/images/Group 168.png '} className='object-fill' width={300} height={100}/>
     </div>
     </div>
   )

@@ -1,9 +1,10 @@
 import React from 'react'
+import Image from 'next/image';
 
 const Competitioncard = () => {
   return (
   
-      <img src='/images/image 2 (1).png'></img>
+      <Image src={'/images/image 2 (1).png'} width={300} height={100} />
 
   )
 }

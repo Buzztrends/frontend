@@ -1,221 +1,219 @@
-"use client"
-import React from 'react'
-import Socialmedia from '@/components/socialmedia'
-import Trendingnews from '@/components/trendingnews'
-import Sidebar from '@/components/sidebar';
-import { useState } from 'react';
-import Competition from '@/components/competition';
-import Link from 'next/link';
+"use client";
+import React from "react";
+import Socialmedia from "@/components/socialmedia";
+import Trendingnews from "@/components/trendingnews";
+import Sidebar from "@/components/sidebar";
+import { useState } from "react";
+import Competition from "@/components/competition";
+import Link from "next/link";
+import Image from "next/image";
 // import TrendCard from '@/components/TrendCard';
 // import Hashtag from '@/components/Hashtag';
 
 export default function Home() {
   const data = {
-    "general_news": [
+    general_news: [
       {
-        "title": "Lorem Ipsum",
-        "url": "https://www.example.com",
-        "source": "Example News",
-        "topic": "Technology"
+        title: "Lorem Ipsum",
+        url: "https://www.example.com",
+        source: "Example News",
+        topic: "Technology",
       },
       {
-        "title": "New Technology Advancements",
-        "url": "https://www.example.com/tech-advancements",
-        "source": "Tech Innovations Weekly",
-        "topic": "Technology"
+        title: "New Technology Advancements",
+        url: "https://www.example.com/tech-advancements",
+        source: "Tech Innovations Weekly",
+        topic: "Technology",
       },
       {
-        "title": "Data Security in the Digital Age",
-        "url": "https://www.example.com/data-security",
-        "source": "Cybersecurity Times",
-        "topic": "Technology"
+        title: "Data Security in the Digital Age",
+        url: "https://www.example.com/data-security",
+        source: "Cybersecurity Times",
+        topic: "Technology",
       },
       {
-        "title": "Latest Operating System Updates",
-        "url": "https://www.example.com/os-updates",
-        "source": "OS Insights",
-        "topic": "Technology"
+        title: "Latest Operating System Updates",
+        url: "https://www.example.com/os-updates",
+        source: "OS Insights",
+        topic: "Technology",
       },
       {
-        "title": "Lorem Ipsum",
-        "url": "https://www.example.com",
-        "source": "Example News",
-        "topic": "Technology"
+        title: "Lorem Ipsum",
+        url: "https://www.example.com",
+        source: "Example News",
+        topic: "Technology",
       },
       {
-        "title": "New Technology Advancements",
-        "url": "https://www.example.com/tech-advancements",
-        "source": "Tech Innovations Weekly",
-        "topic": "Technology"
+        title: "New Technology Advancements",
+        url: "https://www.example.com/tech-advancements",
+        source: "Tech Innovations Weekly",
+        topic: "Technology",
       },
       {
-        "title": "Data Security in the Digital Age",
-        "url": "https://www.example.com/data-security",
-        "source": "Cybersecurity Times",
-        "topic": "Technology"
+        title: "Data Security in the Digital Age",
+        url: "https://www.example.com/data-security",
+        source: "Cybersecurity Times",
+        topic: "Technology",
       },
       {
-        "title": "Latest Operating System Updates",
-        "url": "https://www.example.com/os-updates",
-        "source": "OS Insights",
-        "topic": "Technology"
+        title: "Latest Operating System Updates",
+        url: "https://www.example.com/os-updates",
+        source: "OS Insights",
+        topic: "Technology",
       },
       {
-        "title": "Lorem Ipsum",
-        "url": "https://www.example.com",
-        "source": "Example News",
-        "topic": "Technology"
+        title: "Lorem Ipsum",
+        url: "https://www.example.com",
+        source: "Example News",
+        topic: "Technology",
       },
       {
-        "title": "New Technology Advancements",
-        "url": "https://www.example.com/tech-advancements",
-        "source": "Tech Innovations Weekly",
-        "topic": "Technology"
+        title: "New Technology Advancements",
+        url: "https://www.example.com/tech-advancements",
+        source: "Tech Innovations Weekly",
+        topic: "Technology",
       },
       {
-        "title": "Data Security in the Digital Age",
-        "url": "https://www.example.com/data-security",
-        "source": "Cybersecurity Times",
-        "topic": "Technology"
+        title: "Data Security in the Digital Age",
+        url: "https://www.example.com/data-security",
+        source: "Cybersecurity Times",
+        topic: "Technology",
       },
       {
-        "title": "Latest Operating System Updates",
-        "url": "https://www.example.com/os-updates",
-        "source": "OS Insights",
-        "topic": "Technology"
+        title: "Latest Operating System Updates",
+        url: "https://www.example.com/os-updates",
+        source: "OS Insights",
+        topic: "Technology",
       },
       {
-        "title": "Lorem Ipsum",
-        "url": "https://www.example.com",
-        "source": "Example News",
-        "topic": "Technology"
+        title: "Lorem Ipsum",
+        url: "https://www.example.com",
+        source: "Example News",
+        topic: "Technology",
       },
       {
-        "title": "New Technology Advancements",
-        "url": "https://www.example.com/tech-advancements",
-        "source": "Tech Innovations Weekly",
-        "topic": "Technology"
+        title: "New Technology Advancements",
+        url: "https://www.example.com/tech-advancements",
+        source: "Tech Innovations Weekly",
+        topic: "Technology",
       },
       {
-        "title": "Data Security in the Digital Age",
-        "url": "https://www.example.com/data-security",
-        "source": "Cybersecurity Times",
-        "topic": "Technology"
+        title: "Data Security in the Digital Age",
+        url: "https://www.example.com/data-security",
+        source: "Cybersecurity Times",
+        topic: "Technology",
       },
       {
-        "title": "Latest Operating System Updates",
-        "url": "https://www.example.com/os-updates",
-        "source": "OS Insights",
-        "topic": "Technology"
-      }
+        title: "Latest Operating System Updates",
+        url: "https://www.example.com/os-updates",
+        source: "OS Insights",
+        topic: "Technology",
+      },
     ],
-    "industry_news": [
+    industry_news: [
       {
-        "title": "Space Exploration Breakthroughs",
-        "url": "https://www.example.com/space-exploration",
-        "source": "Cosmic Discoveries",
-        "topic": "Science"
+        title: "Space Exploration Breakthroughs",
+        url: "https://www.example.com/space-exploration",
+        source: "Cosmic Discoveries",
+        topic: "Science",
       },
       {
-        "title": "Advances in Medical Research",
-        "url": "https://www.example.com/medical-research",
-        "source": "Health Today",
-        "topic": "Science"
+        title: "Advances in Medical Research",
+        url: "https://www.example.com/medical-research",
+        source: "Health Today",
+        topic: "Science",
       },
       {
-        "title": "Global Economic Trends",
-        "url": "https://www.example.com/economic-trends",
-        "source": "Financial Gazette",
-        "topic": "Business"
-      }
+        title: "Global Economic Trends",
+        url: "https://www.example.com/economic-trends",
+        source: "Financial Gazette",
+        topic: "Business",
+      },
     ],
-    "current_events": [
+    current_events: [
       {
-        "event_name": "Advances in Medical Research",
-        "topic": "Science"
+        event_name: "Advances in Medical Research",
+        topic: "Science",
       },
       {
-        "event_name": "Data Security in the Digital Age",
-        "topic": "Technology"
+        event_name: "Data Security in the Digital Age",
+        topic: "Technology",
       },
       {
-        "event_name": "Latest Operating System Updates",
-        "topic": "Technology"
-      }
+        event_name: "Latest Operating System Updates",
+        topic: "Technology",
+      },
     ],
-    "social_media_trends": [
+    social_media_trends: [
       {
-        "title": "Trend 1",
-        "hashtags": ["#trending1", "#popular"],
-        "validation": null
+        title: "Trend 1",
+        hashtags: ["#trending1", "#popular"],
+        validation: null,
       },
       {
-        "title": "Trend 2",
-        "hashtags": ["#trending2", "#viral"],
-        "validation": null
+        title: "Trend 2",
+        hashtags: ["#trending2", "#viral"],
+        validation: null,
       },
       {
-        "title": "Trend 3",
-        "hashtags": ["#trending3", "#socialmedia"],
-        "validation": null
+        title: "Trend 3",
+        hashtags: ["#trending3", "#socialmedia"],
+        validation: null,
       },
       {
-        "title": "Trend 4",
-        "hashtags": ["#trending4", "#engagement"],
-        "validation": null
+        title: "Trend 4",
+        hashtags: ["#trending4", "#engagement"],
+        validation: null,
       },
       //   {
       //     "title": "Trend 5",
       //     "hashtags": ["#trending5", "#followers"],
       //     "validation": null
       //   }
-    ]
+    ],
   };
 
   const mapper = {
-    "industry_news": "Industry News",
-    "general_news": "General News",
-    "current_events": "Current Events",
-    "social_media_trends": "Social Media"
-
+    industry_news: "Industry News",
+    general_news: "General News",
+    current_events: "Current Events",
+    social_media_trends: "Social Media",
   };
-const [title, setTitle] = useState("");
-  const [description , setDescription] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [event_name, setEvent_name] = useState("");
   const [source, setSource] = useState("");
   const [topic, setTopic] = useState("");
   const [image, setImage] = useState("");
 
-
-  // Modal 
+  // Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const toggleModal = ({data}) => {
+  const toggleModal = ({ data }) => {
     setIsModalOpen(!isModalOpen);
-setTitle(data.title);
+    setTitle(data.title);
     setEvent_name(data.event_name);
     setSource(data.source);
     setTopic(data.topic);
     setImage("/images/card.png");
-    setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet dictum aliquam, nibh.");
+    setDescription(
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet dictum aliquam, nibh."
+    );
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-      };
-
-
+  };
 
   return (
-    <div className='flex'>
+    <div className="flex">
       <Sidebar />
-      <div className='p-5 flex flex-col gap-11 w-4/5 ml-auto'>
+      <div className="p-5 flex flex-col gap-11 w-4/5 ml-auto">
         <Trendingnews data={data} mapper={mapper} toggleModal={toggleModal} />
         <Socialmedia data={data} mapper={mapper} />
-        <Competition/>
+        <Competition />
         {/* Modal starts  */}
-      {
-        isModalOpen && (
+        {isModalOpen && (
           <div className="fixed top-0 left-0 right-0 bottom-0 flex z-40 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full items-center justify-center">
             <div className="relative w-full max-w-6xl max-h-full">
               <div className="relative bg-white rounded-lg shadow-xl dark:bg-gray-700">
@@ -249,25 +247,15 @@ setTitle(data.title);
                 <div className="px-6 space-y-6 md:w-5/10">
                   <div className="news-card flex">
                     <div className="h-full w-1/2 border p-4">
-                      <div className='source mb-4'>
-                        {source}
-                      </div>
-                      <img className="" src={image}></img>
-                      <div className="mt-4">
-                        {/* {event_name} */}
-                      </div>
+                      <div className="source mb-4">{source}</div>
+                      <Image src={image} width={600} height={100} />
+                      <div className="mt-4">{/* {event_name} */}</div>
                       <div className="mt-4 mb-4">
                         {description} <button>... more</button>
                       </div>
                     </div>
                     <div className="news-side-card w-auto">
-                      <div className="new-hashtag-card md:h-1/3 flex flex-wrap">
-                        {/* <Hashtag tag="India" />
-                      <Hashtag tag="India" />
-                      <Hashtag tag="India" />
-                      <Hashtag tag="India" />
-                      <Hashtag tag="India" /> */}
-                      </div>
+                      <div className="new-hashtag-card md:h-1/3 flex flex-wrap"></div>
                       <div className="news-hashtags-card"></div>
                     </div>
                   </div>
@@ -276,7 +264,7 @@ setTitle(data.title);
                   <Link
                     href={{
                       pathname: "/generate-content",
-                      query: { title: title},
+                      query: { title: title },
                     }}
                     onClick={closeModal}
                     type="button"
@@ -288,14 +276,9 @@ setTitle(data.title);
               </div>
             </div>
           </div>
-        )
-      }
-      {/* Modal ends  */}
+        )}
+        {/* Modal ends  */}
       </div>
-
-      
-    </div >
-  )
+    </div>
+  );
 }
-
-
