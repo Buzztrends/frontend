@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image';
 import {LiaGreaterThanSolid,LiaSave} from 'react-icons/lia';
 
 const Newscard = ({data,toggleModal}) => {
@@ -6,7 +7,7 @@ const Newscard = ({data,toggleModal}) => {
   return (
     <div className='flex flex-col w-[30%] rounded-lg border border-black' onClick={()=>{toggleModal({data: data })}}>
         
-        <img className='rounded-t-lg' src='/images/card.png'></img>
+        <Image className='rounded-t-lg' src={'/images/card.png'} width={350} height={100} />
         <div className='flex flex-col gap-3 p-3 font-poppins'>
         <div className='flex flex-col '>
             <div className=' text-base font-medium leading-7 tracking-wide'>

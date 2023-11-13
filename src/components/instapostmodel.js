@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react'
+import Image from 'next/image';
 import { FaEllipsisH } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
 import { FaComment } from 'react-icons/fa';
@@ -41,12 +42,12 @@ const Instapostmodel = () => {
                 <div className='flex flex-col p-5 rounded-lg border border-black gap-2'>
       {/* {selectedImages} */}
       <div className=' flex items-center gap-3'>
-        <img src='/images/insta-dp.png'></img>
+        <Image src={'/images/insta-dp.png'} width={10} height={10} />
         <span className='font-roboto text-sm font-medium leading-5'>model.susan</span>
         <FaEllipsisH className='ml-auto'/>
       </div>
       <div className='relative'>
-    <img src={selectedImages[num]}></img>
+    <Image src={selectedImages[num]} width={300} height={100}/>
     {selectedImages.length!=1 && <div  className='absolute right-0 top-1/2 cursor-pointer' onClick={()=>handleImages("inc")}><FaGreaterThan  /></div>}
     {selectedImages.length!=1 && <div  className='absolute left-0 top-1/2 cursor-pointer' onClick={()=>handleImages("dec")}><FaLessThan  /></div>}
     </div>

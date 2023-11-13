@@ -1,4 +1,5 @@
 import { FaGoogle } from 'react-icons/fa';
+import Image from 'next/image';
 
 export default function Login() {
   return (
@@ -45,8 +46,7 @@ export default function Login() {
       </form>
 
       <div className=''>
-        <img src='/images/Buzztrend logo 1.png'></img>
-        <img></img>
+        <Image src={'/images/Buzztrend logo 1.png'} width={500} height={100}/>
       </div>
   </div>
   )
