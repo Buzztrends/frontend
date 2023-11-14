@@ -5,7 +5,7 @@ import {LiaLessThanSolid, LiaGreaterThanSolid} from 'react-icons/lia';
 import './socialmedia.css';
 import Socialmediagraph from './socialmediagraph';
 
-const Socialmedia = ({data,mapper}) => {
+const Socialmedia = ({id,data,mapper}) => {
  
   data=data["social_media_trends"];
  console.log(data,"data in sm");
@@ -30,7 +30,7 @@ const changeContent= (val)=>{
   return (
     <div className='flex gap-5 font-Poppins'>
 
-      <div className='flex flex-col gap-2 w-1/2'>
+      <div id={id} className='flex flex-col gap-2 w-1/2 scroll-mt-24'>
           <div className='text-2xl font-medium leading-9 tracking-wide text-font-color'>Social Media</div>
           <div className='w-full flex flex-col gap-3'>
               {data.slice(ind * 3, 3 * (ind + 1)).map((item, index) => 
