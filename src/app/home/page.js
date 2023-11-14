@@ -248,7 +248,7 @@ export default function Home() {
                   <div className="news-card flex">
                     <div className="h-full w-1/2 border p-4">
                       <div className="source mb-4">{source}</div>
-                      <Image src={image} width={600} height={100} />
+                      <Image alt="" src={image} width={600} height={100} />
                       <div className="mt-4">{/* {event_name} */}</div>
                       <div className="mt-4 mb-4">
                         {description} <button>... more</button>
