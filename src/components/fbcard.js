@@ -49,7 +49,7 @@ const Fbcard = () => {
       </div>
       <div className='text-xs'>Your post text #awesome #emoticons</div>
 <div className='relative'>
-    <Image src={selectedImages[num]} width={300} height={100}/>
+    <Image alt="" src={selectedImages[num]} width={300} height={100}/>
     {selectedImages.length!=1 && <div  className='absolute right-0 top-1/2 cursor-pointer' onClick={()=>handleImages("inc")}><FaGreaterThan  /></div>}
     {selectedImages.length!=1 && <div  className='absolute left-0 top-1/2 cursor-pointer' onClick={()=>handleImages("dec")}><FaLessThan  /></div>}
     </div>

@@ -70,7 +70,7 @@ export default function AiImages() {
                             images.map((image, index) => {
                                 // mapImageUrlToId(image.id, image.url);
                                 return (
-                                    <ImageDiv key={image.id} link={image.url} id={index}/>
+                                    <ImageDiv key={image.id} link={image.url} id={index} alt=""/>
                                 );
                             })
                         }
@@ -88,7 +88,7 @@ export default function AiImages() {
                         selectedImages.includes(link) ? <BsCheckCircleFill color="green" size={28} /> : <BiSolidCircle color='white' size={28} />
                     }
                 </span>
-                <Image src={link} width={100} height={100} className="rounded-xl w-full h-full object-cover" onClick={(e)=>document.getElementById(`${id}`).showModal()} />
+                <Image alt="" src={link} width={100} height={100} className="rounded-xl w-full h-full object-cover" onClick={(e)=>document.getElementById(`${id}`).showModal()} />
 
                 <dialog id={id} className="modal">
                     <div className="modal-box">
@@ -96,7 +96,7 @@ export default function AiImages() {
                             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                         </form>
                         <div className="h-8 font-medium">AI Generated Image</div>
-                        <Image src={link} width={500} height={100}/>
+                        <Image alt="" src={link} width={500} height={100}/>
                     </div>
                 </dialog>
             </div>

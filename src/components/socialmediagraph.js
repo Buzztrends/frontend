@@ -6,7 +6,7 @@ const Socialmediagraph = ({hashtags}) => {
     <div className='rounded-lg border border-black p-5 flex flex-col gap-8 h-full'>
       Sunburst Analysis:
       <div className='flex flex-wrap gap-5'>
-        {hashtags.map((item,ind)=> <span className=''>{item}</span>)}
+        {hashtags.map((item,ind)=> <span key={ind} className=''>{item}</span>)}
       </div>
     </div>
   )

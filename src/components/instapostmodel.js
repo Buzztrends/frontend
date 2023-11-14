@@ -42,12 +42,12 @@ const Instapostmodel = () => {
                 <div className='flex flex-col p-5 rounded-lg border border-black gap-2'>
       {/* {selectedImages} */}
       <div className=' flex items-center gap-3'>
-        <Image src={'/images/insta-dp.png'} width={10} height={10} />
+        <Image alt="" src={'/images/insta-dp.png'} width={10} height={10} />
         <span className='font-roboto text-sm font-medium leading-5'>model.susan</span>
         <FaEllipsisH className='ml-auto'/>
       </div>
       <div className='relative'>
-    <Image src={selectedImages[num]} width={300} height={100}/>
+    <Image alt="" src={selectedImages[num]} width={300} height={100}/>
     {selectedImages.length!=1 && <div  className='absolute right-0 top-1/2 cursor-pointer' onClick={()=>handleImages("inc")}><FaGreaterThan  /></div>}
     {selectedImages.length!=1 && <div  className='absolute left-0 top-1/2 cursor-pointer' onClick={()=>handleImages("dec")}><FaLessThan  /></div>}
     </div>
@@ -59,7 +59,7 @@ const Instapostmodel = () => {
     </div>
     <div className='font-roboto text-base font-medium leading-5'>1 like</div>
     <div className='font-roboto text-xs leading-5'>
-       <span className='font-medium'> model.susan </span> If life were predictable it would cease to be lifehome we've ev...more
+       <span className='font-medium'> model.susan </span> If life were predictable it would cease to be lifehome weve ev...more
     </div>
     </div>
             </div>
