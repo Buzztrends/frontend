@@ -14,7 +14,7 @@ import Link from "next/link";
 
 import { useSidebarContext } from "@/context/sidebarContext";
 
-const Sidebar = ()=> {
+const Sidebar = () => {
     // const [isresearch, setIsresearch] = useState(true);
 
     const { selectedTab, setSelectedTab } = useSidebarContext();
@@ -40,9 +40,15 @@ const Sidebar = ()=> {
                     </Link>
 
                     {selectedTab == "research" && <div className='flex flex-col w-11/12 gap-2 self-end items-start'>
-                        <button onClick={() => setResearchitem("news")} className={`${researchitem == "news" ? "sidebar-research-item" : ""} py-1 px-2 w-full text-left`}>Trending News</button>
-                        <button onClick={() => setResearchitem("socialmedia")} className={`${researchitem == "socialmedia" ? "sidebar-research-item" : ""} py-1 px-2 w-full text-left`}>Social Media</button>
-                        <button onClick={() => setResearchitem("competition")} className={`${researchitem == "competition" ? "sidebar-research-item" : ""} py-1 px-2 w-full text-left`}>Competition</button>
+                        <Link href={'/home/#trending'} className='w-full'>
+                            <button onClick={() => setResearchitem("news")} className={`${researchitem == "news" ? "sidebar-research-item" : ""} py-1 px-2 w-full text-left`}>Trending News</button>
+                        </Link>
+                        <Link href={'/home/#socialmedia'} className='w-full'>
+                            <button onClick={() => setResearchitem("socialmedia")} className={`${researchitem == "socialmedia" ? "sidebar-research-item" : ""} py-1 px-2 w-full text-left`}>Social Media</button>
+                        </Link>
+                        <Link href={'/home/#competition'} className='w-full'>
+                            <button onClick={() => setResearchitem("competition")} className={`${researchitem == "competition" ? "sidebar-research-item" : ""} py-1 px-2 w-full text-left`}>Competition</button>
+                        </Link>
                     </div>}
 
                 </div>
