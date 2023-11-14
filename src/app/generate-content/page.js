@@ -22,14 +22,18 @@ import {
 } from "@/context/contentContext";
 import Sidebar from "@/components/sidebar";
 import Instapost from "@/components/instapost";
+import axios from "axios";
 
-export default function GenerateContent({searchParams}) {
+export default function GenerateContent({ searchParams }) {
 
-        // To toggle moment customization
+    // To toggle moment customization
     const [momentCustomization, setMomentCustomization] = useState(false);
 
     // To select one/multiple social media platforms to generate content for-
-    const [selectedSocials, setSelectedSocials] = useState([]);
+    // Multiple socials will be integrated in future, currently implementing single social
+
+    // const [selectedSocials, setSelectedSocials] = useState([]);
+    const [selectedSocial, setSelectedSocial] = useState();
 
     const socials = [
         {
@@ -58,13 +62,16 @@ export default function GenerateContent({searchParams}) {
         },
     ];
 
+    // const toggleSocial = (socialLabel) => {
+    //     setSelectedSocials((prevState) =>
+    //         prevState.includes(socialLabel)
+    //             ? prevState.filter((label) => label !== socialLabel)
+    //             : [...prevState, socialLabel]
+    //     );
+    // };
     const toggleSocial = (socialLabel) => {
-        setSelectedSocials((prevState) =>
-            prevState.includes(socialLabel)
-                ? prevState.filter((label) => label !== socialLabel)
-                : [...prevState, socialLabel]
-        );
-    };
+        setSelectedSocial((prevState) => prevState == socialLabel ? "" : socialLabel);
+    }
 
     const displaySocial = (label) => {
         if (label === "instagram") {
@@ -82,27 +89,33 @@ export default function GenerateContent({searchParams}) {
         }
     };
 
-    // To select product
-    const [selectedProduct, setSelectedProduct] = useState("");
 
-    const handleSelectProduct = (event) => {
-        setSelectedProduct(event.target.value);
+
+
+    // To select product - to be enabled later
+    // const [selectedProduct, setSelectedProduct] = useState("");
+
+    // const handleSelectProduct = (event) => {
+    //     setSelectedProduct(event.target.value);
+    // };
+
+    // const products = ["option1", "option2"]
+
+
+
+
+    // to select objective
+    const [selectedObjective, setSelectedObjective] = useState("");
+
+    const handleSelectObjective = (event) => {
+        setSelectedObjective(event.target.value);
     };
 
-    const products = [
-        {
-            id: 1,
-            value: "option1",
-        },
-        {
-            id: 2,
-            value: "option2",
-        },
-        {
-            id: 3,
-            value: "option3",
-        },
-    ];
+    const objectives = ["inform", "persuade", "entertain"];
+
+    
+
+
 
     // To select content tone
     const [selectedTone, setSelectedTone] = useState("");
@@ -111,49 +124,55 @@ export default function GenerateContent({searchParams}) {
         setSelectedTone(event.target.value);
     };
 
-    const tones = [
-        {
-            id: 1,
-            value: "option1",
-        },
-        {
-            id: 2,
-            value: "option2",
-        },
-        {
-            id: 3,
-            value: "option3",
-        },
-    ];
+    const tones = ["formal", "casual", "informative", "persuasive"];
 
     // To show or not show content generation form
     const [contentFormVisible, setContentFormVisible] = useState(true);
 
 
-    // Storing form data
+    // Storing and submitting form data
     const [formData, setFormData] = useState({});
 
-    useEffect(()=>{
-        setFormData({...formData, 'moment-for-generation': searchParams.title || ''});
+    useEffect(() => {
+        setFormData({ ...formData, 'moment-for-generation': searchParams.title || '' });
     }, []);
-    
+
     const updateFormData = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
-    console.log(formData)
 
-    const handleGenerateContentFormSubmission = (e) => {
+    const handleGenerateContentFormSubmission = async(e) => {
         e.preventDefault();
 
-        console.log({
-            ...formData,
-            'social-media': selectedSocials,
-            'product': selectedProduct,
-            'tone': selectedTone
-        });
+        try{
+            const headers = {
+                'api-key': process.env.NEXT_PUBLIC_API_KEY
+            }
+    
+            const data = {
+                company_id: 100,
+                content_type: `${selectedSocial} post`,
+                moment: formData['moment-for-generation'],
+                custom_moment: 1,
+                objective: selectedObjective,
+                location: "india",
+                audience: "young teenagers",
+                tone: selectedTone,
+                structure: formData['content-structure']
+            }
+            
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/text_generation/simple_generation`, data,{headers});
+            
+            if(res.status == 200){
+                setContentFormVisible(false);
+            }
+        } catch(err){
+            console.log(err);
+        }
     }
 
 
+    // context from ai images component
     const { selectedImages } = useContentContext();
 
     return (
@@ -223,14 +242,26 @@ export default function GenerateContent({searchParams}) {
                                 >
                                     <div className="mt-5 mb-10">
                                         <p className="text-l font-semibold">
-                                            Content for (select one or multiple):
+                                            Content for (select one):
                                         </p>
                                         <div className="flex flex-wrap space-x-10 my-3">
                                             {socials.map((social) => {
                                                 return (
+                                                    // code for multiple socials
+                                                    // <div
+                                                    //     key={social.id}
+                                                    //     className={`cursor-pointer ${selectedSocials.includes(social.label)
+                                                    //         ? "bg-linear-gradient text-white"
+                                                    //         : null
+                                                    //         } p-1.5 rounded-lg`}
+                                                    //     onClick={() => toggleSocial(social.label)}
+                                                    // >
+                                                    //     {displaySocial(social.label)}
+                                                    // </div>
+
                                                     <div
                                                         key={social.id}
-                                                        className={`cursor-pointer ${selectedSocials.includes(social.label)
+                                                        className={`cursor-pointer ${selectedSocial == social.label
                                                             ? "bg-linear-gradient text-white"
                                                             : null
                                                             } p-1.5 rounded-lg`}
@@ -243,7 +274,7 @@ export default function GenerateContent({searchParams}) {
                                         </div>
                                     </div>
 
-                                    <div className="my-10">
+                                    {/* <div className="my-10">
                                         <p className="text-l font-semibold">Select product:</p>
                                         <Dropdown
                                             name="product"
@@ -251,6 +282,17 @@ export default function GenerateContent({searchParams}) {
                                             options={products}
                                             selectedOption={selectedProduct}
                                             handleSelectChange={handleSelectProduct}
+                                        />
+                                    </div> */}
+
+                                    <div className="my-10">
+                                        <p className="text-l font-semibold">Select objective:</p>
+                                        <Dropdown
+                                            name="objective"
+                                            id="select-objective"
+                                            options={objectives}
+                                            selectedOption={selectedObjective}
+                                            handleSelectChange={handleSelectObjective}
                                         />
                                     </div>
 
