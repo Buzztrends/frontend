@@ -49,5 +49,5 @@ export default function Login() {
         <Image alt="" src={'/images/Buzztrend logo 1.png'} width={500} height={100}/>
       </div>
   </div>
-  )
-}
+  );
+};
