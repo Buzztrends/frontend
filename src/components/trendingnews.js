@@ -8,7 +8,7 @@ const Trendingnews = ({id,data,mapper, toggleModal}) => {
    
 
     // console.log(details),"line 10";
-    const topic=["industry","general_news","current_events"];
+    const topic=["industry_news","general_news","current_events"];
     const [currentNews,setCurrentNews]=useState(topic[0]);
   return (  
     <div id={id} className='flex flex-col gap-5 scroll-mt-24'>

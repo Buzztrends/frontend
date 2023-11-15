@@ -20,10 +20,10 @@ export default function Home() {
   const [show,setShow]=useState(false);
   const getData= async ()=>{
     try{
-      const res=await axios.post(`https://mock-be-60lv.onrender.com/user/data`,
-        JSON.stringify({company_id: 100}),
+      const res=await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/user/data`,
+      {company_id: 100},
         {
-          headers:{'api-key':'Wr6tslVxNLR8lSrdcwweIDfPYZdehCuJIeJCY8DS08skgeHTqxBv0Ohln5pLm1uKsM5w1phf4nfSLjxYLawDVg=='}
+          headers:{'api-key':`${process.env.NEXT_PUBLIC_API_KEY}`}
         }
       )
         setDetails(res.data.moments);
@@ -204,10 +204,10 @@ export default function Home() {
   };
 
   const mapper = {
-    industry: "Industry News",
+    industry_news: "Industry News",
     general_news: "General News",
     current_events: "Current Events",
-    social_media: "Social Media",
+    social_media_trends: "Social Media",
   };
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -241,7 +241,7 @@ export default function Home() {
         <div className="p-5 mt-24 flex flex-col gap-11">
           {show && <Trendingnews data={details} mapper={mapper} toggleModal={toggleModal} />}
            {show && <Socialmedia id={"socialmedia"} data={details} mapper={mapper} />}
-            <Competition id={"competition"} />
+            {/* <Competition id={"competition"} /> */}
           {/* Modal starts  */}
           {isModalOpen && (
             <div className="fixed top-0 left-0 right-0 bottom-0 flex z-40 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full items-center justify-center">
