@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import NewsCard from "@/components/NewsCard/index.js";
-import GoogleTrendsWidget from "./googleTrends";
+// import GoogleTrendsWidget from "./googleTrends";
 
 export default function Research() {
   const [isModalOpen, setIsModalOpen] = useState(false);
