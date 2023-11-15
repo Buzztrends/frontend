@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import Header from "@/components/header";
 import InputText from "@/components/inputText";
 import Dropdown from "@/components/dropdown";
@@ -14,22 +14,35 @@ import { FaRegEnvelope } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { BsChevronRight } from "react-icons/bs";
 import { BsChevronDown } from "react-icons/bs";
-
+import GenerateLoadingCard from "@/components/loading";
+import Link from "next/link";
 import PostText from "@/components/Generate-Content/post-text";
 import AiImages from "@/components/Generate-Content/ai-images";
 import {
     useContentContext,
 } from "@/context/contentContext";
 import Sidebar from "@/components/sidebar";
-import Instapost from "@/components/instapost";
+import PreviewPost from "@/components/previewpost";
+import axios from "axios";
+import Loading from "@/components/loading";
 
-export default function GenerateContent({searchParams}) {
+export default function GenerateContent({ searchParams }) {
 
-        // To toggle moment customization
+    function loadingScroll() {
+        setTimeout(() => {
+            const loading = document.getElementById('content-loading');
+            loading.scrollIntoView({ behavior: 'smooth' });
+        }, 1000);
+    }
+    // To toggle moment customization
+    const [isLoading, setIsLoading] = useState(false);
     const [momentCustomization, setMomentCustomization] = useState(false);
 
     // To select one/multiple social media platforms to generate content for-
-    const [selectedSocials, setSelectedSocials] = useState([]);
+    // Multiple socials will be integrated in future, currently implementing single social
+
+    // const [selectedSocials, setSelectedSocials] = useState([]);
+    const [selectedSocial, setSelectedSocial] = useState();
 
     const socials = [
         {
@@ -58,13 +71,16 @@ export default function GenerateContent({searchParams}) {
         },
     ];
 
+    // const toggleSocial = (socialLabel) => {
+    //     setSelectedSocials((prevState) =>
+    //         prevState.includes(socialLabel)
+    //             ? prevState.filter((label) => label !== socialLabel)
+    //             : [...prevState, socialLabel]
+    //     );
+    // };
     const toggleSocial = (socialLabel) => {
-        setSelectedSocials((prevState) =>
-            prevState.includes(socialLabel)
-                ? prevState.filter((label) => label !== socialLabel)
-                : [...prevState, socialLabel]
-        );
-    };
+        setSelectedSocial((prevState) => prevState == socialLabel ? "" : socialLabel);
+    }
 
     const displaySocial = (label) => {
         if (label === "instagram") {
@@ -82,27 +98,33 @@ export default function GenerateContent({searchParams}) {
         }
     };
 
-    // To select product
-    const [selectedProduct, setSelectedProduct] = useState("");
 
-    const handleSelectProduct = (event) => {
-        setSelectedProduct(event.target.value);
+
+
+    // To select product - to be enabled later
+    // const [selectedProduct, setSelectedProduct] = useState("");
+
+    // const handleSelectProduct = (event) => {
+    //     setSelectedProduct(event.target.value);
+    // };
+
+    // const products = ["option1", "option2"]
+
+
+
+
+    // to select objective
+    const [selectedObjective, setSelectedObjective] = useState("");
+
+    const handleSelectObjective = (event) => {
+        setSelectedObjective(event.target.value);
     };
 
-    const products = [
-        {
-            id: 1,
-            value: "option1",
-        },
-        {
-            id: 2,
-            value: "option2",
-        },
-        {
-            id: 3,
-            value: "option3",
-        },
-    ];
+    const objectives = ["inform", "persuade", "entertain"];
+
+
+
+
 
     // To select content tone
     const [selectedTone, setSelectedTone] = useState("");
@@ -111,49 +133,74 @@ export default function GenerateContent({searchParams}) {
         setSelectedTone(event.target.value);
     };
 
-    const tones = [
-        {
-            id: 1,
-            value: "option1",
-        },
-        {
-            id: 2,
-            value: "option2",
-        },
-        {
-            id: 3,
-            value: "option3",
-        },
-    ];
+    const tones = ["formal", "casual", "informative", "persuasive"];
 
     // To show or not show content generation form
     const [contentFormVisible, setContentFormVisible] = useState(true);
 
 
-    // Storing form data
+    // Storing and submitting form data
     const [formData, setFormData] = useState({});
 
-    useEffect(()=>{
-        setFormData({...formData, 'moment-for-generation': searchParams.title || ''});
+    useEffect(() => {
+        setFormData({ ...formData, 'moment-for-generation': searchParams.title || '' });
     }, []);
-    
+
     const updateFormData = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
-    console.log(formData)
 
-    const handleGenerateContentFormSubmission = (e) => {
+    const [isPostTextGenerated, setIsPostTextGenerated] = useState(false);
+    const [areImagesGenerated, setAreImagesGenerated] = useState(false);
+    const [postText, setPostText] = useState("");
+    const [aiImages, setAiImages] = useState([]);
+
+    const handleGenerateContentFormSubmission = async (e) => {
         e.preventDefault();
 
-        console.log({
-            ...formData,
-            'social-media': selectedSocials,
-            'product': selectedProduct,
-            'tone': selectedTone
-        });
+        try {
+            setIsLoading(true);
+            loadingScroll();
+            const headers = {
+                'api-key': process.env.NEXT_PUBLIC_API_KEY
+            }
+
+            const data = {
+                company_id: 100,
+                content_type: `${selectedSocial} post`,
+                moment: formData['moment-for-generation'],
+                custom_moment: 1,
+                objective: selectedObjective,
+                location: "india",
+                audience: "young teenagers",
+                tone: selectedTone,
+                structure: formData['content-structure']
+            }
+
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/text_generation/simple_generation`, data, { headers });
+
+            if (res.status == 200) {
+                setContentFormVisible(false);
+                setIsPostTextGenerated(true);
+                setPostText(res.data['post']);
+
+                const data = {
+                    extras: res.data.extras,
+                }
+
+                const resImage = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/image_generation/edenai`, data, { headers });
+
+                if (resImage.status == 200) {
+                    setAreImagesGenerated(true);
+                    setAiImages(resImage.data['images']);
+                }
+            }
+        } catch (err) {
+            console.log(err);
+        }
     }
 
-
+    // context from ai images component
     const { selectedImages } = useContentContext();
 
     return (
@@ -223,14 +270,26 @@ export default function GenerateContent({searchParams}) {
                                 >
                                     <div className="mt-5 mb-10">
                                         <p className="text-l font-semibold">
-                                            Content for (select one or multiple):
+                                            Content for (select one):
                                         </p>
                                         <div className="flex flex-wrap space-x-10 my-3">
                                             {socials.map((social) => {
                                                 return (
+                                                    // code for multiple socials
+                                                    // <div
+                                                    //     key={social.id}
+                                                    //     className={`cursor-pointer ${selectedSocials.includes(social.label)
+                                                    //         ? "bg-linear-gradient text-white"
+                                                    //         : null
+                                                    //         } p-1.5 rounded-lg`}
+                                                    //     onClick={() => toggleSocial(social.label)}
+                                                    // >
+                                                    //     {displaySocial(social.label)}
+                                                    // </div>
+
                                                     <div
                                                         key={social.id}
-                                                        className={`cursor-pointer ${selectedSocials.includes(social.label)
+                                                        className={`cursor-pointer ${selectedSocial == social.label
                                                             ? "bg-linear-gradient text-white"
                                                             : null
                                                             } p-1.5 rounded-lg`}
@@ -243,7 +302,7 @@ export default function GenerateContent({searchParams}) {
                                         </div>
                                     </div>
 
-                                    <div className="my-10">
+                                    {/* <div className="my-10">
                                         <p className="text-l font-semibold">Select product:</p>
                                         <Dropdown
                                             name="product"
@@ -251,6 +310,17 @@ export default function GenerateContent({searchParams}) {
                                             options={products}
                                             selectedOption={selectedProduct}
                                             handleSelectChange={handleSelectProduct}
+                                        />
+                                    </div> */}
+
+                                    <div className="my-10">
+                                        <p className="text-l font-semibold">Select objective:</p>
+                                        <Dropdown
+                                            name="objective"
+                                            id="select-objective"
+                                            options={objectives}
+                                            selectedOption={selectedObjective}
+                                            handleSelectChange={handleSelectObjective}
                                         />
                                     </div>
 
@@ -293,37 +363,49 @@ export default function GenerateContent({searchParams}) {
                             </div>
                         </form>
                     </div>
-                    <div className="cursor-default my-4 text-xl font-medium text-primary-color w-full">
+                    {isPostTextGenerated && <div className="cursor-default my-4 text-xl font-medium text-primary-color w-full">
                         <div className="float-left ml-6">
-                            Instagram:
+                            {selectedSocial}:
                         </div>
-                    </div>
-                    <div>
-                        <div className="flex">
-                            <PostText />
-                            <AiImages />
-                        </div>
+                    </div>}
 
-                        <div className={`mt-5 mb-5 flex justify-end gap-2 w-1/3 mr-4 float-right`}>
+                    <div>
+
+                        {/* <Loading/>  */}
+                        {/* <Suspense fallback={<Loading/>}> */}
+
+                        <div>
+                            {!isPostTextGenerated && !areImagesGenerated && isLoading ? <Loading /> : null}
+                        </div>
+                        {isPostTextGenerated && areImagesGenerated ?
+                            <div className="flex">
+                                {isPostTextGenerated && <PostText postContent={postText.replace(/\n/g, '<br>')} />}
+                                {areImagesGenerated && <AiImages images={aiImages} />}
+                            </div>
+                            : null}
+
+                        {isPostTextGenerated && areImagesGenerated && <div className={`mt-5 mb-5 flex justify-end gap-2 w-1/3 mr-4 float-right`}>
                             <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`} onClick={() => document.getElementById('post-preview-modal').showModal()}>
                                 <Button buttonText="Preview" strokeOnly={true} width="full" />
                             </span>
                             <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`}>
                                 <Button buttonText="Publish" width="full" />
                             </span>
-                        </div>
-                        {/* <span className="w-10 bg-red-500" onClick={(e)=>console.log(selectedImages)}>click me</span> */}
-
+                        </div>}
+                        {/* </Suspense> */}
 
                         <dialog id="post-preview-modal" className="modal">
                             <div className="modal-box max-w-4xl">
                                 <form method="dialog">
                                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                 </form>
-                                <Instapost />
+                                <PreviewPost socialMedia={selectedSocial} />
                             </div>
                         </dialog>
                     </div>
+                    <div id="content-loading"></div>
+
+
                 </div>
 
             </div>

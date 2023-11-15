@@ -7,31 +7,7 @@ import TabComponent from "./tab-component";
 import { useState } from "react";
 import ReactDOM from "react-dom";
 
-const postContent = `<div className="p-2 text-sm overflow-y-auto h-full">
-Title: "Art Meets Nutrition with our #SmoothieBowls! ",
-<br />
-<br />
-Do you love a healthy, delicious treat that's as pleasing to the eye as
-it is to the palate? If you've been scrolling Instagram lately, you've
-likely spotted the viral #SmoothieBowl trend. It's not just about
-sipping your nutrients anymore; it's about creating a masterpiece in a
-bowl!
-<br />
-<br />
-Whole Foods is thrilled to be part of this exciting trend. We've got all
-the organic, wholesome ingredients you need to make your very own
-Insta-worthy smoothie bowl. A € Our shelves are filled with vibrant
-fruits, crunchy granola, creamy yogurts, and superfood add-ons like chia
-seeds and goji berries.
-<br />
-<br />
-What's more, we love seeing your creations! So next time
-<br />
-<br />
-#WholeFoodsSmoothieBowl #HealthyLiving #FoodAsArt
-</div>`;
-
-export default function PostText() {
+export default function PostText({postContent}) {
   const [content, setContent] = useState(postContent);
 
   // useEffect(() => {
