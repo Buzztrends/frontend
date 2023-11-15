@@ -3,15 +3,42 @@ import React from "react";
 import Socialmedia from "@/components/socialmedia";
 import Trendingnews from "@/components/trendingnews";
 import Sidebar from "@/components/sidebar";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Competition from "@/components/competition";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/header";
+import axios from "axios";
+
 // import TrendCard from '@/components/TrendCard';
 // import Hashtag from '@/components/Hashtag';
 
 export default function Home() {
+  const [details,setDetails]=useState(null);
+  const [show,setShow]=useState(false);
+  const getData= async ()=>{
+    try{
+      const res=await axios.post(`https://mock-be-60lv.onrender.com/user/data`,
+        JSON.stringify({company_id: 100}),
+        {
+          headers:{'api-key':'Wr6tslVxNLR8lSrdcwweIDfPYZdehCuJIeJCY8DS08skgeHTqxBv0Ohln5pLm1uKsM5w1phf4nfSLjxYLawDVg=='}
+        }
+      )
+        setDetails(res.data.moments);
+        setShow(true);
+        console.log(res.data.moments,"line 27");
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
+
+  useEffect(()=>{
+    getData();
+  },[])
+
+
+
   const data = {
     general_news: [
       {
@@ -175,10 +202,10 @@ export default function Home() {
   };
 
   const mapper = {
-    industry_news: "Industry News",
+    industry: "Industry News",
     general_news: "General News",
     current_events: "Current Events",
-    social_media_trends: "Social Media",
+    social_media: "Social Media",
   };
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -212,8 +239,8 @@ export default function Home() {
       <div className=" w-4/5 ml-auto">
         <Header header="Research" />
         <div className="p-5 mt-24 flex flex-col gap-11">
-          <Trendingnews data={data} mapper={mapper} toggleModal={toggleModal} />
-          <Socialmedia data={data} mapper={mapper} />
+         {show && <Trendingnews details={details} mapper={mapper} toggleModal={toggleModal} />}
+          {/* <Socialmedia data={data} mapper={mapper} /> */}
           <Competition />
           {/* Modal starts  */}
           {isModalOpen && (

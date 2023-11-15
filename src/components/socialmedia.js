@@ -8,7 +8,7 @@ import Socialmediagraph from './socialmediagraph';
 const Socialmedia = ({data,mapper}) => {
  
   data=data["social_media_trends"];
- console.log(data,"data in sm");
+//  console.log(data,"data in sm");
 
 const [ind,setIndex]=useState(0);
 const [selected,setSelected]=useState(0);
