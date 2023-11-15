@@ -239,9 +239,9 @@ export default function Home() {
       <div className=" w-4/5 ml-auto">
         <Header header="Research" />
         <div className="p-5 mt-24 flex flex-col gap-11">
-         {show && <Trendingnews details={details} mapper={mapper} toggleModal={toggleModal} />}
-          {/* <Socialmedia data={data} mapper={mapper} /> */}
-          <Competition />
+          <Trendingnews data={data} mapper={mapper} toggleModal={toggleModal} />
+            <Socialmedia id={"socialmedia"} data={data} mapper={mapper} />
+            <Competition id={"competition"} />
           {/* Modal starts  */}
           {isModalOpen && (
             <div className="fixed top-0 left-0 right-0 bottom-0 flex z-40 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full items-center justify-center">

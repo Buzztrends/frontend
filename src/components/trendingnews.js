@@ -4,15 +4,14 @@ import React, { useState } from 'react';
 import Newsbuttons from '../components/Newsbuttons';
 import NewsCard from './newscard';
 
-const Trendingnews = ({details,mapper, toggleModal}) => {
+const Trendingnews = ({id,data,mapper, toggleModal}) => {
    
 
     console.log(details),"line 10";
     const topic=["industry","general_news","current_events"];
     const [currentNews,setCurrentNews]=useState(topic[0]);
-  
-  return (
-    <div className='flex flex-col gap-5'>
+  return (  
+    <div id={id} className='flex flex-col gap-5 scroll-mt-24'>
         <div className='text-2xl font-medium leading-9 tracking-wide text-font-color'>Trending News & Moments</div>
         <div className='flex gap-4'>
         {topic.map((item, index) =>{
