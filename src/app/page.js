@@ -1,9 +1,9 @@
 import Sidebar from '../components/sidebar';
-import Instapost from '../components/previewpost';
-import Socialmedia from '../components/socialmedia';
 import Competition from '@/components/competition';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
+  redirect('/home')
   return (
     <div className='flex'>
       <Sidebar />
