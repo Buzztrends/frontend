@@ -21,7 +21,7 @@ export default function GoogleTrends({ type, keywords, url }) {
         property: ""
       },
       {
-        exploreQuery: `date=today%201-m&geo=IN&q=Diwali&hl=en`,
+        exploreQuery: `date=today%201-m&geo=IN&q=Diwali,Holi&hl=en`,
         guestPath: "https://trends.google.com:443/trends/embed/"
       }
     );
