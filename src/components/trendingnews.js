@@ -7,7 +7,7 @@ import NewsCard from './newscard';
 const Trendingnews = ({id,data,mapper, toggleModal}) => {
    
 
-    
+    // console.log(details),"line 10";
     const topic=["industry_news","general_news","current_events"];
     const [currentNews,setCurrentNews]=useState(topic[0]);
   return (  
