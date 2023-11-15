@@ -7,8 +7,9 @@ import Socialmediagraph from './socialmediagraph';
 
 const Socialmedia = ({id,data,mapper}) => {
  
-  data=data["social_media_trends"];
-//  console.log(data,"data in sm");
+  data=data["social_media"];
+ console.log(data,"data in sm");
+
 
 const [ind,setIndex]=useState(0);
 const [selected,setSelected]=useState(0);
@@ -34,7 +35,7 @@ const changeContent= (val)=>{
           <div className='text-2xl font-medium leading-9 tracking-wide text-font-color'>Social Media</div>
           <div className='w-full flex flex-col gap-3'>
               {data.slice(ind * 3, 3 * (ind + 1)).map((item, index) => 
-                 <Socialmediacard key={index} title={item.title} hashtags={item.hashtags} selected={selected} setSelected={setSelected} position={ind * 3 + index}/> 
+                 <Socialmediacard key={index} title={item.title} hashtags={item.hashtag} selected={selected} setSelected={setSelected} position={ind * 3 + index}/> 
                )}
                {data.slice(ind * 3, 3 * (ind + 1)).length === 2 && <div className='h-28'></div>}
                 {data.slice(ind * 3, 3 * (ind + 1)).length === 1 && <><div className='h-24'></div><div className='h-28'></div></>}
@@ -53,7 +54,7 @@ const changeContent= (val)=>{
       </div>
 
       <div className='w-1/2 mt-11 mb-9'>
-              <Socialmediagraph hashtags={data[selected].hashtags}/>
+              <Socialmediagraph hashtags={data[selected].hashtag}/>
       </div>
     </div>
 

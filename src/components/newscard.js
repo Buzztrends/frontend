@@ -3,6 +3,7 @@ import Image from 'next/image';
 import {LiaGreaterThanSolid,LiaSave} from 'react-icons/lia';
 
 const Newscard = ({data,toggleModal}) => {
+
 //   console.log(data);
   return (
     <div className='flex flex-col w-[30%] rounded-lg border border-black' >

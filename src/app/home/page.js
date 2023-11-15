@@ -10,6 +10,8 @@ import Image from "next/image";
 import Header from "@/components/header";
 import axios from "axios";
 
+
+
 // import TrendCard from '@/components/TrendCard';
 // import Hashtag from '@/components/Hashtag';
 
@@ -223,10 +225,8 @@ export default function Home() {
     setEvent_name(data.event_name);
     setSource(data.source);
     setTopic(data.topic);
-    setImage("/images/card.png");
-    setDescription(
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet dictum aliquam, nibh."
-    );
+    setImage(data.top_image);
+    setDescription(data.description);
   };
 
   const closeModal = () => {
@@ -240,8 +240,8 @@ export default function Home() {
         <Header header="Research" />
         <div className="p-5 mt-24 flex flex-col gap-11">
           {show && <Trendingnews data={details} mapper={mapper} toggleModal={toggleModal} />}
-            {/* <Socialmedia id={"socialmedia"} data={details} mapper={mapper} /> */}
-            {/* <Competition id={"competition"} /> */}
+           {show && <Socialmedia id={"socialmedia"} data={details} mapper={mapper} />}
+            <Competition id={"competition"} />
           {/* Modal starts  */}
           {isModalOpen && (
             <div className="fixed top-0 left-0 right-0 bottom-0 flex z-40 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full items-center justify-center">
@@ -249,7 +249,7 @@ export default function Home() {
                 <div className="relative bg-white rounded-lg shadow-xl dark:bg-gray-700">
                   <div className="flex items-start justify-between p-4 rounded-t ">
                     <h3 className="text-xl text-gray-900 dark:text-white mx-4">
-                      {title}
+                      {title}{event_name}
                     </h3>
                     <button
                       onClick={closeModal}
@@ -278,10 +278,10 @@ export default function Home() {
                     <div className="news-card flex">
                       <div className="h-full w-1/2 border p-4">
                         <div className="source mb-4">{source}</div>
-                        <Image alt="" src={image} width={600} height={100} />
+                        <img alt="" src={image} width={600} height={100} />
                         <div className="mt-4">{/* {event_name} */}</div>
                         <div className="mt-4 mb-4">
-                          {description} <button>... more</button>
+                          {description} {topic} 
                         </div>
                       </div>
                       <div className="news-side-card w-auto">
