@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import Header from "@/components/header";
 import InputText from "@/components/inputText";
 import Dropdown from "@/components/dropdown";
@@ -14,7 +14,8 @@ import { FaRegEnvelope } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { BsChevronRight } from "react-icons/bs";
 import { BsChevronDown } from "react-icons/bs";
-
+import GenerateLoadingCard from "@/components/loading";
+import Link from "next/link";
 import PostText from "@/components/Generate-Content/post-text";
 import AiImages from "@/components/Generate-Content/ai-images";
 import {
@@ -23,10 +24,18 @@ import {
 import Sidebar from "@/components/sidebar";
 import PreviewPost from "@/components/previewpost";
 import axios from "axios";
+import Loading from "@/components/loading";
 
 export default function GenerateContent({ searchParams }) {
 
+    function loadingScroll() {
+        setTimeout(() => {
+            const loading = document.getElementById('content-loading');
+            loading.scrollIntoView({ behavior: 'smooth' });
+        }, 1000);
+    }
     // To toggle moment customization
+    const [isLoading, setIsLoading] = useState(false);
     const [momentCustomization, setMomentCustomization] = useState(false);
 
     // To select one/multiple social media platforms to generate content for-
@@ -150,6 +159,8 @@ export default function GenerateContent({ searchParams }) {
         e.preventDefault();
 
         try {
+            setIsLoading(true);
+            loadingScroll();
             const headers = {
                 'api-key': process.env.NEXT_PUBLIC_API_KEY
             }
@@ -359,10 +370,19 @@ export default function GenerateContent({ searchParams }) {
                     </div>}
 
                     <div>
-                        <div className="flex">
-                            {isPostTextGenerated && <PostText postContent={postText.replace(/\n/g, '<br>')}/>}
-                            {areImagesGenerated && <AiImages images={aiImages} />}
+
+                        {/* <Loading/>  */}
+                        {/* <Suspense fallback={<Loading/>}> */}
+
+                        <div>
+                            {!isPostTextGenerated && !areImagesGenerated && isLoading ? <Loading /> : null}
                         </div>
+                        {isPostTextGenerated && areImagesGenerated ?
+                            <div className="flex">
+                                {isPostTextGenerated && <PostText postContent={postText.replace(/\n/g, '<br>')} />}
+                                {areImagesGenerated && <AiImages images={aiImages} />}
+                            </div>
+                            : null}
 
                         {isPostTextGenerated && areImagesGenerated && <div className={`mt-5 mb-5 flex justify-end gap-2 w-1/3 mr-4 float-right`}>
                             <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`} onClick={() => document.getElementById('post-preview-modal').showModal()}>
@@ -372,7 +392,7 @@ export default function GenerateContent({ searchParams }) {
                                 <Button buttonText="Publish" width="full" />
                             </span>
                         </div>}
-
+                        {/* </Suspense> */}
 
                         <dialog id="post-preview-modal" className="modal">
                             <div className="modal-box max-w-4xl">
@@ -383,6 +403,9 @@ export default function GenerateContent({ searchParams }) {
                             </div>
                         </dialog>
                     </div>
+                    <div id="content-loading"></div>
+
+
                 </div>
 
             </div>
