@@ -1,8 +1,8 @@
-export default function Loading() {
+export default function Loading({text}) {
   return (
     <div className="generate-loader">
                         <div className="flex">
-                            <div className="loader-message m-8 align-middle">Please wait while we are generating your content: </div><span className="loading align-middle loading-bars loading-lg"></span>
+                            <div className="loader-message m-8 align-middle">{text}</div><span className="loading align-middle loading-bars loading-lg"></span>
                         </div>
                         <div className="flex">
                             <LoadingCard />
