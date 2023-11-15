@@ -113,7 +113,7 @@ export default function GenerateContent({ searchParams }) {
 
     const objectives = ["inform", "persuade", "entertain"];
 
-    
+
 
 
 
@@ -141,14 +141,19 @@ export default function GenerateContent({ searchParams }) {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
-    const handleGenerateContentFormSubmission = async(e) => {
+    const [isPostTextGenerated, setIsPostTextGenerated] = useState(false);
+    const [areImagesGenerated, setAreImagesGenerated] = useState(false);
+    const [postText, setPostText] = useState("");
+    const [aiImages, setAiImages] = useState([]);
+
+    const handleGenerateContentFormSubmission = async (e) => {
         e.preventDefault();
 
-        try{
+        try {
             const headers = {
                 'api-key': process.env.NEXT_PUBLIC_API_KEY
             }
-    
+
             const data = {
                 company_id: 100,
                 content_type: `${selectedSocial} post`,
@@ -160,17 +165,29 @@ export default function GenerateContent({ searchParams }) {
                 tone: selectedTone,
                 structure: formData['content-structure']
             }
-            
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/text_generation/simple_generation`, data,{headers});
-            
-            if(res.status == 200){
+
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/text_generation/simple_generation`, data, { headers });
+
+            if (res.status == 200) {
                 setContentFormVisible(false);
+                setIsPostTextGenerated(true);
+                setPostText(res.data['post']);
+
+                const data = {
+                    extras: res.data.extras,
+                }
+
+                const resImage = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/image_generation/edenai`, data, { headers });
+
+                if (resImage.status == 200) {
+                    setAreImagesGenerated(true);
+                    setAiImages(resImage.data['images']);
+                }
             }
-        } catch(err){
+        } catch (err) {
             console.log(err);
         }
     }
-
 
     // context from ai images component
     const { selectedImages } = useContentContext();
@@ -335,26 +352,26 @@ export default function GenerateContent({ searchParams }) {
                             </div>
                         </form>
                     </div>
-                    <div className="cursor-default my-4 text-xl font-medium text-primary-color w-full">
+                    {isPostTextGenerated && <div className="cursor-default my-4 text-xl font-medium text-primary-color w-full">
                         <div className="float-left ml-6">
-                            Instagram:
+                            {selectedSocial}:
                         </div>
-                    </div>
+                    </div>}
+
                     <div>
                         <div className="flex">
-                            <PostText />
-                            <AiImages />
+                            {isPostTextGenerated && <PostText postContent={postText.replace(/\n/g, '<br>')}/>}
+                            {areImagesGenerated && <AiImages images={aiImages} />}
                         </div>
 
-                        <div className={`mt-5 mb-5 flex justify-end gap-2 w-1/3 mr-4 float-right`}>
+                        {isPostTextGenerated && areImagesGenerated && <div className={`mt-5 mb-5 flex justify-end gap-2 w-1/3 mr-4 float-right`}>
                             <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`} onClick={() => document.getElementById('post-preview-modal').showModal()}>
                                 <Button buttonText="Preview" strokeOnly={true} width="full" />
                             </span>
                             <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`}>
                                 <Button buttonText="Publish" width="full" />
                             </span>
-                        </div>
-                        {/* <span className="w-10 bg-red-500" onClick={(e)=>console.log(selectedImages)}>click me</span> */}
+                        </div>}
 
 
                         <dialog id="post-preview-modal" className="modal">
@@ -362,8 +379,7 @@ export default function GenerateContent({ searchParams }) {
                                 <form method="dialog">
                                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                 </form>
-                                {}
-                                <PreviewPost socialMedia={selectedSocial}/>
+                                <PreviewPost socialMedia={selectedSocial} />
                             </div>
                         </dialog>
                     </div>
