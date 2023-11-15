@@ -161,6 +161,7 @@ export default function GenerateContent({ searchParams }) {
         try {
             setIsLoading(true);
             loadingScroll();
+
             const headers = {
                 'api-key': process.env.NEXT_PUBLIC_API_KEY
             }
@@ -373,14 +374,16 @@ export default function GenerateContent({ searchParams }) {
 
                         {/* <Loading/>  */}
                         {/* <Suspense fallback={<Loading/>}> */}
-
+                        <div >
+                            {(!isPostTextGenerated && !areImagesGenerated) && isLoading ? <Loading text={"Please wait while we are generating your content: "}/> : null}
+                        </div>         
                         <div>
-                            {!isPostTextGenerated && !areImagesGenerated && isLoading ? <Loading /> : null}
+                            {(isPostTextGenerated && !areImagesGenerated) && isLoading ? <Loading text={"We are almost done: "}/> : null}
                         </div>
                         {isPostTextGenerated && areImagesGenerated ?
                             <div className="flex">
-                                {isPostTextGenerated && <PostText postContent={postText.replace(/\n/g, '<br>')} />}
-                                {areImagesGenerated && <AiImages images={aiImages} />}
+                                {<PostText postContent={postText.replace(/\n/g, '<br>')} />}
+                                {<AiImages images={aiImages} />}
                             </div>
                             : null}
 
