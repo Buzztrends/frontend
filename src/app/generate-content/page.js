@@ -21,7 +21,7 @@ import {
     useContentContext,
 } from "@/context/contentContext";
 import Sidebar from "@/components/sidebar";
-import Instapost from "@/components/instapost";
+import PreviewPost from "@/components/previewpost";
 import axios from "axios";
 
 export default function GenerateContent({ searchParams }) {
@@ -362,7 +362,8 @@ export default function GenerateContent({ searchParams }) {
                                 <form method="dialog">
                                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                 </form>
-                                <Instapost />
+                                {}
+                                <PreviewPost socialMedia={selectedSocial}/>
                             </div>
                         </dialog>
                     </div>

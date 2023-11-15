@@ -6,11 +6,21 @@ import Postfeatures from './postfeatures';
 import Fbcard from './fbcard';
 import Linkedincard from './linkedincard';
 
-const Instapost = () => {
+const PreviewPost = ({socialMedia}) => {
+    const mediaCompo = (socialMedia)=>{
+        if(socialMedia == "instagram"){
+            return <Instapostmodel/>;
+        } else if(socialMedia == "linkedin"){
+            return <Linkedincard/>;
+        } else if(socialMedia == "facebook"){
+            return <Fbcard/>;
+        }
+    }
+
+
     return (
         <div className='grid grid-cols-5 w-full gap-8'>
-            <Linkedincard />
-
+            {mediaCompo(socialMedia)}
             <div className='col-span-3'>
                 <Postfeatures />
             </div>
@@ -18,4 +28,4 @@ const Instapost = () => {
     )
 }
 
-export default Instapost
+export default PreviewPost;
