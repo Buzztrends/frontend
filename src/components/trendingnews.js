@@ -7,7 +7,7 @@ import NewsCard from './newscard';
 const Trendingnews = ({id,data,mapper, toggleModal}) => {
    
 
-    console.log(details),"line 10";
+    // console.log(details),"line 10";
     const topic=["industry","general_news","current_events"];
     const [currentNews,setCurrentNews]=useState(topic[0]);
   return (  
@@ -19,7 +19,7 @@ const Trendingnews = ({id,data,mapper, toggleModal}) => {
         })}
         </div>
         <div className='flex flex-wrap gap-x-12 gap-y-5'>
-          {details[currentNews].map((item,index)=>
+          {data[currentNews].map((item,index)=>
             <NewsCard key={index} data={item} toggleModal={toggleModal} />
           )}
       
