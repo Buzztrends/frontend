@@ -47,7 +47,7 @@ const Sidebar = () => {
                             <button onClick={() => setResearchitem("socialmedia")} className={`${researchitem == "socialmedia" ? "sidebar-research-item" : ""} py-1 px-2 w-full text-left`}>Social Media</button>
                         </Link>
                         <Link href={'/home/#competition'} className='w-full'>
-                            <button onClick={() => setResearchitem("competition")} className={`${researchitem == "competition" ? "sidebar-research-item" : ""} py-1 px-2 w-full text-left`}>Competition</button>
+                            <button onClick={() => setResearchitem("competition")} className={`${researchitem == "competition" ? "sidebar-research-item" : ""} py-1 px-2 w-full text-left`}>Competition [Coming Soon]</button>
                         </Link>
                     </div>}
 
@@ -62,7 +62,7 @@ const Sidebar = () => {
                     <FaUserCircle />   <span>Darshan Tailor</span>
                 </div>
                 <div className='settings flex items-center justify-center gap-2'>
-                    <MdSettings /> <span>Settings</span>
+                    <MdSettings /> <button onClick={()=>console.log('logged out')}>LogOut</button>
                 </div>
             </div>
         </div>

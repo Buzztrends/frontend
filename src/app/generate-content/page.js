@@ -431,9 +431,9 @@ export default function GenerateContent({ searchParams }) {
                             <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`} onClick={() => document.getElementById('post-preview-modal').showModal()}>
                                 <Button buttonText="Preview" strokeOnly={true} width="full" />
                             </span>
-                            <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`}>
+                            {/* <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`}>
                                 <Button buttonText="Publish" width="full" />
-                            </span>
+                            </span> */}
                         </div>}
                         {/* </Suspense> */}
 
