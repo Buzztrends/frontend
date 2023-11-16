@@ -196,6 +196,10 @@ export default function GenerateContent({ searchParams }) {
             }
             // console.log(data);
 
+            if(!data['moment']){
+                throw new Error('Input valid moment');
+            }
+
             const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/text_generation/simple_generation`, data, { headers });
 
             if (res.status == 200) {
