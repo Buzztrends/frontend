@@ -34,7 +34,8 @@ export default function Home() {
       )
       setDetails(res.data.moments);
       setShow(true);
-      // console.log(res.data.moments, "line 27");
+    
+      console.log(res.data.moments, "line 27");
     }
     catch (err) {
       console.log(err);
@@ -50,6 +51,7 @@ export default function Home() {
     general_news: "General News",
     current_events: "Current Events",
     social_media_trends: "Social Media",
+    
   };
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
