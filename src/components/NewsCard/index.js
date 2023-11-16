@@ -11,7 +11,7 @@ export default function NewsCard({ height, width, src, Trendscore, engScore, tog
   {/* <img src='/images/Buzztrend logo 1.png'></img> */ }
   return (
     <div style={cardStyle}>
-      <div className="max-w-sm rounded border m-4 border-black overflow-hidden shadow-lg" style={{ borderRadius: '10px' }}>
+      <div className="max-w-sm m-4 border-gray-200 overflow-hidden shadow-lg" style={{ borderRadius: '10px' }}>
         {/* <img className="w-full" src={src} alt="Sunset in the mountains" ></img> */}
         <Image alt ='' className="w-full" src={src} width={500} height={500}  />
         <div className="px-6 py-4" style={{cursor: 'pointer'}} onClick={()=>{toggleModal()}}>

@@ -25,6 +25,7 @@ import Sidebar from "@/components/sidebar";
 import PreviewPost from "@/components/previewpost";
 import axios from "axios";
 import Loading from "@/components/loading";
+import Cookies from "js-cookie";
 
 export default function GenerateContent({ searchParams }) {
 
@@ -164,7 +165,8 @@ export default function GenerateContent({ searchParams }) {
 
             const headers = {
                 'api-key': process.env.NEXT_PUBLIC_API_KEY,
-                'x-access-token': localStorage.getItem('authToken')
+                'x-access-token': Cookies.get('authToken')
+                // 'x-access-token': localStorage.getItem('authToken')
             }
 
             const data = {
