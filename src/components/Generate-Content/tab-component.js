@@ -12,7 +12,7 @@ export default function TabComponent({ items }) {
 
   return (
     <div className="flex flex-col gap-y-2 md:w-full h-full">
-      <div className="flex justify-between">
+      <div className="flex justify-between my-2">
         <div className="bg-gray-400 rounded-lg flex justify-between items-center h-14 w-3/5">
           {items.map((item, index) => (
             <button

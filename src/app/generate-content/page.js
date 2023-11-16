@@ -26,6 +26,7 @@ import PreviewPost from "@/components/previewpost";
 import axios from "axios";
 import Loading from "@/components/loading";
 import Cookies from "js-cookie";
+import Extras from "@/components/Generate-Content/extras";
 
 export default function GenerateContent({ searchParams }) {
 
@@ -43,7 +44,7 @@ export default function GenerateContent({ searchParams }) {
     // Multiple socials will be integrated in future, currently implementing single social
 
     // const [selectedSocials, setSelectedSocials] = useState([]);
-    const [selectedSocial, setSelectedSocial] = useState();
+    const [selectedSocial, setSelectedSocial] = useState("instagram");
 
     const socials = [
         {
@@ -80,7 +81,7 @@ export default function GenerateContent({ searchParams }) {
     //     );
     // };
     const toggleSocial = (socialLabel) => {
-        setSelectedSocial((prevState) => prevState == socialLabel ? "" : socialLabel);
+        setSelectedSocial(socialLabel);
     }
 
     const displaySocial = (label) => {
@@ -137,8 +138,10 @@ export default function GenerateContent({ searchParams }) {
 
     // To show or not show content generation form
     const [contentFormVisible, setContentFormVisible] = useState(true);
-
-
+    
+    // context variables
+    const { selectedImages, extras, setExtras } = useContentContext();
+    
     // Storing and submitting form data
     const [formData, setFormData] = useState({});
 
@@ -181,7 +184,7 @@ export default function GenerateContent({ searchParams }) {
                 similar_content: formData['similar-content'],
                 structure: formData['content-structure']
             }
-            console.log(data);
+            // console.log(data);
 
             const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/text_generation/simple_generation`, data, { headers });
 
@@ -189,6 +192,7 @@ export default function GenerateContent({ searchParams }) {
                 setContentFormVisible(false);
                 setIsPostTextGenerated(true);
                 setPostText(res.data['post']);
+                setExtras(res.data['extras']);
 
                 const data = {
                     extras: res.data.extras,
@@ -206,8 +210,6 @@ export default function GenerateContent({ searchParams }) {
         }
     }
 
-    // context from ai images component
-    const { selectedImages } = useContentContext();
 
     return (
         <>
@@ -392,7 +394,7 @@ export default function GenerateContent({ searchParams }) {
                                         <textarea
                                             name="similar-content"
                                             id="similar-content"
-                                            className="border border-solid border-primary-color rounded-lg  block w-full h-32 px-5 py-2 mt-2 font-medium overflow-y-auto"
+                                            className="border-2 border-solid border-primary-color rounded-lg  block w-full h-32 px-5 py-2 mt-2 font-medium overflow-y-auto"
                                             onChange={updateFormData}
                                         />
                                     </div>
@@ -423,12 +425,16 @@ export default function GenerateContent({ searchParams }) {
                         {isPostTextGenerated && areImagesGenerated ?
                             <div className="flex">
                                 {<PostText postContent={postText.replace(/\n/g, '<br>')} />}
-                                {<AiImages images={aiImages} />}
+                                <div className="flex flex-col w-1/2 gap-4">
+                                    {<AiImages images={aiImages} />}
+                                    {/* {console.log(extras)} */}
+                                    {<Extras extrasContent={extras.replace(/\n/g, '<br>')}/>}
+                                </div>
                             </div>
                             : null}
 
                         {isPostTextGenerated && areImagesGenerated && <div className={`mt-5 mb-5 flex justify-end gap-2 w-1/3 mr-4 float-right`}>
-                            <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`} onClick={() => document.getElementById('post-preview-modal').showModal()}>
+                            <span className={`w-1/2 mb-4 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`} onClick={() => document.getElementById('post-preview-modal').showModal()}>
                                 <Button buttonText="Preview" strokeOnly={true} width="full" />
                             </span>
                             {/* <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`}>

@@ -3,20 +3,23 @@
 import React, { useState } from 'react'
 import Image from 'next/image';
 import './sidebar.css';
-import { FaSearch } from 'react-icons/fa';
+import { IoSearchOutline } from "react-icons/io5";
 import { MdAdd } from 'react-icons/md';
 import { FaUserCircle } from 'react-icons/fa';
 import { MdSettings } from 'react-icons/md';
 import { IoChevronDown } from 'react-icons/io5';
 import { IoCreateOutline } from 'react-icons/io5';
+import { RiLogoutCircleLine } from "react-icons/ri";
 
 import Link from "next/link";
 
 import { useSidebarContext } from "@/context/sidebarContext";
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 
 const Sidebar = () => {
     // const [isresearch, setIsresearch] = useState(true);
-
+    const router = useRouter();
     const { selectedTab, setSelectedTab } = useSidebarContext();
     const [researchitem, setResearchitem] = useState(null);
 
@@ -31,7 +34,7 @@ const Sidebar = () => {
                         <button className={`${selectedTab == "research" ? "sidebar-active" : ""} w-full py-1 px-3`} onClick={() => { setResearchitem(null) }}>
                             <div className='flex items-center justify-between px-2'>
                                 <div className='flex justify-center items-center gap-1'>
-                                    <FaSearch />
+                                    <IoSearchOutline />
                                     <span>Research</span>
                                 </div>
                                 <IoChevronDown />
@@ -53,7 +56,16 @@ const Sidebar = () => {
 
                 </div>
                 <Link href={'/generate-content'} className='w-full'>
-                    <button onClick={() => { setResearchitem(null) }} className={`${selectedTab == "generate-content" ? "sidebar-active" : ""} flex items-center gap-1 w-full py-1 px-3`}><IoCreateOutline /><span>Create Content</span>  </button>
+                    <button onClick={() => { setResearchitem(null) }} className={`${selectedTab == "generate-content" ? "sidebar-active" : ""} flex items-center gap-1 w-full py-1 px-3`}>
+                        {/* <IoCreateOutline />
+                        <span>Create Content</span> */}
+                        <div className='flex items-center justify-between px-2'>
+                            <div className='flex justify-center items-center gap-1'>
+                                <IoCreateOutline />
+                                <span>Create Content</span>
+                            </div>
+                        </div>
+                    </button>
                 </Link>
             </div>
 
@@ -62,7 +74,10 @@ const Sidebar = () => {
                     <FaUserCircle />   <span>Darshan Tailor</span>
                 </div>
                 <div className='settings flex items-center justify-center gap-2'>
-                    <MdSettings /> <button onClick={()=>console.log('logged out')}>LogOut</button>
+                    <RiLogoutCircleLine /> <button onClick={() => {
+                        Cookies.remove('authToken');
+                        router.push('/login');
+                    }}>LogOut</button>
                 </div>
             </div>
         </div>

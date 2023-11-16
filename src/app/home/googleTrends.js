@@ -12,8 +12,11 @@ export default function GoogleTrends({ type, keywords, url }) {
     }
 
   const handleScriptLoad = _ => {
+    const widget = document.getElementById('widget');
+    widget.innerText = '';
+
     window.trends.embed.renderExploreWidgetTo(
-      document.getElementById("widget"),
+      widget,
       type,
       {
         comparisonItem,

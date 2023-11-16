@@ -8,10 +8,11 @@ const useContentContext = ()=>{
 
 const ContentContextProvider = ({children})=>{
     const [selectedImages, setSelectedImages] = useState([]);
+    const [extras, setExtras] = useState("");
     // const [generatedImagesObj, setGeneratedImagesObj] = useState({});
 
     return (
-        <ContentContext.Provider value={{selectedImages, setSelectedImages}}>
+        <ContentContext.Provider value={{selectedImages, setSelectedImages, extras, setExtras}}>
             {children}
         </ContentContext.Provider>
     )
