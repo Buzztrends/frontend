@@ -24,7 +24,7 @@ const Sidebar = () => {
     // console.log('inside sidebar', { selectedTab })
     return (
         <div className='gradient-sidebar w-1/5 h-screen px-4 py-5 text-white flex flex-col fixed'>
-            <Image alt="" src={'/images/Buzztrend logo 1.png'} width={220} height={100} />
+            <img alt="" src={'/images/Buzztrend logo 1.png'} width={220} height={100} />
             <div className='mt-[35px] flex flex-col gap-6 '>
                 <div className='flex flex-col items-start gap-3'>
                     <Link href={'/home'} className='w-full'>

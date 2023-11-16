@@ -10,6 +10,7 @@ import Image from "next/image";
 import Header from "@/components/header";
 import axios from "axios";
 import GoogleTrends from "./googleTrends";
+import Cookies from "js-cookie";
 
 
 // import TrendCard from '@/components/TrendCard';
@@ -26,13 +27,14 @@ export default function Home() {
         {
           headers: { 
             'api-key': `${process.env.NEXT_PUBLIC_API_KEY}`,
-            'x-access-token': localStorage.getItem('authToken')
+            'x-access-token': Cookies.get('authToken')
+            // 'x-access-token': localStorage.getItem('authToken')
           },
         }
       )
       setDetails(res.data.moments);
       setShow(true);
-      console.log(res.data.moments, "line 27");
+      // console.log(res.data.moments, "line 27");
     }
     catch (err) {
       console.log(err);
@@ -130,7 +132,7 @@ export default function Home() {
                         {/* <div className="new-hashtag-card md:h-1/3 flex flex-wrap"></div> */}
                         <div className="news-hashtags-card w-full">
                           <div id="widget" className='w-full'>
-                            {console.log('trends', trends)}
+                            {/* {console.log('trends', trends)} */}
                             <GoogleTrends
                               type="TIMESERIES"
                               keywords={trends.length < 5 ? trends:trends.slice(0, 5)} //max keywords allowed in google trends embedding is only 5
