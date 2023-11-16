@@ -8,15 +8,22 @@ const Trendingnews = ({id,data,mapper, toggleModal}) => {
    
 
     // console.log(details),"line 10";
-    const topic=["industry_news","general_news","current_events"];
+    const tp=Object.keys(data);
+    const top = tp.filter(item => item !== "social_media_trends");
+    const topic=[];
+    for(let i=0;i<top.length;i++){
+      if(data[top[i]].length!=0){
+        topic.push(top[i])
+      }
+    }
     const [currentNews,setCurrentNews]=useState(topic[0]);
   return (  
     <div id={id} className='flex flex-col gap-5 scroll-mt-24'>
         <div className='text-2xl font-medium leading-9 tracking-wide text-font-color'>Trending News & Moments</div>
         <div className='flex gap-4'>
         {topic.map((item, index) =>{
-             return    <Newsbuttons key={index} title={mapper[item]} actual={item} currentNews={currentNews} setCurrentNews={setCurrentNews}/> 
-        })}
+            return    <Newsbuttons key={index}  actual={item} currentNews={currentNews} setCurrentNews={setCurrentNews}/> 
+          })}
         </div>
         <div className='flex flex-wrap gap-x-12 gap-y-5'>
           {data[currentNews].map((item,index)=>
