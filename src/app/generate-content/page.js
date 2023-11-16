@@ -28,6 +28,16 @@ import Loading from "@/components/loading";
 import Cookies from "js-cookie";
 
 export default function GenerateContent({ searchParams }) {
+    // console.log("searchParams.socialTitle");
+    // console.log(searchParams.socialTitle);
+    // console.log("searchParams.socialTitle");
+    const generateContentTitle = searchParams.socialTitle || searchParams.title;
+    // if (searchParams.socialTitle) {
+    //     const generateContentTitle = searchParams.socialTitle;
+    // }
+    // if (searchParams.title) {
+    //     const generateContentTitle = searchParams.title;
+    // }
 
     function loadingScroll() {
         setTimeout(() => {
@@ -144,7 +154,7 @@ export default function GenerateContent({ searchParams }) {
     const [formData, setFormData] = useState({});
 
     useEffect(() => {
-        setFormData({ ...formData, 'moment-for-generation': searchParams.title || '' });
+        setFormData({ ...formData, 'moment-for-generation': generateContentTitle || '' });
     }, []);
 
     const updateFormData = (e) => {
@@ -230,7 +240,7 @@ export default function GenerateContent({ searchParams }) {
                                         id="moment-input"
                                         isDisabled={momentCustomization ? undefined : true}
                                         handleChange={updateFormData}
-                                        defValue={searchParams.title}
+                                        defValue={generateContentTitle}
                                     />
 
                                     <span
