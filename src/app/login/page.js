@@ -10,8 +10,8 @@ export default function Login() {
 
 
         <div >
-       <label htmlFor="email" className='text-base font-medium leading-5 tracking-wide'>Email</label><br></br>
-       <input type='email' id="email" placeholder='Enter your email' className='mt-2 h-[49.58px] rounded-[12px] border border-[1px] w-full p-4 placeholder-base placeholder-light placeholder-leading-5 placeholder-tracking-wide'></input>
+       <label htmlFor="username" className='text-base font-medium leading-5 tracking-wide'>Username</label><br></br>
+       <input type='text' id="username" placeholder='Enter your username' className='mt-2 h-[49.58px] rounded-[12px] border border-[1px] w-full p-4 placeholder-base placeholder-light placeholder-leading-5 placeholder-tracking-wide'></input>
        </div>
 
        <div>
