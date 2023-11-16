@@ -1,22 +1,60 @@
+"use client";
 import { FaGoogle } from 'react-icons/fa';
 import Image from 'next/image';
+import { useState } from 'react';
+import axios from 'axios';
+import { redirect } from 'next/navigation';
 
 export default function Login() {
+  const [loginData, setLoginData] = useState({});
+
+  const updateLoginData = (e)=>{
+    setLoginData({...loginData, [e.target.name]: e.target.value});
+  }
+
+  const handleLogin = async(e)=>{
+    e.preventDefault();
+
+    try{
+      const data = {
+        username: loginData['username'],
+        password: loginData['password']
+      }
+
+      const headers = {
+        'api-key': `${process.env.NEXT_PUBLIC_API_KEY}`,
+      }
+
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/user/authenticate`, data, { headers });
+
+      if(res.status == 200){
+        localStorage.setItem('authToken', res.data['token']);
+        redirect('/home');
+      } else{
+        console.log(res.data);
+      }
+
+      console.log(res.data);
+    } catch(err){
+      console.log(err);
+    }
+  }
+
   return (
     <div className="grid grid-cols-2 gap-40 justify-center content-center h-screen bg-black px-16 bg-custom-gradient">
-      <form className='text-black flex flex-col bg-white gap-4 justify-center w-450 h-626 rounded-2xl border-2 border-black p-10  font-poppins '>
+      <form className='text-black flex flex-col bg-white gap-4 justify-center w-450 h-626 rounded-2xl border-2 border-black p-10  font-poppins ' onSubmit={handleLogin}>
         <div className="self-center text-3xl font-medium leading-51 tracking-wider">Log in to Buzz Trends</div>
         <div className="self-center text-base font-normal leading-5 tracking-wide">Please enter your details</div>
 
 
         <div >
-       <label htmlFor="email" className='text-base font-medium leading-5 tracking-wide'>Email</label><br></br>
-       <input type='email' id="email" placeholder='Enter your email' className='mt-2 h-[49.58px] rounded-[12px] border border-[1px] w-full p-4 placeholder-base placeholder-light placeholder-leading-5 placeholder-tracking-wide'></input>
+       <label htmlFor="username" className='text-base font-medium leading-5 tracking-wide'>Username</label><br></br>
+       <input type='text' id="username" name="username" placeholder='Enter your username' className='mt-2 h-[49.58px] rounded-[12px] border border-[1px] w-full p-4 placeholder-base placeholder-light placeholder-leading-5 placeholder-tracking-wide' onChange={updateLoginData}></input>
        </div>
 
        <div>
        <label htmlFor="password" className='text-base font-medium leading-5 tracking-wide'>Password</label>
-       <input type='password' id="Password"  placeholder='Enter your password' className='mt-2 h-[49.58px] rounded-[12px] border border-[1px] w-full p-4 placeholder-base placeholder-light placeholder-leading-5 placeholder-tracking-wide'></input>
+       <input type='password' id="Password" name="password" placeholder='Enter your password' className='mt-2 h-[49.58px] rounded-[12px] border border-[1px] w-full p-4 placeholder-base placeholder-light placeholder-leading-5 placeholder-tracking-wide' onChange={updateLoginData}></input>
        </div>
 
        <div className='flex justify-between text-xs font-medium leading-4 tracking-wide'>
@@ -34,7 +72,7 @@ export default function Login() {
        </div>
 
 
-        <button className='w-full bg-linear-gradient h-[56px] rounded-[12px] border-2 text-base font-medium leading-33 tracking-wide text-white'>
+        <button className='w-full bg-linear-gradient h-[56px] rounded-[12px] border-2 text-base font-medium leading-33 tracking-wide text-white' type='submit'>
             Sign in</button>
 
         <div className="self-center">OR</div>

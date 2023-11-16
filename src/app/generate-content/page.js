@@ -163,7 +163,8 @@ export default function GenerateContent({ searchParams }) {
             loadingScroll();
 
             const headers = {
-                'api-key': process.env.NEXT_PUBLIC_API_KEY
+                'api-key': process.env.NEXT_PUBLIC_API_KEY,
+                'x-access-token': localStorage.getItem('authToken')
             }
 
             const data = {
