@@ -7,10 +7,10 @@ import Socialmediagraph from './socialmediagraph';
 import { RiAiGenerate } from "react-icons/ri";
 import Link from "next/link";
 
-const Socialmedia = ({ id, data, mapper }) => {
-
-  data = data["social_media_trends"];
-  console.log(data, "data in sm");
+const Socialmedia = ({id,data,mapper}) => {
+ 
+  data=data["social_media_trends"];
+//  console.log(data,"data in sm");
 
 
   const [ind, setIndex] = useState(0);
@@ -31,7 +31,7 @@ const Socialmedia = ({ id, data, mapper }) => {
 
 
   return (
-    <div className='flex gap-5 font-Poppins'>
+    <div className='flex gap-5 font-Poppins mb-12'>
 
       <div id={id} className='flex flex-col gap-2 w-1/2 scroll-mt-24'>
         <div className='text-2xl font-medium leading-9 tracking-wide text-font-color'>Social Media</div>
@@ -62,12 +62,9 @@ const Socialmedia = ({ id, data, mapper }) => {
           <Link 
           href={{
             pathname: "/generate-content",
-            query: { socialTile: data[selected]?.title },
+            query: { socialTitle: data[selected]?.title },
           }}
-          className="flex items-center">
-          <div className='mx-1 text-xl'>
-            <RiAiGenerate />
-            </div>
+          className="text-white bg-linear-gradient hover:bg-blue-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             <span>Generate Content</span>
             
           </Link>

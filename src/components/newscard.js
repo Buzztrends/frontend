@@ -6,9 +6,9 @@ const Newscard = ({data,toggleModal}) => {
 
 //   console.log(data);
   return (
-    <div className='flex flex-col w-[30%] rounded-lg border border-black' >
+    <div className='flex flex-col w-[30%] border border-gray-100 shadow-sidd' >
         
-        {data.top_image && <img alt="" className='h-44 rounded-t-lg object-cover' src={data.top_image}  />}
+        {data.top_image && <img alt="" className='h-44 object-cover' src={data.top_image}  />}
         <div className='flex flex-col gap-3 p-3 font-poppins'>
         <div className='flex flex-col '>
             <div className=' text-base font-medium leading-7 tracking-wide'>

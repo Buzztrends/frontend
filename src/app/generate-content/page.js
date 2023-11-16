@@ -25,15 +25,19 @@ import Sidebar from "@/components/sidebar";
 import PreviewPost from "@/components/previewpost";
 import axios from "axios";
 import Loading from "@/components/loading";
+import Cookies from "js-cookie";
 
 export default function GenerateContent({ searchParams }) {
+    // console.log("searchParams.socialTitle");
     // console.log(searchParams.socialTitle);
-    if (searchParams.socialTitle) {
-        const generateContentTitle = searchParams.socialTitle;
-    }
-    if (searchParams.title) {
-        const generateContentTitle = searchParams.title;
-    }
+    // console.log("searchParams.socialTitle");
+    const generateContentTitle = searchParams.socialTitle || searchParams.title;
+    // if (searchParams.socialTitle) {
+    //     const generateContentTitle = searchParams.socialTitle;
+    // }
+    // if (searchParams.title) {
+    //     const generateContentTitle = searchParams.title;
+    // }
 
     function loadingScroll() {
         setTimeout(() => {
@@ -171,7 +175,8 @@ export default function GenerateContent({ searchParams }) {
 
             const headers = {
                 'api-key': process.env.NEXT_PUBLIC_API_KEY,
-                'x-access-token': localStorage.getItem('authToken')
+                'x-access-token': Cookies.get('authToken')
+                // 'x-access-token': localStorage.getItem('authToken')
             }
 
             const data = {
@@ -399,9 +404,9 @@ export default function GenerateContent({ searchParams }) {
                             <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`} onClick={() => document.getElementById('post-preview-modal').showModal()}>
                                 <Button buttonText="Preview" strokeOnly={true} width="full" />
                             </span>
-                            <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`}>
+                            {/* <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`}>
                                 <Button buttonText="Publish" width="full" />
-                            </span>
+                            </span> */}
                         </div>}
                         {/* </Suspense> */}
 
