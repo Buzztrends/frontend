@@ -18,12 +18,16 @@ import GoogleTrends from "./googleTrends";
 export default function Home() {
   const [details, setDetails] = useState(null);
   const [show, setShow] = useState(false);
+
   const getData = async () => {
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/user/data`,
         { company_id: 100 },
         {
-          headers: { 'api-key': `${process.env.NEXT_PUBLIC_API_KEY}` }
+          headers: { 
+            'api-key': `${process.env.NEXT_PUBLIC_API_KEY}`,
+            'x-access-token': localStorage.getItem('authToken')
+          },
         }
       )
       setDetails(res.data.moments);
