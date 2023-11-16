@@ -35,12 +35,12 @@ export default function AiImages({images}) {
 
     return (
         <>
-            <div className="w-1/2 rounded-lg border-primary-color border ml-3 mr-4">
+            <div className="rounded-lg border-primary-color border ml-3 mr-4 h-full">
                 <div className="flex justify-between border-b text-primary-color text-lg border-neutral-900 px-6 py-3">
                     <div className="font-medium items-center">AI Generated Images:</div>
                     <button className="regenerate-btn p-1 px-4 border border-indigo-800 rounded-lg flex items-center text-base hover:bg-gradient-linear hover:text-white"><div className='mx-2 text-2xl'><BiRefresh/> </div> Regenerate</button>
                 </div>
-                <div className="px-2 overflow-y-auto h-96 m-8">
+                <div className="px-2 h-full overflow-y-auto m-8">
                     <div className="grid grid-cols-2 grid-rows-2 gap-4">
                         {
                             images.map((image, index) => {
