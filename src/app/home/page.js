@@ -60,6 +60,7 @@ export default function Home() {
   const [topic, setTopic] = useState("");
   const [image, setImage] = useState("");
   const [trends, setTrends] = useState([]);
+  const [url,seturl]=useState("");
 
   // Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -73,6 +74,7 @@ export default function Home() {
     setImage(data.top_image);
     setDescription(data.description);
     setTrends(data.validation.google_trends);
+    seturl(data.url);
   };
 
   const closeModal = () => {
@@ -129,6 +131,9 @@ export default function Home() {
                         <div className="mt-4 mb-4">
                           {description} {topic}
                         </div>
+                         <Link href={url} className="mt-4 mb-4 text-blue-500">
+                          Read more
+                        </Link>
                       </div>
                       <div className="news-side-card w-1/2">
                         {/* <div className="new-hashtag-card md:h-1/3 flex flex-wrap"></div> */}
