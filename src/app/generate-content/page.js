@@ -102,15 +102,14 @@ export default function GenerateContent({ searchParams }) {
 
 
 
-    // To select product - to be enabled later
-    // const [selectedProduct, setSelectedProduct] = useState("");
+    // To select product
+    const [selectedProduct, setSelectedProduct] = useState("");
 
-    // const handleSelectProduct = (event) => {
-    //     setSelectedProduct(event.target.value);
-    // };
+    const handleSelectProduct = (event) => {
+        setSelectedProduct(event.target.value);
+    };
 
-    // const products = ["option1", "option2"]
-
+    const products = ["option1", "option2"]
 
 
 
@@ -175,11 +174,14 @@ export default function GenerateContent({ searchParams }) {
                 moment: formData['moment-for-generation'],
                 custom_moment: 1,
                 objective: selectedObjective,
-                location: "india",
-                audience: "young teenagers",
+                product: selectedProduct,
+                location: formData['target-location'],
+                audience: formData['target-audience'],
                 tone: selectedTone,
+                similar_content: formData['similar-content'],
                 structure: formData['content-structure']
             }
+            console.log(data);
 
             const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/text_generation/simple_generation`, data, { headers });
 
@@ -306,55 +308,90 @@ export default function GenerateContent({ searchParams }) {
                                         </div>
                                     </div>
 
-                                    {/* <div className="my-10">
-                                        <p className="text-l font-semibold">Select product:</p>
-                                        <Dropdown
-                                            name="product"
-                                            id="select-product"
-                                            options={products}
-                                            selectedOption={selectedProduct}
-                                            handleSelectChange={handleSelectProduct}
-                                        />
-                                    </div> */}
 
-                                    <div className="my-10">
-                                        <p className="text-l font-semibold">Select objective:</p>
-                                        <Dropdown
-                                            name="objective"
-                                            id="select-objective"
-                                            options={objectives}
-                                            selectedOption={selectedObjective}
-                                            handleSelectChange={handleSelectObjective}
-                                        />
+                                    <div className="my-10 flex w-full gap-8">
+
+
+                                        <div className="w-1/2">
+                                            <p className="text-l font-semibold">Select product:</p>
+                                            <Dropdown
+                                                name="product"
+                                                id="select-product"
+                                                options={products}
+                                                selectedOption={selectedProduct}
+                                                handleSelectChange={handleSelectProduct}
+                                            />
+                                        </div>
+
+                                        <div className="w-1/2">
+                                            <p className="text-l font-semibold">Select objective:</p>
+                                            <Dropdown
+                                                name="objective"
+                                                id="select-objective"
+                                                options={objectives}
+                                                selectedOption={selectedObjective}
+                                                handleSelectChange={handleSelectObjective}
+                                            />
+                                        </div>
+
                                     </div>
 
-                                    <div className="my-10">
-                                        <p className="text-l font-semibold">Content Tonality:</p>
-                                        <Dropdown
-                                            name="tonality"
-                                            id="select-tone"
-                                            options={tones}
-                                            selectedOption={selectedTone}
-                                            handleSelectChange={handleSelectTone}
-                                        />
+                                    <div className="my-10 flex w-full gap-8">
+                                        <div className="w-1/2">
+                                            <p className="text-l font-semibold">Content Tonality:</p>
+                                            <Dropdown
+                                                name="tonality"
+                                                id="select-tone"
+                                                options={tones}
+                                                selectedOption={selectedTone}
+                                                handleSelectChange={handleSelectTone}
+                                            />
+                                        </div>
+
+                                        <div className="w-1/2">
+                                            <p className="text-l font-semibold">
+                                                Target Location:
+                                            </p>
+                                            <InputText
+                                                name="target-location"
+                                                id="target-location"
+                                                handleChange={updateFormData}
+                                            />
+                                        </div>
+
                                     </div>
 
-                                    <div className="my-10">
-                                        <p className="text-l font-semibold">
-                                            Structure of Content:
-                                        </p>
-                                        <InputText
-                                            name="content-structure"
-                                            id="content-structure"
-                                            handleChange={updateFormData}
-                                        />
+
+                                    <div className="my-10 flex w-full gap-8">
+                                        <div className="w-1/2">
+                                            <p className="text-l font-semibold">
+                                                Target Audience:
+                                            </p>
+                                            <InputText
+                                                name="target-audience"
+                                                id="target-audience"
+                                                handleChange={updateFormData}
+                                            />
+                                        </div>
+
+                                        <div className="w-1/2">
+                                            <p className="text-l font-semibold">
+                                                Structure of Content:
+                                            </p>
+                                            <InputText
+                                                name="content-structure"
+                                                id="content-structure"
+                                                handleChange={updateFormData}
+                                            />
+                                        </div>
                                     </div>
+
 
                                     <div className="my-10">
                                         <p className="text-l font-semibold">Similar Content:</p>
                                         <textarea
                                             name="similar-content"
-                                            id="similar content"
+                                            id="similar-content"
                                             className="border border-solid border-primary-color rounded-lg  block w-full h-32 px-5 py-2 mt-2 font-medium overflow-y-auto"
                                             onChange={updateFormData}
                                         />
@@ -378,10 +415,10 @@ export default function GenerateContent({ searchParams }) {
                         {/* <Loading/>  */}
                         {/* <Suspense fallback={<Loading/>}> */}
                         <div >
-                            {(!isPostTextGenerated && !areImagesGenerated) && isLoading ? <Loading text={"Please wait while we are generating your content: "}/> : null}
-                        </div>         
+                            {(!isPostTextGenerated && !areImagesGenerated) && isLoading ? <Loading text={"Please wait while we are generating your content: "} /> : null}
+                        </div>
                         <div>
-                            {(isPostTextGenerated && !areImagesGenerated) && isLoading ? <Loading text={"We are almost done: "}/> : null}
+                            {(isPostTextGenerated && !areImagesGenerated) && isLoading ? <Loading text={"We are almost done: "} /> : null}
                         </div>
                         {isPostTextGenerated && areImagesGenerated ?
                             <div className="flex">

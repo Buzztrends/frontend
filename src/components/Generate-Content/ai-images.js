@@ -6,7 +6,7 @@ import { BiSolidCircle,BiRefresh } from "react-icons/bi";
 import { BsCheckCircleFill } from "react-icons/bs";
 
 export default function AiImages({images}) {
-    console.log(images);
+    // console.log(images);
     const { selectedImages, setSelectedImages } = useContentContext()
 
     const toggleImageSelection = (imageLink) => {
