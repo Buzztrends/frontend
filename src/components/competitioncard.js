@@ -4,7 +4,7 @@ import Image from 'next/image';
 const Competitioncard = () => {
   return (
   
-      <Image  alt="" src={'/images/image 2 (1).png'} width={300} height={100} />
+      <img alt="" src={'/images/image 2 (1).png'} width={300} height={100} />
 
   )
 }

@@ -10,6 +10,7 @@ import Image from "next/image";
 import Header from "@/components/header";
 import axios from "axios";
 import GoogleTrends from "./googleTrends";
+import Cookies from "js-cookie";
 
 
 // import TrendCard from '@/components/TrendCard';
@@ -26,12 +27,14 @@ export default function Home() {
         {
           headers: { 
             'api-key': `${process.env.NEXT_PUBLIC_API_KEY}`,
-            'x-access-token': localStorage.getItem('authToken')
+            'x-access-token': Cookies.get('authToken')
+            // 'x-access-token': localStorage.getItem('authToken')
           },
         }
       )
       setDetails(res.data.moments);
       setShow(true);
+    
       console.log(res.data.moments, "line 27");
     }
     catch (err) {
@@ -48,6 +51,7 @@ export default function Home() {
     general_news: "General News",
     current_events: "Current Events",
     social_media_trends: "Social Media",
+    
   };
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -56,6 +60,7 @@ export default function Home() {
   const [topic, setTopic] = useState("");
   const [image, setImage] = useState("");
   const [trends, setTrends] = useState([]);
+  const [url,seturl]=useState("");
 
   // Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -69,6 +74,7 @@ export default function Home() {
     setImage(data.top_image);
     setDescription(data.description);
     setTrends(data.validation.google_trends);
+    seturl(data.url);
   };
 
   const closeModal = () => {
@@ -125,12 +131,15 @@ export default function Home() {
                         <div className="mt-4 mb-4">
                           {description} {topic}
                         </div>
+                         <Link href={url} className="mt-4 mb-4 text-blue-500">
+                          Read more
+                        </Link>
                       </div>
                       <div className="news-side-card w-1/2">
                         {/* <div className="new-hashtag-card md:h-1/3 flex flex-wrap"></div> */}
                         <div className="news-hashtags-card w-full">
                           <div id="widget" className='w-full'>
-                            {console.log('trends', trends)}
+                            {/* {console.log('trends', trends)} */}
                             <GoogleTrends
                               type="TIMESERIES"
                               keywords={trends.length < 5 ? trends:trends.slice(0, 5)} //max keywords allowed in google trends embedding is only 5

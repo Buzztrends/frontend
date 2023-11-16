@@ -22,7 +22,7 @@ module.exports = {
         'border-color':'#250061',
       },
       boxShadow:{
-        'primary': '0px 1px 10px 0px rgba(0, 0, 0, 0.25)'
+        'sidd': 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
       }
     },
   },
