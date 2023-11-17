@@ -21,6 +21,7 @@ import AiImages from "@/components/Generate-Content/ai-images";
 import {
     useContentContext,
 } from "@/context/contentContext";
+// import {useUserContext} from "@/context/userContext";
 import Sidebar from "@/components/sidebar";
 import PreviewPost from "@/components/previewpost";
 import axios from "axios";
@@ -154,8 +155,10 @@ export default function GenerateContent({ searchParams }) {
     
     // Storing and submitting form data
     const [formData, setFormData] = useState({});
+    const [companyId, setCompanyId] = useState("");
 
     useEffect(() => {
+        setCompanyId(Cookies.get('companyId'));
         setFormData({ ...formData, 'moment-for-generation': generateContentTitle || '' });
     }, []);
 
@@ -182,7 +185,7 @@ export default function GenerateContent({ searchParams }) {
             }
 
             const data = {
-                company_id: 100,
+                company_id: parseInt(companyId),
                 content_type: `${selectedSocial} post`,
                 moment: formData['moment-for-generation'],
                 custom_moment: 1,
@@ -194,7 +197,7 @@ export default function GenerateContent({ searchParams }) {
                 similar_content: formData['similar-content'],
                 structure: formData['content-structure']
             }
-            // console.log(data);
+            console.log(data);
 
             if(!data['moment']){
                 throw new Error('Input valid moment');
@@ -202,7 +205,7 @@ export default function GenerateContent({ searchParams }) {
 
             const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/text_generation/simple_generation`, data, { headers });
 
-            if (res.status == 200) {
+            if (res.status == 200 || res.status == 201) {
                 setContentFormVisible(false);
                 setIsPostTextGenerated(true);
                 setPostText(res.data['post']);
@@ -214,7 +217,7 @@ export default function GenerateContent({ searchParams }) {
 
                 const resImage = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/image_generation/edenai`, data, { headers });
 
-                if (resImage.status == 200) {
+                if (resImage.status == 200 || resImage.status == 201) {
                     setAreImagesGenerated(true);
                     setAiImages(resImage.data['images']);
                 }

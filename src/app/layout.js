@@ -4,6 +4,7 @@ const poppins = Poppins({ subsets: ['latin'], weight:['400','500','600','700'], 
 import './globals.css';
 import { SidebarContextProvider } from "@/context/sidebarContext";
 import { ContentContextProvider } from "@/context/contentContext";
+// import { UserContextProvider } from "@/context/userContext";
 
 
 
@@ -14,13 +15,15 @@ import { ContentContextProvider } from "@/context/contentContext";
 
 export default function RootLayout({ children }) {
   return (
-    <ContentContextProvider>
-      <SidebarContextProvider>
-        <html lang="en">
-          <body className={poppins.className}>
-            {children}</body>
-        </html>
-      </SidebarContextProvider>
-    </ContentContextProvider>
+    // <UserContextProvider>
+      <ContentContextProvider>
+        <SidebarContextProvider>
+          <html lang="en">
+            <body className={poppins.className}>
+              {children}</body>
+          </html>
+        </SidebarContextProvider>
+      </ContentContextProvider>
+    // </UserContextProvider>
   )
 }

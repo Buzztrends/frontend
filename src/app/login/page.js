@@ -5,10 +5,12 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+// import { useUserContext } from "@/context/userContext";
 
 export default function Login() {
   const router = useRouter();
   const [loginData, setLoginData] = useState({});
+
 
   const updateLoginData = (e)=>{
     setLoginData({...loginData, [e.target.name]: e.target.value});
@@ -28,11 +30,18 @@ export default function Login() {
       }
 
       const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/user/authenticate`, data, { headers });
-
-      if(res.status == 200){
+    
+      if(res.status == 200 || res.status == 201){
+        // setUsername(res.data['username']);
+        // setCompanyName(res.data['company_name']);
+        // setCompanyId(res.data['company_id']);
         Cookies.set('authToken', res.data['token']);
+        Cookies.set('username', res.data['username']);
+        Cookies.set('companyId', res.data['company_id']);
+        Cookies.set('companyName', res.data['company_name']);
+        router.push("/home");
+
         // localStorage.setItem('authToken', res.data['token']);
-        router.push("/home")
       } else{
         console.log(res.data);
       }

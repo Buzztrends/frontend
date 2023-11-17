@@ -23,7 +23,7 @@ export default function Home() {
   const getData = async () => {
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/user/data`,
-        { company_id: 100 },
+        { company_id: parseInt(Cookies.get('companyId')) },
         {
           headers: { 
             'api-key': `${process.env.NEXT_PUBLIC_API_KEY}`,
@@ -32,6 +32,8 @@ export default function Home() {
           },
         }
       )
+
+      Cookies.set('gensLeft', res.data.generation_available);
       setDetails(res.data.moments);
       setShow(true);
     
@@ -131,7 +133,7 @@ export default function Home() {
                         <div className="mt-4 mb-4">
                           {description} {topic}
                         </div>
-                         <Link href={url} className="mt-4 mb-4 text-blue-500">
+                         <Link href={url} target="_blank" className="mt-4 mb-4 text-blue-500">
                           Read more
                         </Link>
                       </div>
