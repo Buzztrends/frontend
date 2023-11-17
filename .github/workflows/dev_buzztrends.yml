@@ -24,6 +24,7 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm install npm@8.19.2 -g
+          npm install
           npm run build
 
       - name: Zip artifact for deployment
