@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import './sidebar.css';
 import { IoSearchOutline } from "react-icons/io5";
@@ -14,14 +14,24 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import Link from "next/link";
 
 import { useSidebarContext } from "@/context/sidebarContext";
+// import { useUserContext } from "@/context/userContext";
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 const Sidebar = () => {
     // const [isresearch, setIsresearch] = useState(true);
     const router = useRouter();
-    const { selectedTab, setSelectedTab } = useSidebarContext();
+    const { selectedTab } = useSidebarContext();
     const [researchitem, setResearchitem] = useState(null);
+
+    const [username, setUsername] = useState("");
+    const [gensLeft, setGensLeft] = useState(0);
+    useEffect(() => {
+        setUsername(Cookies.get('username'));
+        setGensLeft(Cookies.get('gensLeft'));
+    }, [])
+    // const { username } = useUserContext();
 
     // console.log('called from', {calledFrom})
     // console.log('inside sidebar', { selectedTab })
@@ -62,7 +72,7 @@ const Sidebar = () => {
                         <div className='flex items-center justify-between px-2'>
                             <div className='flex justify-center items-center gap-1'>
                                 <IoCreateOutline />
-                                <span>Create Content</span>
+                                <span>Create Content ({gensLeft})</span>
                             </div>
                         </div>
                     </button>
@@ -71,11 +81,14 @@ const Sidebar = () => {
 
             <div className='sidebar-bottom mt-auto flex flex-col justify-center items-start gap-3'>
                 <div className='profile flex items-center justify-center gap-2'>
-                    <FaUserCircle />   <span>Darshan Tailor</span>
+                    <FaUserCircle />   <span>{username}</span>
                 </div>
                 <div className='settings flex items-center justify-center gap-2'>
                     <RiLogoutCircleLine /> <button onClick={() => {
-                        Cookies.remove('authToken');
+                        const cookies = ['gensLeft', 'username', 'companyId', 'companyName', 'authToken'];
+                        for(let cookie of cookies){
+                            Cookies.remove(cookie);
+                        }
                         router.push('/login');
                     }}>LogOut</button>
                 </div>
