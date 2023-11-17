@@ -11,12 +11,22 @@ export default function Login() {
   const router = useRouter();
   const [loginData, setLoginData] = useState({});
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  function setLogin(){
+      if(isLoggedIn){
+        setIsLoggedIn(false);
+      }else{
+        setIsLoggedIn(true);
+      }
+  };
+
 
   const updateLoginData = (e)=>{
     setLoginData({...loginData, [e.target.name]: e.target.value});
   }
 
   const handleLogin = async(e)=>{
+    setLogin();
     e.preventDefault();
 
     try{
@@ -81,9 +91,12 @@ export default function Login() {
 
        </div> */}
 
+{!isLoggedIn && <button  className='w-full bg-linear-gradient h-[56px] rounded-[12px] border-2 text-base font-medium leading-33 tracking-wide text-white' type='submit'>
+        Sign in</button>}
 
-        <button className='w-full bg-linear-gradient h-[56px] rounded-[12px] border-2 text-base font-medium leading-33 tracking-wide text-white' type='submit'>
-            Sign in</button>
+        {isLoggedIn && <button className='w-full bg-linear-gradient h-[56px] rounded-[12px] border-2 text-base font-medium leading-33 tracking-wide text-white' type='submit'>
+        <span className="loading loading-bars loading-md"></span>
+        </button>}
 
         {/* <div className="self-center">OR</div>
 
