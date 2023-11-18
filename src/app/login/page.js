@@ -11,15 +11,25 @@ export default function Login() {
   const router = useRouter();
   const [loginData, setLoginData] = useState({});
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  function setLogin() {
+    if (isLoggedIn) {
+      setIsLoggedIn(false);
+    } else {
+      setIsLoggedIn(true);
+    }
+  };
 
-  const updateLoginData = (e)=>{
-    setLoginData({...loginData, [e.target.name]: e.target.value});
+
+  const updateLoginData = (e) => {
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
   }
 
-  const handleLogin = async(e)=>{
+  const handleLogin = async (e) => {
+    setLogin();
     e.preventDefault();
 
-    try{
+    try {
       const data = {
         username: loginData['username'],
         password: loginData['password']
@@ -30,8 +40,8 @@ export default function Login() {
       }
 
       const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/user/authenticate`, data, { headers });
-    
-      if(res.status == 200 || res.status == 201){
+
+      if (res.status == 200 || res.status == 201) {
         // setUsername(res.data['username']);
         // setCompanyName(res.data['company_name']);
         // setCompanyId(res.data['company_id']);
@@ -42,10 +52,10 @@ export default function Login() {
         router.push("/home");
 
         // localStorage.setItem('authToken', res.data['token']);
-      } else{
+      } else {
         console.log(res.data);
       }
-    } catch(err){
+    } catch (err) {
       console.log(err);
     }
   }
@@ -58,16 +68,16 @@ export default function Login() {
 
 
         <div >
-       <label htmlFor="username" className='text-base font-medium leading-5 tracking-wide'>Username</label><br></br>
-       <input type='text' id="username" name="username" placeholder='Enter your username' className='mt-2 h-[49.58px] rounded-[12px] border border-[1px] w-full p-4 placeholder-base placeholder-light placeholder-leading-5 placeholder-tracking-wide' onChange={updateLoginData}></input>
-       </div>
+          <label htmlFor="username" className='text-base font-medium leading-5 tracking-wide'>Username</label><br></br>
+          <input type='text' id="username" name="username" placeholder='Enter your username' className='mt-2 h-[49.58px] rounded-[12px] border border-[1px] w-full p-4 placeholder-base placeholder-light placeholder-leading-5 placeholder-tracking-wide' onChange={updateLoginData}></input>
+        </div>
 
-       <div>
-       <label htmlFor="password" className='text-base font-medium leading-5 tracking-wide'>Password</label>
-       <input type='password' id="password" name="password" placeholder='Enter your password' className='mt-2 h-[49.58px] rounded-[12px] border border-[1px] w-full p-4 placeholder-base placeholder-light placeholder-leading-5 placeholder-tracking-wide' onChange={updateLoginData}></input>
-       </div>
+        <div>
+          <label htmlFor="password" className='text-base font-medium leading-5 tracking-wide'>Password</label>
+          <input type='password' id="password" name="password" placeholder='Enter your password' className='mt-2 h-[49.58px] rounded-[12px] border border-[1px] w-full p-4 placeholder-base placeholder-light placeholder-leading-5 placeholder-tracking-wide' onChange={updateLoginData}></input>
+        </div>
 
-       {/* <div className='flex justify-between text-xs font-medium leading-4 tracking-wide'>
+        {/* <div className='flex justify-between text-xs font-medium leading-4 tracking-wide'>
         
           <div className="remember">
           <input type="checkbox" id="remember-me" />
@@ -81,9 +91,10 @@ export default function Login() {
 
        </div> */}
 
-
         <button className='w-full bg-linear-gradient h-[56px] rounded-[12px] border-2 text-base font-medium leading-33 tracking-wide text-white' type='submit'>
-            Sign in</button>
+          {!isLoggedIn && <span>Sign in</span>}
+          {isLoggedIn && <span className="loading loading-bars loading-md"></span>}
+        </button>
 
         {/* <div className="self-center">OR</div>
 
@@ -94,8 +105,8 @@ export default function Login() {
       </form>
 
       <div className=''>
-        <img alt="" src={'/images/Buzztrend logo 1.png'} className='w-full h-10'/>
+        <img alt="" src={'/images/Buzztrend logo 1.png'} className='w-full h-10' />
       </div>
-  </div>
+    </div>
   );
 };
