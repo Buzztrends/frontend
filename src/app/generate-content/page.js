@@ -249,12 +249,12 @@ export default function GenerateContent({ searchParams }) {
                                     <InputText
                                         name="moment-for-generation"
                                         id="moment-input"
-                                        isDisabled={momentCustomization ? undefined : true}
+                                        // isDisabled={momentCustomization ? undefined : true}
                                         handleChange={updateFormData}
                                         defValue={generateContentTitle}
                                     />
 
-                                    <span
+                                    {/* <span
                                         className={`select-none cursor-pointer inline-flex items-center space-x-1 px-5 py-2 mt-2 rounded-lg hover:bg-gray-200 font-medium ${momentCustomization
                                             ? "border-2 border-black border-solid bg-gray-200"
                                             : "border-2 border-transparent border-solid bg-gray-300"
@@ -267,7 +267,7 @@ export default function GenerateContent({ searchParams }) {
                                             <FaEdit />
                                         </span>
                                         <span>Customize</span>
-                                    </span>
+                                    </span> */}
                                 </div>
                             </div>
 
@@ -275,7 +275,7 @@ export default function GenerateContent({ searchParams }) {
                                 <div
                                     className={`flex item-center justify-between w-full py-5 px-5 rounded-xl ${contentFormVisible
                                         ? "border"
-                                        : "border-2 border-primary-color"
+                                        : "shadow-sidd"
                                         }`}
                                     onClick={(e) => setContentFormVisible(!contentFormVisible)}
                                 >
@@ -290,7 +290,7 @@ export default function GenerateContent({ searchParams }) {
                                     </span>
                                 </div>
                                 <div
-                                    className={`border border-solid border-primary-color rounded-lg  w-full h-auto px-8 mt-2 ${contentFormVisible ? "block" : "hidden"
+                                    className={`border shadow-sidd rounded-lg  w-full h-auto px-8 mt-2 ${contentFormVisible ? "block" : "hidden"
                                         }`}
                                 >
                                     <div className="mt-5 mb-10">
@@ -411,7 +411,7 @@ export default function GenerateContent({ searchParams }) {
                                         <textarea
                                             name="similar-content"
                                             id="similar-content"
-                                            className="border-2 border-solid border-primary-color rounded-lg  block w-full h-32 px-5 py-2 mt-2 font-medium overflow-y-auto"
+                                            className="border shadow-sidd rounded-lg  block w-full h-32 px-5 py-2 mt-2 font-medium overflow-y-auto"
                                             onChange={updateFormData}
                                         />
                                     </div>
@@ -458,7 +458,7 @@ export default function GenerateContent({ searchParams }) {
                                     return document.getElementById('post-preview-modal').showModal()
                                 }
                             }}>
-                                <Button buttonText="Preview" strokeOnly={true} width="full" />
+                                <Button buttonText="Preview" width="full" />
                             </span>
                             {/* <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`}>
                                 <Button buttonText="Publish" width="full" />
@@ -471,7 +471,7 @@ export default function GenerateContent({ searchParams }) {
                                 <form method="dialog">
                                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                 </form>
-                                <PreviewPost socialMedia={selectedSocial} />
+                                <PreviewPost socialMedia={selectedSocial} caption={postText}/>
                             </div>
                         </dialog>
                     </div>

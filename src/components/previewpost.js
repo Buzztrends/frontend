@@ -6,14 +6,14 @@ import Postfeatures from './postfeatures';
 import Fbcard from './fbcard';
 import Linkedincard from './linkedincard';
 
-const PreviewPost = ({socialMedia}) => {
+const PreviewPost = ({socialMedia, caption}) => {
     const mediaCompo = (socialMedia)=>{
         if(socialMedia == "instagram"){
-            return <Instapostmodel/>;
+            return <Instapostmodel caption={caption}/>;
         } else if(socialMedia == "linkedin"){
-            return <Linkedincard/>;
+            return <Linkedincard caption={caption}/>;
         } else if(socialMedia == "facebook"){
-            return <Fbcard/>;
+            return <Fbcard caption={caption}/>;
         }
     }
 

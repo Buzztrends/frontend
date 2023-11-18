@@ -72,7 +72,7 @@ const Sidebar = () => {
                         <div className='flex items-center justify-between px-2'>
                             <div className='flex justify-center items-center gap-1'>
                                 <IoCreateOutline />
-                                <span>Create Content ({gensLeft})</span>
+                                <span>Create Content {gensLeft ? `(${gensLeft})`:null}</span>
                             </div>
                         </div>
                     </button>
@@ -90,7 +90,7 @@ const Sidebar = () => {
                             Cookies.remove(cookie);
                         }
                         router.push('/login');
-                    }}>LogOut</button>
+                    }}>Logout</button>
                 </div>
             </div>
         </div>
