@@ -45,7 +45,7 @@ export default function PostText({ postContent }) {
                 </div>
             ),
             content: (
-                <div className="border p-2 text-sm bg-gray-200 overflow-y-auto h-[900px]">
+                <div className="border p-2 text-sm bg-white overflow-y-auto h-[900px]">
                     <EditorContent editor={editor} />
                 </div>
             ),

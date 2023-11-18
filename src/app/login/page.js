@@ -12,14 +12,14 @@ export default function Login() {
   const router = useRouter();
   const [loginData, setLoginData] = useState({});
 
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // function setLogin() {
-  //   if (isLoggedIn) {
-  //     setIsLoggedIn(false);
-  //   } else {
-  //     setIsLoggedIn(true);
-  //   }
-  // };
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  function setLogin() {
+    if (isLoggedIn) {
+      setIsLoggedIn(false);
+    } else {
+      setIsLoggedIn(true);
+    }
+  };
 
   const [loginFailed, setLoginFailed] = useState(false);
   const [firstTry, setFirstTry] = useState();
@@ -37,6 +37,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
+      setIsLoggedIn(true);
       const data = {
         username: loginData['username'],
         password: loginData['password']
@@ -67,6 +68,7 @@ export default function Login() {
         console.log(res.data);
       }
     } catch (err) {
+      setIsLoggedIn(false);
       setLoginFailed(true);
       console.log(err);
     }
@@ -111,8 +113,8 @@ export default function Login() {
        </div> */}
 
           <button className='w-full bg-linear-gradient h-[56px] rounded-[12px] border-2 text-base font-medium leading-33 tracking-wide text-white flex items-center justify-center' type='submit'>
-            <span>Sign in</span>
-            {!firstTry && !loginFailed && <span className="loading loading-bars loading-md"></span>}
+            {!isLoggedIn && <span>Sign in</span>}
+            {isLoggedIn && <span className="loading loading-bars loading-md"></span>}
           </button>
 
           {/* <div className="self-center">OR</div>
@@ -123,8 +125,10 @@ export default function Login() {
         </button> */}
         </form>
 
-        <div className=''>
-          <img alt="" src={'/images/Buzztrend logo 1.png'} className='w-full h-10' />
+        <div className='flex flex-col items-center justify-content-center'>
+          <img alt="" src="public/images/Buzztrend logo 1.png" className='img h-28'/>
+          <img alt="" src="/public/buzztrend.svg" className='img h-90 pt-12'/>
+          
         </div>
       </div>
     </>
