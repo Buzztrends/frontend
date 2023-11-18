@@ -149,10 +149,10 @@ export default function GenerateContent({ searchParams }) {
 
     // To show or not show content generation form
     const [contentFormVisible, setContentFormVisible] = useState(true);
-    
+
     // context variables
     const { selectedImages, extras, setExtras } = useContentContext();
-    
+
     // Storing and submitting form data
     const [formData, setFormData] = useState({});
     const [companyId, setCompanyId] = useState("");
@@ -199,7 +199,7 @@ export default function GenerateContent({ searchParams }) {
             }
             console.log(data);
 
-            if(!data['moment']){
+            if (!data['moment']) {
                 throw new Error('Input valid moment');
             }
 
@@ -445,13 +445,19 @@ export default function GenerateContent({ searchParams }) {
                                 <div className="flex flex-col w-1/2 gap-4">
                                     {<AiImages images={aiImages} />}
                                     {/* {console.log(extras)} */}
-                                    {<Extras extrasContent={extras.replace(/\n/g, '<br>')}/>}
+                                    {<Extras extrasContent={extras.replace(/\n/g, '<br>')} />}
                                 </div>
                             </div>
                             : null}
 
                         {isPostTextGenerated && areImagesGenerated && <div className={`mt-5 mb-5 flex justify-end gap-2 w-1/3 mr-4 float-right`}>
-                            <span className={`w-1/2 mb-4 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`} onClick={() => document.getElementById('post-preview-modal').showModal()}>
+                            <span className={`w-1/2 mb-4`} onClick={() => {
+                                if (selectedImages.length == 0) {
+                                    return alert('Please select atleast 1 image to preview.');
+                                } else {
+                                    return document.getElementById('post-preview-modal').showModal()
+                                }
+                            }}>
                                 <Button buttonText="Preview" strokeOnly={true} width="full" />
                             </span>
                             {/* <span className={`w-1/2 ${selectedImages.length == 0 ? 'pointer-events-none' : null}`}>
