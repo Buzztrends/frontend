@@ -53,8 +53,8 @@ export default function PostText({ postContent }) {
     ];
     return (
         <>
-            <div className="w-1/2 ml-6 mr-3 block rounded-lg border-black border shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
-                <div className="flex border-b text-primary-color text-lg border-neutral-900 px-6 py-3 items-center justify-between">
+            <div className="w-1/2 ml-6 mr-3 block rounded-lg border shadow-sidd dark:bg-neutral-700">
+                <div className="flex border-b text-primary-color text-lg border-b-2 px-6 py-3 items-center justify-between">
                     <div className="font-medium items-center">Post Text:</div>
                     <button className="regenerate-btn p-1 px-4 border border-indigo-800 rounded-lg flex items-center text-base hover:bg-gradient-linear hover:text-white">
                         <div className='mx-2 text-2xl'>

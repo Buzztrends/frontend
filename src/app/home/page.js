@@ -33,6 +33,7 @@ export default function Home() {
         }
       )
 
+      
       Cookies.set('gensLeft', res.data.generation_available);
       setDetails(res.data.moments);
       setShow(true);

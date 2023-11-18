@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image';
 import { FaEllipsisH } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
@@ -10,11 +10,16 @@ import {FaGreaterThan} from 'react-icons/fa6';
 import { FaLessThan } from 'react-icons/fa6';
 import { IoLogoLinkedin } from 'react-icons/io';
 import { useContentContext } from "@/context/contentContext";
+import Cookies from 'js-cookie';
 
-const Linkedincard = () => {
+const Linkedincard = ({caption}) => {
     const { selectedImages } = useContentContext();
     const [num,setNum]=useState(0);
 
+    const [username, setUsername] = useState("");
+    useEffect(() => {
+        setUsername(Cookies.get('username'));
+    }, [])
 
 
     const handleImages=(val)=>{
@@ -42,7 +47,7 @@ const Linkedincard = () => {
       <div className=' flex  gap-1'>
         <img alt="" src={'/images/Logo (3).png'} width={10} height={10}  />
         <div className='flex flex-col '>
-            <span className='font-bold'>ULTRA SAFE</span>
+            <span className='font-bold'>{username}</span>
             <span className=''>326 followers</span>
             <div className=''>20h</div>
         </div>
@@ -50,10 +55,10 @@ const Linkedincard = () => {
       </div>
       <div className='flex flex-col gap-1'>
       <div className='font-normal'>
-        Lacus amet, laoreet viverra id faucibus nisi cras est sit pellentesque amet in auctor ac sapien enim nulla tellus risus ornare lobortis commodo in proin in fermentum .
+        {caption}
 
       </div>
-      <div className='text-blue-500'>#hastag #hastag #hashtag </div>
+      {/* <div className='text-blue-500'>#hastag #hastag #hashtag </div> */}
       <div className='text-blue-500'>See translation</div>
       </div>
 
