@@ -49,20 +49,21 @@ const Postfeatures = () => {
       {/* <button className='w-1/3 h-20 rounded-lg border-2 border-gray-400 bg-gradient-linear text-white p-2 text-xl self-center'>Publish</button> */}
       {/* <Button buttonText={"Publish"} /> */}
       <div className='grid grid-cols-2 gap-x-10 gap-y-5'>
-        <button className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-purple flex items-center p-4 justify-between'>
-          <span>Save</span>
-          <IoChevronUp />
+        <button className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-purple flex items-center p-4 justify-center'>
+          Save
+          {/* <span>Save</span> */}
+          {/* <IoChevronUp /> */}
         </button>
 
-        <button onClick={handleDownload} className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-purple flex items-center p-4 justify-between'>
+        <button onClick={handleDownload} className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-purple flex items-center p-4 gap-2 justify-between'>
           <span>Download</span>
           <FaArrowDown />
         </button>
 
-        <button className=' bg-purple-100 flex flex-col gap-4 items-center justify-center col-span-1 h-[107px] w-full rounded-[12px] p-4 font-poppins text-base font-medium leading-5 tracking-tighter'>
+        {/* <button className=' bg-purple-100 flex flex-col gap-4 items-center justify-center col-span-1 h-[107px] w-full rounded-[12px] p-4 font-poppins text-base font-medium leading-5 tracking-tighter'>
           <span>Save as Draft</span>
           <span>Save to Campaigns</span>
-        </button>
+        </button> */}
 
         <button className='col-span-1 h-[70px] w-full rounded-[12px] border-2 border-purple flex items-center p-4 justify-between'>
           <span>Send for<br></br> approval</span>
@@ -73,10 +74,10 @@ const Postfeatures = () => {
 
       <div className='flex items-center justify-center gap-2 '>
         <span className='font-poppins text-base font-medium leading-7 tracking-tighter'>Share:</span>
-       <Link href='https://www.instagram.com/'> <FaInstagram size={25} /></Link>
-       <Link href='https://www.facebook.com/'> <FaFacebook size={25} /></Link>
-        <Link href='https://www.linkedin.com/'> <FaLinkedin size={25} /></Link>
-        <Link href='https://twitter.com/?lang=en'> <FaXTwitter size={25} /></Link>
+       <Link href='https://www.instagram.com/' target='_blank'> <FaInstagram size={25} /></Link>
+       <Link href='https://www.facebook.com/' target='_blank'> <FaFacebook size={25} /></Link>
+        <Link href='https://www.linkedin.com/' target='_blank'> <FaLinkedin size={25} /></Link>
+        <Link href='https://twitter.com/?lang=en' target='_blank'> <FaXTwitter size={25} /></Link>
       </div>
 
     </div>
