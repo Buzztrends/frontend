@@ -1,6 +1,6 @@
 'use client';
 
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import Image from 'next/image';
 import { FaEllipsisH } from 'react-icons/fa';
 import {BiUserCircle} from 'react-icons/bi';
@@ -11,11 +11,17 @@ import {BiComment} from 'react-icons/bi';
 import {PiShareFatLight} from 'react-icons/pi';
 import { IoLogoFacebook } from 'react-icons/io';
 import { useContentContext } from "@/context/contentContext";
+import Cookies from 'js-cookie';
 
 
-const Fbcard = () => {
+const Fbcard = ({caption}) => {
     const { selectedImages } = useContentContext();
     const [num,setNum]=useState(0);
+
+    const [username, setUsername] = useState("");
+    useEffect(() => {
+        setUsername(Cookies.get('username'));
+    }, [])
 
     
     const handleImages=(val)=>{
@@ -42,12 +48,12 @@ const Fbcard = () => {
       <div className='flex gap-2'>
         <BiUserCircle size={28}/>
         <div className='flex flex-col'>
-            <span className='font-normal text-sm leading-4 '>Rishabh</span>
+            <span className='font-normal text-sm leading-4 '>{username}</span>
             <span className='leading-2 text-xs'>1 min</span>
         </div>
         <FaEllipsisH className='ml-auto'/>
       </div>
-      <div className='text-xs'>Your post text #awesome #emoticons</div>
+      <div className='text-xs'>{caption}</div>
 <div className='relative'>
     <img alt="" src={selectedImages[num]} width={300} height={100}/>
     {selectedImages.length!=1 && <div  className='absolute right-0 top-1/2 cursor-pointer' onClick={()=>handleImages("inc")}><FaGreaterThan  /></div>}

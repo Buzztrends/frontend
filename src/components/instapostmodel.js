@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image';
 import { FaEllipsisH } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
@@ -9,13 +9,19 @@ import { FaBookmark } from 'react-icons/fa';
 import {FaGreaterThan} from 'react-icons/fa6';
 import { FaLessThan } from 'react-icons/fa6';
 import { IoLogoInstagram } from 'react-icons/io';
+import Cookies from 'js-cookie';
 
 import { useContentContext } from "@/context/contentContext";
 
 
-const Instapostmodel = () => {
+const Instapostmodel = ({caption}) => {
     // const images=[];
     const { selectedImages } = useContentContext();
+
+    const [username, setUsername] = useState("");
+    useEffect(() => {
+        setUsername(Cookies.get('username'));
+    }, [])
 
     const [num,setNum]=useState(0);
     // console.log(selectedImages, 'insta')
@@ -43,7 +49,7 @@ const Instapostmodel = () => {
       {/* {selectedImages} */}
       <div className=' flex items-center gap-3'>
         <img alt="" src={'/images/insta-dp.png'} width={10} height={10} />
-        <span className='font-roboto text-sm font-medium leading-5'>model.susan</span>
+        <span className='font-roboto text-sm font-medium leading-5'>{username}</span>
         <FaEllipsisH className='ml-auto'/>
       </div>
       <div className='relative'>
@@ -59,7 +65,7 @@ const Instapostmodel = () => {
     </div>
     <div className='font-roboto text-base font-medium leading-5'>1 like</div>
     <div className='font-roboto text-xs leading-5'>
-       <span className='font-medium'> model.susan </span> If life were predictable it would cease to be lifehome weve ev...more
+       <span className='font-medium'> {username} </span> {caption}
     </div>
     </div>
             </div>
