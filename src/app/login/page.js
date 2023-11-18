@@ -123,8 +123,10 @@ export default function Login() {
         </button> */}
         </form>
 
-        <div className=''>
-          <img alt="" src={'/images/Buzztrend logo 1.png'} className='w-full h-10' />
+        <div className='flex flex-col items-center justify-content-center'>
+          <img alt="" src="public/images/Buzztrend logo 1.png" className='img h-28'/>
+          <img alt="" src="/public/buzztrend.svg" className='img h-90 pt-12'/>
+          
         </div>
       </div>
     </>
