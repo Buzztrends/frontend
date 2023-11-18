@@ -104,9 +104,12 @@ export default function Login() {
         </button> */}
       </form>
 
-      <div className=''>
-        <img alt="" src={'/images/Buzztrend logo 1.png'} className='w-full h-10' />
+        <div className=''>
+          <img alt="" src={'/images/buzztrend.svg'} className='w-full h-10' width={300} height={100}/>
+          
+
+
+        </div>
       </div>
-    </div>
   );
 };
