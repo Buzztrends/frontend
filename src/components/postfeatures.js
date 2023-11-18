@@ -54,9 +54,9 @@ const Postfeatures = () => {
           <IoChevronUp />
         </button>
 
-        <button onClick={handleDownload} className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-purple flex items-center p-4 justify-between'>
+        <button onClick={handleDownload} className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-purple flex items-center p-4 justify-between hover:bg-gradient-linear hover:text-white'>
           <span>Download</span>
-          <div className='animate-bounce'>
+          <div className='animate-bounce mx-2 mt-1'>
 
           <FaArrowDown />
           </div>
