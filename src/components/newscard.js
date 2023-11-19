@@ -26,7 +26,7 @@ const Newscard = ({data,toggleModal}) => {
                 <span>save</span>
             </button>
             <div className='flex gap-1 items-center text-font-color' >
-                <span>seeStats</span>
+                <span>See Stats</span>
                 <LiaGreaterThanSolid />
             </div>
         </div>
