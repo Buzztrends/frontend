@@ -1,15 +1,16 @@
-export default function Loading({text}) {
-  return (
-    <div className="generate-loader">
-                        <div className="flex">
-                            <div className="loader-message m-8 align-middle">{text}</div><span className="loading align-middle loading-bars loading-lg"></span>
-                        </div>
-                        <div className="flex">
-                            <LoadingCard />
-                            <LoadingCard />
-                        </div>
-                    </div>
-  )
+export default function Loading({ text, showCards = true }) {
+    return (
+        <div className="generate-loader">
+            <div className="flex">
+                <div className="loader-message m-8 align-middle">{text}</div><span className="loading align-middle loading-bars loading-lg"></span>
+            </div>
+            {showCards && <div className="flex">
+                <LoadingCard />
+                <LoadingCard />
+            </div>}
+
+        </div>
+    )
 }
 
 const LoadingCard = () => {

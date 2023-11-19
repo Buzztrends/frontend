@@ -79,6 +79,7 @@ export default function Home() {
         setTrends(data.validation.google_trends);
         seturl(data.url);
     };
+    // console.log(title)
 
     const closeModal = () => {
         setIsModalOpen(false);
@@ -160,7 +161,7 @@ export default function Home() {
                                                 <Link
                                                     href={{
                                                         pathname: "/generate-content",
-                                                        query: { title: title },
+                                                        query: { title: title ? title:event_name },
                                                     }}
                                                     onClick={closeModal}
                                                     type="button"

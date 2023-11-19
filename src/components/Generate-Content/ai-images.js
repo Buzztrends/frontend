@@ -38,7 +38,7 @@ export default function AiImages({images}) {
             <div className="rounded-lg border shadow-sidd ml-3 mr-4 h-full">
                 <div className="flex justify-between text-primary-color text-lg border-b-2 px-6 py-3">
                     <div className="font-medium items-center">AI Generated Images:</div>
-                    <button className="regenerate-btn p-1 px-4 border border-indigo-800 rounded-lg flex items-center text-base hover:bg-gradient-linear hover:text-white"><div className='mx-2 text-2xl'><BiRefresh/> </div> Regenerate</button>
+                    {/* <button className="regenerate-btn p-1 px-4 border border-indigo-800 rounded-lg flex items-center text-base hover:bg-gradient-linear hover:text-white"><div className='mx-2 text-2xl'><BiRefresh/> </div> Regenerate</button> */}
                 </div>
                 <div className="px-2 h-full overflow-y-auto m-8">
                     <div className="grid grid-cols-2 grid-rows-2 gap-4">

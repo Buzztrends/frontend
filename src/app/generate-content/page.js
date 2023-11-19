@@ -436,17 +436,17 @@ export default function GenerateContent({ searchParams }) {
                         <div >
                             {(!isPostTextGenerated && !areImagesGenerated) && isLoading ? <Loading text={"Please wait while we are generating your content: "} /> : null}
                         </div>
-                        <div>
-                            {(isPostTextGenerated && !areImagesGenerated) && isLoading ? <Loading text={"We are almost done: "} /> : null}
-                        </div>
-                        {isPostTextGenerated && areImagesGenerated ?
+
+
+                        {isPostTextGenerated ?
                             <div className="flex">
                                 {<PostText postContent={postText.replace(/\n/g, '<br>')} />}
-                                <div className="flex flex-col w-1/2 gap-4">
+                                {!areImagesGenerated && isLoading ? <Loading text={"Generating Images: "} showCards={false} /> : null}
+                                {areImagesGenerated && <div className="flex flex-col w-1/2 gap-4">
                                     {<AiImages images={aiImages} />}
                                     {/* {console.log(extras)} */}
                                     {<Extras extrasContent={extras.replace(/\n/g, '<br>')} />}
-                                </div>
+                                </div>}
                             </div>
                             : null}
 
@@ -471,7 +471,7 @@ export default function GenerateContent({ searchParams }) {
                                 <form method="dialog">
                                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                 </form>
-                                <PreviewPost socialMedia={selectedSocial} caption={postText}/>
+                                <PreviewPost socialMedia={selectedSocial} caption={postText} />
                             </div>
                         </dialog>
                     </div>

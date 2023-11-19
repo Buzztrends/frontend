@@ -56,12 +56,12 @@ export default function PostText({ postContent }) {
             <div className="w-1/2 ml-6 mr-3 block rounded-lg border shadow-sidd dark:bg-neutral-700">
                 <div className="flex border-b text-primary-color text-lg border-b-2 px-6 py-3 items-center justify-between">
                     <div className="font-medium items-center">Post Text:</div>
-                    <button className="regenerate-btn p-1 px-4 border border-indigo-800 rounded-lg flex items-center text-base hover:bg-gradient-linear hover:text-white">
+                    {/* <button className="regenerate-btn p-1 px-4 border border-indigo-800 rounded-lg flex items-center text-base hover:bg-gradient-linear hover:text-white">
                         <div className='mx-2 text-2xl'>
                             <BiRefresh />
                         </div>
                         Regenerate
-                    </button>
+                    </button> */}
                 </div>
                 <div className="px-6 py-4 flex justify-between">
                     <TabComponent items={PostTabs} />
