@@ -6,7 +6,7 @@ const Newscard = ({data,toggleModal}) => {
 
 //   console.log(data);
   return (
-    <div className='flex flex-col w-[30%] border border-gray-100 shadow-sidd' >
+    <div className='flex flex-col w-[30%] border border-gray-100 shadow-sidd cursor-pointer' onClick={()=>{toggleModal({data: data })}}>
         
         {data.top_image && <img alt="" className='h-44 object-cover' src={data.top_image}  />}
         <div className='flex flex-col gap-3 p-3 font-poppins'>
@@ -23,12 +23,12 @@ const Newscard = ({data,toggleModal}) => {
         <div className='flex justify-between text-xs font-normal leading-5 tracking-wide'>
             <button className='flex gap-1 items-center text-font-color'>
                 <LiaSave />
-                <span>SAVE</span>
+                <span>save</span>
             </button>
-            <button className='flex gap-1 items-center text-font-color' onClick={()=>{toggleModal({data: data })}}>
-                <span>MORE</span>
+            <div className='flex gap-1 items-center text-font-color' >
+                <span>See Stats</span>
                 <LiaGreaterThanSolid />
-            </button>
+            </div>
         </div>
     </div>
     </div>
