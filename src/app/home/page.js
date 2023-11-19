@@ -33,8 +33,8 @@ export default function Home() {
                 }
             )
 
-
-            Cookies.set('gensLeft', res.data.generation_available);
+            const in300mins = new Date(new Date().getTime() + 300 * 60 * 1000);
+            Cookies.set('gensLeft', res.data.generation_available, {expires: in300mins});
             setDetails(res.data.moments);
             setShow(true);
 

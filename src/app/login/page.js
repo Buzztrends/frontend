@@ -56,11 +56,14 @@ export default function Login() {
         if (!res.data['token']) {
           throw new Error('Login failed');
         }
+        console.log(res.data);
         setLoginFailed(false);
-        Cookies.set('authToken', res.data['token']);
-        Cookies.set('username', res.data['username']);
-        Cookies.set('companyId', res.data['company_id']);
-        Cookies.set('companyName', res.data['company_name']);
+
+        const in300mins = new Date(new Date().getTime() + 300 * 60 * 1000);
+        Cookies.set('authToken', res.data['token'], {expires: in300mins});
+        Cookies.set('username', res.data['username'], {expires: in300mins});
+        Cookies.set('companyId', res.data['company_id'], {expires: in300mins});
+        Cookies.set('companyName', res.data['company_name'], {expires: in300mins});
         router.push("/home");
 
         // localStorage.setItem('authToken', res.data['token']);
