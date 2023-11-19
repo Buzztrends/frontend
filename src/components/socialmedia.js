@@ -37,7 +37,7 @@ const Socialmedia = ({id,data,mapper}) => {
         <div className='text-2xl font-medium leading-9 tracking-wide text-font-color'>Social Media</div>
         <div className='w-full flex flex-col gap-3'>
           {data?.slice(ind * 3, 3 * (ind + 1)).map((item, index) =>
-            <Socialmediacard key={index} title={item.title} hashtags={item.hashtag} trending={item.reason} selected={selected} setSelected={setSelected} position={ind * 3 + index} />
+            <Socialmediacard key={index} title={item.title}  trending={item.reason} selected={selected} setSelected={setSelected} position={ind * 3 + index} />
           )}
           {data?.slice(ind * 3, 3 * (ind + 1)).length === 2 && <div className='h-28'></div>}
           {data?.slice(ind * 3, 3 * (ind + 1)).length === 1 && <><div className='h-24'></div><div className='h-28'></div></>}
@@ -56,7 +56,7 @@ const Socialmedia = ({id,data,mapper}) => {
       </div>
 
       <div className='w-1/2 mt-11 mb-9'>
-        <Socialmediagraph hashtags={data[selected]?.hashtag} />
+        <Socialmediagraph hashtags={data[selected]?.validation.hashtag} />
         <div className='flex justify-between items-center text-font-color font-bold my-3'>
           <div></div>
           <Link 

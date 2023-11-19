@@ -129,14 +129,16 @@ export default function Home() {
                     <div className="news-card flex">
                       <div className="h-full w-1/2 border p-4">
                         <div className="source mb-4">{source}</div>
-                        <img alt="" src={image} width={600} height={100} />
+                        {image && <img alt="" src={image} width={600} className='h-80' />}
                         <div className="mt-4">{/* {event_name} */}</div>
                         <div className="mt-4 mb-4">
-                          {description} {topic}
+                          {description && description.length > 50
+    ? `${description.slice(0, 180)}...`
+    : description} {topic}
                         </div>
-                         <Link href={url} target="_blank" className="mt-4 mb-4 text-blue-500">
+                        {url && <Link href={url} target="_blank" className="mt-4 mb-4 text-blue-500">
                           Read more
-                        </Link>
+                        </Link>}
                       </div>
                       <div className="news-side-card w-1/2">
                         {/* <div className="new-hashtag-card md:h-1/3 flex flex-wrap"></div> */}
