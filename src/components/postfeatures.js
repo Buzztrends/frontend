@@ -49,9 +49,8 @@ const Postfeatures = () => {
       {/* <button className='w-1/3 h-20 rounded-lg border-2 border-gray-400 bg-gradient-linear text-white p-2 text-xl self-center'>Publish</button> */}
       {/* <Button buttonText={"Publish"} /> */}
       <div className='grid grid-cols-2 gap-x-10 gap-y-5'>
-        <button className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-purple flex items-center p-4 justify-between hover:bg-gradient-linear hover:text-white'>
-          <span>Save</span>
-          <IoChevronUp />
+        <button className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-purple text-center hover:bg-gradient-linear hover:text-white'>
+          Save
         </button>
 
         <button onClick={handleDownload} className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-purple flex items-center p-4 justify-between hover:bg-gradient-linear hover:text-white'>
