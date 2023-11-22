@@ -34,7 +34,7 @@ const Socialmedia = ({id,data,mapper}) => {
     <div className='flex gap-5 font-Poppins mb-12'>
 
       <div id={id} className='flex flex-col gap-2 w-1/2 scroll-mt-24'>
-        <div className='text-2xl font-medium leading-9 tracking-wide text-font-color'>Social Media</div>
+        <div className='text-2xl font-medium leading-9 tracking-wide text-font-color'>Social Media Trends</div>
         <div className='w-full flex flex-col gap-3'>
           {data?.slice(ind * 3, 3 * (ind + 1)).map((item, index) =>
             <Socialmediacard key={index} title={item.title}  trending={item.reason} selected={selected} setSelected={setSelected} position={ind * 3 + index} />
