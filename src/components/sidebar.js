@@ -44,10 +44,10 @@ const Sidebar = () => {
                         <button className={`${selectedTab == "research" ? "sidebar-active" : ""} w-full py-1 px-3`} onClick={() => { setResearchitem(null) }}>
                             <div className='flex items-center justify-between px-2'>
                                 <div className='flex justify-center items-center gap-1'>
-                                    <IoSearchOutline />
+                                    {/* <IoSearchOutline /> */}
                                     <span>Research</span>
                                 </div>
-                                <IoChevronDown />
+                                {/* <IoChevronDown /> */}
                             </div>
                         </button>
                     </Link>
@@ -72,7 +72,8 @@ const Sidebar = () => {
                         <div className='flex items-center justify-between px-2'>
                             <div className='flex justify-center items-center gap-1'>
                                 <IoCreateOutline />
-                                <span>Create Content {gensLeft ? `(${gensLeft})`:null}</span>
+                                <span>Create Content </span>
+                                {/* {gensLeft ? `(${gensLeft})`:null} */}
                             </div>
                         </div>
                     </button>
