@@ -6,6 +6,8 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { MdErrorOutline } from "react-icons/md";
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
 // import { useUserContext } from "@/context/userContext";
 
 export default function Login() {
@@ -77,6 +79,9 @@ export default function Login() {
     }
   }
 
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
   return (
     <>{
       loginFailed && <div className="toast toast-top toast-start ml-12 mt-4">
@@ -88,17 +93,24 @@ export default function Login() {
       <div className="grid grid-cols-2 gap-40 justify-center content-center h-screen bg-black px-16 bg-custom-gradient">
         <form className=' text-black flex flex-col bg-white gap-10 justify-center w-450 h-626 rounded-2xl border-2 border-black p-10  font-poppins ' onSubmit={handleLogin}>
           <div className="self-center text-3xl font-medium leading-51 tracking-wider">Log in to BuzzTrends</div>
-          <div className="self-center text-base font-normal leading-5 tracking-wide">Please enter your details</div>
+          {/* <div className="self-center text-base font-normal leading-5 tracking-wide">Please enter your details</div> */}
 
 
           <div >
             <label htmlFor="username" className='text-base font-medium leading-5 tracking-wide'>Username</label><br></br>
-            <input type='text' id="username" name="username" placeholder='Enter your username' className='mt-2 h-[49.58px] rounded-[12px] border border-[1px] w-full p-4 placeholder-base placeholder-light placeholder-leading-5 placeholder-tracking-wide' onChange={updateLoginData}></input>
+            <input type='text' id="username" name="username" placeholder='Enter your username' className='mt-2 h-[49.58px] rounded-[12px] border-[1px] w-full p-4 placeholder-base placeholder-light placeholder-leading-5 placeholder-tracking-wide' onChange={updateLoginData}></input>
           </div>
 
           <div>
             <label htmlFor="password" className='text-base font-medium leading-5 tracking-wide'>Password</label>
-            <input type='password' id="password" name="password" placeholder='Enter your password' className='mt-2 h-[49.58px] rounded-[12px] border border-[1px] w-full p-4 placeholder-base placeholder-light placeholder-leading-5 placeholder-tracking-wide' onChange={updateLoginData}></input>
+            <div className='flex items-center gap-2 border-[1px] rounded-[12px] focus-within:border-black focus-within:border-2'>
+              <input type={`${passwordVisible ? 'text':'password'}`} id="password" name="password" placeholder='Enter your password' className='h-[49.58px] rounded-[12px] w-full p-4 placeholder-base placeholder-light placeholder-leading-5 placeholder-tracking-wide focus:outline-none' onChange={updateLoginData}></input>
+              <span className='mr-4' onClick={()=>setPasswordVisible(!passwordVisible)}>
+                {
+                  passwordVisible ? <FiEye size={22}/> : <FiEyeOff size={22} color='#d3d3d3'/>
+                }
+              </span>
+            </div>
           </div>
 
           {/* <div className='flex justify-between text-xs font-medium leading-4 tracking-wide'>
