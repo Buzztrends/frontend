@@ -54,7 +54,7 @@ const Sidebar = () => {
 
                     {selectedTab == "research" && <div className='flex flex-col w-11/12 gap-2 self-end items-start'>
                         <Link href={'/home/#trending'} className='w-full'>
-                            <button onClick={() => setResearchitem("news")} className={`${researchitem == "news" ? "sidebar-research-item" : ""} py-1 px-2 w-full text-left`}>Trending News</button>
+                            <button onClick={() => setResearchitem("news")} className={`${researchitem == "news" ? "sidebar-research-item" : ""} py-1 px-2 w-full text-left`}>Trending Moments</button>
                         </Link>
                         <Link href={'/home/#socialmedia'} className='w-full'>
                             <button onClick={() => setResearchitem("socialmedia")} className={`${researchitem == "socialmedia" ? "sidebar-research-item" : ""} py-1 px-2 w-full text-left`}>Social Media</button>
