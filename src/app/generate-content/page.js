@@ -473,6 +473,9 @@ export default function GenerateContent({ searchParams }) {
                                 </form>
                                 <PreviewPost socialMedia={selectedSocial} caption={postText} />
                             </div>
+                            <form method="dialog" className="modal-backdrop">
+                                <button>close</button>
+                            </form>
                         </dialog>
                     </div>
                     <div id="content-loading"></div>

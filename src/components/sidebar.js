@@ -26,10 +26,10 @@ const Sidebar = () => {
     const [researchitem, setResearchitem] = useState(null);
 
     const [username, setUsername] = useState("");
-    const [gensLeft, setGensLeft] = useState(0);
+    // const [gensLeft, setGensLeft] = useState(0);
     useEffect(() => {
         setUsername(Cookies.get('username'));
-        setGensLeft(Cookies.get('gensLeft'));
+        // setGensLeft(Cookies.get('gensLeft'));
     }, [])
     // const { username } = useUserContext();
 
@@ -86,7 +86,7 @@ const Sidebar = () => {
                 </div>
                 <div className='settings flex items-center justify-center gap-2'>
                     <RiLogoutCircleLine /> <button onClick={() => {
-                        const cookies = ['gensLeft', 'username', 'companyId', 'companyName', 'authToken'];
+                        const cookies = ['username', 'companyId', 'companyName', 'authToken'];
                         for(let cookie of cookies){
                             Cookies.remove(cookie);
                         }

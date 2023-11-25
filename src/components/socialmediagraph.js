@@ -1,10 +1,10 @@
 import React from 'react'
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
-import ChartDataLabels from "chartjs-plugin-datalabels";
+// import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+// import { Doughnut } from "react-chartjs-2";
+// import ChartDataLabels from "chartjs-plugin-datalabels";
 import Plot from 'react-plotly.js';
 
-ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
+// ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
 const Socialmediagraph = ({ hashtags }) => {
   // if (Object.keys(hashtags).length == 1) {
