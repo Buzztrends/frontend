@@ -25,7 +25,7 @@ const Newscard = ({data,toggleModal}) => {
                 <LiaSave />
                 <span>save</span>
             </button>
-            <div className='flex gap-1 items-center text-font-color' >
+            <div className='flex gap-1 items-center text-font-color' onClick={()=>document.getElementById('stats-modal').showModal()}>
                 <span>See Stats</span>
                 <LiaGreaterThanSolid />
             </div>

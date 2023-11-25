@@ -74,6 +74,9 @@ export default function AiImages({images}) {
                         <div className="h-8 font-medium">AI Generated Image</div>
                         <img alt="" src={link} width={500} height={100}/>
                     </div>
+                    <form method="dialog" className="modal-backdrop">
+                        <button>close</button>
+                    </form>
                 </dialog>
             </div>
         )
