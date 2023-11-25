@@ -10,6 +10,7 @@ import Image from "next/image";
 import Header from "@/components/header";
 import axios from "axios";
 // import GoogleTrends from "./googleTrends";
+import { LiaExternalLinkAltSolid } from "react-icons/lia";
 import Cookies from "js-cookie";
 
 
@@ -66,10 +67,10 @@ export default function Home() {
     const [url, seturl] = useState("");
 
     // Modal
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    // const [isModalOpen, setIsModalOpen] = useState(false);
 
     const toggleModal = ({ data }) => {
-        setIsModalOpen(!isModalOpen);
+        // setIsModalOpen(!isModalOpen);
         setTitle(data.title);
         setEvent_name(data.event_name);
         setSource(data.source);
@@ -81,9 +82,9 @@ export default function Home() {
     };
     // console.log(title)
 
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
+    // const closeModal = () => {
+    //     setIsModalOpen(false);
+    // };
 
     return (
         <div className="flex">
@@ -108,8 +109,8 @@ export default function Home() {
                                     </h3>
                                 </div>
                                 <div className="px-6 space-y-6 md:w-5/10">
-                                    <div className="news-card flex">
-                                        <div className="h-full w-1/2 border p-4">
+                                    <div className="news-card flex justify-start">
+                                        <div className="h-full w-3/4 border p-4">
                                             <div className="source mb-4">{source}</div>
                                             {image && <img alt="" src={image} width={600} className='h-80' />}
                                             <div className="mt-4">{/* {event_name} */}</div>
@@ -122,28 +123,21 @@ export default function Home() {
                                                 Read more
                                             </Link>}
                                         </div>
-                                        <div className="news-side-card w-1/2">
-                                            {/* <div className="new-hashtag-card md:h-1/3 flex flex-wrap"></div> */}
-                                            <div className="news-hashtags-card w-full">
-                                                <div id="widget" className='w-full'>
-                                                    {/* {console.log('trends', trends)} */}
-                                                    {/* <GoogleTrends
-                                                                type="TIMESERIES"
-                                                                keywords={trends.length < 5 ? trends : trends.slice(0, 5)} //max keywords allowed in google trends embedding is only 5
-                                                                url="https://ssl.gstatic.com/trends_nrtr/3523_RC02/embed_loader.js"
-                                                            /> */}
-
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
+                                    
                                     <div className="flex justify-end p-2 space-x-2 rounded-b dark:border-gray-600">
+                                        <Link href={`https://trends.google.com/trends/explore?date=today%201-m&geo=IN&q=${trends.length < 5 ? trends.join(',') : trends.slice(0, 5).join(',')}&hl=en`} target="_blank">
+                                            <button className="text-white bg-linear-gradient focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center gap-2">
+                                                Google Trends
+                                                <LiaExternalLinkAltSolid size={22}/>
+                                            </button>
+                                        </Link>
                                         <Link
                                             href={{
                                                 pathname: "/generate-content",
                                                 query: { title: title ? title : event_name },
                                             }}
-                                            onClick={closeModal}
+                                            // onClick={closeModal}
                                             type="button"
                                             className="text-white bg-linear-gradient hover:bg-blue-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                         >
