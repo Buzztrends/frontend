@@ -58,7 +58,7 @@ export default function Login() {
         if (!res.data['token']) {
           throw new Error('Login failed');
         }
-        console.log(res.data);
+        // console.log(res.data);
         setLoginFailed(false);
 
         const in300mins = new Date(new Date().getTime() + 300 * 60 * 1000);
