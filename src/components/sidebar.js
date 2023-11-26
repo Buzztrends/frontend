@@ -26,10 +26,10 @@ const Sidebar = () => {
     const [researchitem, setResearchitem] = useState(null);
 
     const [username, setUsername] = useState("");
-    const [gensLeft, setGensLeft] = useState(0);
+    // const [gensLeft, setGensLeft] = useState(0);
     useEffect(() => {
         setUsername(Cookies.get('username'));
-        setGensLeft(Cookies.get('gensLeft'));
+        // setGensLeft(Cookies.get('gensLeft'));
     }, [])
     // const { username } = useUserContext();
 
@@ -44,17 +44,17 @@ const Sidebar = () => {
                         <button className={`${selectedTab == "research" ? "sidebar-active" : ""} w-full py-1 px-3`} onClick={() => { setResearchitem(null) }}>
                             <div className='flex items-center justify-between px-2'>
                                 <div className='flex justify-center items-center gap-1'>
-                                    <IoSearchOutline />
+                                    {/* <IoSearchOutline /> */}
                                     <span>Research</span>
                                 </div>
-                                <IoChevronDown />
+                                {/* <IoChevronDown /> */}
                             </div>
                         </button>
                     </Link>
 
                     {selectedTab == "research" && <div className='flex flex-col w-11/12 gap-2 self-end items-start'>
                         <Link href={'/home/#trending'} className='w-full'>
-                            <button onClick={() => setResearchitem("news")} className={`${researchitem == "news" ? "sidebar-research-item" : ""} py-1 px-2 w-full text-left`}>Trending News</button>
+                            <button onClick={() => setResearchitem("news")} className={`${researchitem == "news" ? "sidebar-research-item" : ""} py-1 px-2 w-full text-left`}>Trending Moments</button>
                         </Link>
                         <Link href={'/home/#socialmedia'} className='w-full'>
                             <button onClick={() => setResearchitem("socialmedia")} className={`${researchitem == "socialmedia" ? "sidebar-research-item" : ""} py-1 px-2 w-full text-left`}>Social Media</button>
@@ -72,7 +72,8 @@ const Sidebar = () => {
                         <div className='flex items-center justify-between px-2'>
                             <div className='flex justify-center items-center gap-1'>
                                 <IoCreateOutline />
-                                <span>Create Content {gensLeft ? `(${gensLeft})`:null}</span>
+                                <span>Create Content </span>
+                                {/* {gensLeft ? `(${gensLeft})`:null} */}
                             </div>
                         </div>
                     </button>
@@ -85,7 +86,7 @@ const Sidebar = () => {
                 </div>
                 <div className='settings flex items-center justify-center gap-2'>
                     <RiLogoutCircleLine /> <button onClick={() => {
-                        const cookies = ['gensLeft', 'username', 'companyId', 'companyName', 'authToken'];
+                        const cookies = ['username', 'companyId', 'companyName', 'authToken'];
                         for(let cookie of cookies){
                             Cookies.remove(cookie);
                         }
