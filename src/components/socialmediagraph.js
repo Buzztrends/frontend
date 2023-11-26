@@ -2,7 +2,9 @@ import React from 'react'
 // import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 // import { Doughnut } from "react-chartjs-2";
 // import ChartDataLabels from "chartjs-plugin-datalabels";
-import Plot from 'react-plotly.js';
+// import Plot from 'react-plotly.js';
+import dynamic from "next/dynamic";
+const Plot = dynamic(() => import("react-plotly.js"), { ssr: false, });
 
 // ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
