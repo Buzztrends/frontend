@@ -12,7 +12,7 @@ import Link from 'next/link';
 
 const Postfeatures = () => {
   const {selectedImages} = useContentContext();
-  console.log(selectedImages);
+  // console.log(selectedImages);
   const handleDownload = () => {
     // console.log(selectedImages[0]);
     // for (let i = 1; i <= selectedImages.length; i++) {
