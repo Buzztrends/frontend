@@ -105,7 +105,7 @@ const Socialmediagraph = ({ hashtags }) => {
     <div className='rounded-lg border border-gray-200 shadow-sidd p-8 flex flex-col gap-8 h-full items-center'>
 
       <div className='flex flex-col gap-5' id='plot'>
-        <p className='text-center'>Sunburst Analysis</p>
+        <p className='text-center'>Trending Hashtags</p>
         {/* <Doughnut data={data} options={options} /> */}
         <Plot data={data} layout={layout} config={{ displaylogo: false }} />
       </div>
