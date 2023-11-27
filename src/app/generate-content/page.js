@@ -15,9 +15,7 @@ import { BsChevronRight } from "react-icons/bs";
 import { BsChevronDown } from "react-icons/bs";
 import PostText from "@/components/Generate-Content/post-text";
 import AiImages from "@/components/Generate-Content/ai-images";
-import {
-    useContentContext,
-} from "@/context/contentContext";
+import { useContentContext } from "@/context/contentContext";
 // import {useUserContext} from "@/context/userContext";
 import Sidebar from "@/components/sidebar";
 import PreviewPost from "@/components/previewpost";
@@ -163,7 +161,7 @@ export default function GenerateContent({ searchParams }) {
     const [contentFormVisible, setContentFormVisible] = useState(true);
 
     // context variables
-    const { selectedImages, extras, setExtras } = useContentContext();
+    const { selectedImages, setSelectedImages, extras, setExtras } = useContentContext();
 
     // Storing and submitting form data
     const [formData, setFormData] = useState({});
@@ -221,12 +219,12 @@ export default function GenerateContent({ searchParams }) {
             setExtras("");
             setAreImagesGenerated(false);
             setAiImages([]);
+            setSelectedImages([]);
 
             // process for new generation begins
             setIsLoading(true);
             loadingScroll();
 
-            setGenButtonText("Regenerate Content");
             setDisableGenButton(true);
 
             const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER}/text_generation/simple_generation`, data, { headers });
@@ -247,6 +245,7 @@ export default function GenerateContent({ searchParams }) {
                     setAreImagesGenerated(true);
                     setAiImages(resImage.data['images']);
 
+                    setGenButtonText("Regenerate Content");
                     setDisableGenButton(false);
                     setIsLoading(false);
                 }
