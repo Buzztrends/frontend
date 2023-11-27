@@ -1,8 +1,6 @@
 "use client";
 import { useContentContext } from "@/context/contentContext";
-import Image from "next/image";
-import { useEffect } from "react";
-import { BiSolidCircle,BiRefresh } from "react-icons/bi";
+import { GoCircle } from "react-icons/go";
 import { BsCheckCircleFill } from "react-icons/bs";
 
 export default function AiImages({images}) {
@@ -61,7 +59,7 @@ export default function AiImages({images}) {
             <div className="relative select-none">
                 <span className="absolute top-0 right-0 mt-2 mr-2" onClick={(e) => toggleImageSelection(link)}>
                     {
-                        selectedImages.includes(link) ? <BsCheckCircleFill color="green" size={28} /> : <BiSolidCircle color='white' size={28} />
+                        selectedImages.includes(link) ? <BsCheckCircleFill color="#3F1F74" size={28} className="bg-white rounded-full"/> : <GoCircle color='#3F1F74' size={28} className="bg-white rounded-full"/>
                     }
                 </span>
                 <img alt="" src={link} className="rounded-xl w-full h-full object-cover" onClick={(e)=>document.getElementById(`${id}`).showModal()} />
