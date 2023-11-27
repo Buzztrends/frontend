@@ -5,11 +5,8 @@ import Image from 'next/image';
 import './sidebar.css';
 import { IoSearchOutline } from "react-icons/io5";
 import { MdAdd } from 'react-icons/md';
-import { FaUserCircle } from 'react-icons/fa';
-import { MdSettings } from 'react-icons/md';
 import { IoChevronDown } from 'react-icons/io5';
 import { IoCreateOutline } from 'react-icons/io5';
-import { RiLogoutCircleLine } from "react-icons/ri";
 
 import Link from "next/link";
 
@@ -18,6 +15,7 @@ import { useSidebarContext } from "@/context/sidebarContext";
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import LogoSvg from './logoSvg';
 
 const Sidebar = () => {
     // const [isresearch, setIsresearch] = useState(true);
@@ -36,9 +34,11 @@ const Sidebar = () => {
     // console.log('called from', {calledFrom})
     // console.log('inside sidebar', { selectedTab })
     return (
-        <div className='gradient-sidebar w-1/5 h-screen px-4 py-5 text-white flex flex-col fixed'>
-            <img alt="" src={'/images/Buzztrend logo 1.png'} width={220} height={100} />
-            <div className='mt-[35px] flex flex-col gap-6 '>
+        <div className='gradient-sidebar w-1/5 h-screen p-4 text-white flex flex-col fixed'>
+            <div>
+                <LogoSvg />
+            </div>
+            <div className='mt-[20px] flex flex-col gap-6 '>
                 <div className='flex flex-col items-start gap-3'>
                     <Link href={'/home'} className='w-full'>
                         <button className={`${selectedTab == "research" ? "sidebar-active" : ""} w-full py-1 px-3`} onClick={() => { setResearchitem(null) }}>
@@ -78,21 +78,6 @@ const Sidebar = () => {
                         </div>
                     </button>
                 </Link>
-            </div>
-
-            <div className='sidebar-bottom mt-auto flex flex-col justify-center items-start gap-3'>
-                <div className='profile flex items-center justify-center gap-2'>
-                    <FaUserCircle />   <span>{username}</span>
-                </div>
-                <div className='settings flex items-center justify-center gap-2'>
-                    <RiLogoutCircleLine /> <button onClick={() => {
-                        const cookies = ['username', 'companyId', 'companyName', 'authToken'];
-                        for(let cookie of cookies){
-                            Cookies.remove(cookie);
-                        }
-                        router.push('/login');
-                    }}>Logout</button>
-                </div>
             </div>
         </div>
     )
