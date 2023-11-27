@@ -42,7 +42,7 @@ const Postfeatures = () => {
     }
   };
   return (
-    <div className='p-5 flex flex-col gap-8 justify-center items-center h-full'>
+    <div className='p-5 flex flex-col gap-8 justify-top items-center h-full mt-4'>
       <div className='self-center text-center font-roboto text-4xl font-medium leading-10 p-auto'>
         Your Post Will Look Like This
       </div>
