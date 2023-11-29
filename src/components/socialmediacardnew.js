@@ -32,7 +32,7 @@ const Socialmediacardnew = ({ title, trending, key, hashtags, setDataForChart}) 
       <div className='text-sm font-medium'>{title}</div>
 
       <div className='flex items-center gap-1 text-sm'>
-        trending on {nameToIcons(trending)}
+        {trending}{nameToIcons(trending)}
       </div>
     </div>
 
