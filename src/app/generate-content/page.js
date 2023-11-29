@@ -209,10 +209,6 @@ export default function GenerateContent({ searchParams }) {
             }
             // console.log(data);
 
-            if (!data['moment']) {
-                throw new Error('Input valid moment');
-            }
-
             // reset state, handles regeneration
             setIsPostTextGenerated(false);
             setPostText("");

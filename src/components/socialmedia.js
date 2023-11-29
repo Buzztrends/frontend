@@ -1,17 +1,17 @@
 'use client';
 import React, { useState } from 'react'
-import Socialmediacard from './socialmediacard';
+// import Socialmediacard from './socialmediacard';
 import Socialmediacardnew from './socialmediacardnew';
-import { LiaLessThanSolid, LiaGreaterThanSolid } from 'react-icons/lia';
+// import { LiaLessThanSolid, LiaGreaterThanSolid } from 'react-icons/lia';
 import './socialmedia.css';
 import Socialmediagraph from './socialmediagraph';
-import { RiAiGenerate } from "react-icons/ri";
+// import { RiAiGenerate } from "react-icons/ri";
 import Link from "next/link";
 
-const Socialmedia = ({id,data,mapper}) => {
- 
-  data=data["social_media_trends"];
-//  console.log(data,"data in sm");
+const Socialmedia = ({ id, data, mapper }) => {
+
+  data = data["social_media_trends"];
+  //  console.log(data,"data in sm");
 
 
   // const [ind, setIndex] = useState(0);
@@ -28,20 +28,48 @@ const Socialmedia = ({id,data,mapper}) => {
   //     setSelected(3 * (curr + 1));
   //   }
   // }
-
+  const [dataForChart, setDataForChart] = useState({
+    title: "",
+    hashtags: ""
+  });
 
 
   return (
-       <div className='flex flex-col gap-2 scroll-mt-24'>
+    <>
+      <div id={id} className='flex flex-col gap-2 scroll-mt-24'>
         <div className='text-2xl font-medium leading-9 tracking-wide text-font-color'>Social Media Trends</div>
-     <div className='flex flex-wrap gap-x-16 gap-y-5'>
-          {data.map((item,index)=>
-            <Socialmediacardnew key={index} title={item.title}  trending={item.reason}  />
+        <div className='flex flex-wrap gap-x-16 gap-y-5'>
+          {data.map((item, index) =>
+            <Socialmediacardnew key={index} title={item.title} trending={item.reason} hashtags={item?.validation.hashtag} setDataForChart={setDataForChart} />
           )}
-      
-        </div>
+
         </div>
 
+
+      </div>
+      <dialog id="chart-popup" className="modal">
+        <div className="modal-box max-w-5xl">
+          <form method="dialog">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+          </form>
+          <h3 className="text-lg mt-2">Trending Hastags for <span className='font-semibold'>{dataForChart['title']}</span></h3>
+          <Socialmediagraph hashtags={dataForChart['hashtags']} />
+          <Link
+          href={{
+            pathname: "/generate-content",
+            query: { title: dataForChart['title'] },
+          }}
+          type="button"
+          className="text-white bg-linear-gradient hover:bg-blue-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center float-right my-2"
+        >
+          Generate Content
+        </Link>
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          <button>close</button>
+        </form>
+      </dialog>
+    </>
     // <div className='flex gap-5 font-Poppins mb-12'>
 
     //   <div id={id} className='flex flex-col gap-2 w-1/2 scroll-mt-24'>
@@ -77,7 +105,7 @@ const Socialmedia = ({id,data,mapper}) => {
     //       }}
     //       className="text-white bg-linear-gradient hover:bg-blue-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
     //         <span>Generate Content</span>
-            
+
     //       </Link>
     //     </div>
     //   </div>
