@@ -12,7 +12,7 @@ import Link from 'next/link';
 
 const Postfeatures = () => {
   const {selectedImages} = useContentContext();
-  console.log(selectedImages);
+  // console.log(selectedImages);
   const handleDownload = () => {
     // console.log(selectedImages[0]);
     // for (let i = 1; i <= selectedImages.length; i++) {
@@ -42,18 +42,18 @@ const Postfeatures = () => {
     }
   };
   return (
-    <div className='p-5 flex flex-col gap-8 justify-center items-center h-full'>
+    <div className='p-5 flex flex-col gap-8 justify-top items-center h-full mt-4'>
       <div className='self-center text-center font-roboto text-4xl font-medium leading-10 p-auto'>
         Your Post Will Look Like This
       </div>
       {/* <button className='w-1/3 h-20 rounded-lg border-2 border-gray-400 bg-gradient-linear text-white p-2 text-xl self-center'>Publish</button> */}
       {/* <Button buttonText={"Publish"} /> */}
       <div className='grid grid-cols-2 gap-x-10 gap-y-5'>
-        <button className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-purple text-center hover:bg-gradient-linear hover:text-white'>
+        <button className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-black text-center hover:bg-gradient-linear hover:text-white'>
           Save
         </button>
 
-        <button onClick={handleDownload} className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-purple flex items-center p-4 justify-between hover:bg-gradient-linear hover:text-white'>
+        <button onClick={handleDownload} className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-black flex items-center p-4 justify-between hover:bg-gradient-linear hover:text-white'>
           <span>Download</span>
           <div className='animate-bounce mx-2 mt-1'>
 
@@ -66,7 +66,7 @@ const Postfeatures = () => {
           <span>Save to Campaigns</span>
         </button> */}
 
-        <button className='col-span-1 h-[70px] w-full rounded-[12px] border-2 border-purple flex items-center p-4 justify-between hover:bg-gradient-linear hover:text-white'>
+        <button className='col-span-1 h-[70px] w-full rounded-[12px] border-2 border-black flex items-center p-4 justify-between hover:bg-gradient-linear hover:text-white'>
           <span>Send for<br></br> approval</span>
           <FaCheck />
         </button>

@@ -66,9 +66,9 @@ export default function Home() {
     const [trends, setTrends] = useState([]);
     const [url, seturl] = useState("");
 
+
     // Modal
     // const [isModalOpen, setIsModalOpen] = useState(false);
-
     const toggleModal = ({ data }) => {
         // setIsModalOpen(!isModalOpen);
         setTitle(data.title);
@@ -79,6 +79,7 @@ export default function Home() {
         setDescription(data.description);
         setTrends(data.validation.google_trends);
         seturl(data.url);
+        console.log(data);
     };
     // console.log(title)
 
@@ -97,7 +98,7 @@ export default function Home() {
                     {/* <Competition id={"competition"} /> */}
                     {/* Modal starts  */}
                     <dialog id="stats-modal" className="modal">
-                        <div className="modal-box max-w-5xl">
+                        <div className="modal-box max-w-xl">
                             <form method="dialog">
                                 {/* if there is a button in form, it will close the modal */}
                                 <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -109,27 +110,51 @@ export default function Home() {
                                     </h3>
                                 </div>
                                 <div className="px-6 space-y-6 md:w-5/10">
-                                    <div className="news-card flex justify-start">
-                                        <div className="h-full w-3/4 border p-4">
-                                            <div className="source mb-4">{source}</div>
-                                            {image && <img alt="" src={image} width={600} className='h-80' />}
-                                            <div className="mt-4">{/* {event_name} */}</div>
-                                            <div className="mt-4 mb-4">
-                                                {description && description.length > 50
-                                                    ? `${description.slice(0, 180)}...`
-                                                    : description} {topic}
+
+
+
+                                        <div className="news-card justify-start">
+
+                                            <div className="h-full border p-4 mb-3">
+                                                <div className="source mb-4">{source}</div>
+                                                {image && <img alt="" src={image} className='image h-2/4' />}
+                                                <div className="mt-4">{/* {event_name} */}</div>
+                                                <div className="mt-4 mb-4">
+                                                    {description && description.length > 50
+                                                        ? `${description.slice(0, 180)}...`
+                                                        : description} {topic}
+                                                </div>
+                                                {url && <Link href={url} target="_blank" className="mt-4 mb-4 text-blue-500">
+                                                    Read more
+                                                </Link>}
                                             </div>
-                                            {url && <Link href={url} target="_blank" className="mt-4 mb-4 text-blue-500">
-                                                Read more
-                                            </Link>}
+
+                                            <div className="border p-4">
+                                                <div className="source mb-4">Tags</div>
+                                                <div className="flex flex-wrap">
+                                                {trends.map((item) => {
+                                                    return(
+                                                        <div className="m-1 p-1 mx-2 text-blue-500 border border-blue-500 rounded-lg">
+                                                            {item}
+                                                        </div>
+                                                    )
+                                                })}
+                                                </div>
+                                                <div className="mt-4">{/* {event_name} */}</div>
+                                            </div>
+
                                         </div>
-                                    </div>
-                                    
+
+
+
+
+
+
                                     <div className="flex justify-end p-2 space-x-2 rounded-b dark:border-gray-600">
                                         <Link href={`https://trends.google.com/trends/explore?date=today%201-m&geo=IN&q=${trends.length < 5 ? trends.join(',') : trends.slice(0, 5).join(',')}&hl=en`} target="_blank">
                                             <button className="text-white bg-linear-gradient focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center gap-2">
                                                 Google Trends
-                                                <LiaExternalLinkAltSolid size={22}/>
+                                                <LiaExternalLinkAltSolid size={22} />
                                             </button>
                                         </Link>
                                         <Link
