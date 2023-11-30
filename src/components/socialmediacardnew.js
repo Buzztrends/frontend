@@ -28,7 +28,7 @@ const Socialmediacardnew = ({ title, trending, key, hashtags, setDataForChart}) 
   }
   // console.log("card called");
   return (
-    <div className='flex flex-col w-1/5 border border-gray-100 shadow-sidd cursor-pointer gap-2 justify-between p-3' onClick={()=>{document.getElementById('chart-popup').showModal(); setDataForChart({title, hashtags})}}>
+    <div className='flex flex-col w-[23%] border border-gray-100 shadow-sidd cursor-pointer gap-2 justify-between p-3' onClick={()=>{document.getElementById('chart-popup').showModal(); setDataForChart({title, hashtags})}}>
       <div className='text-sm font-medium'>{title}</div>
 
       <div className='flex items-center gap-1 text-sm'>

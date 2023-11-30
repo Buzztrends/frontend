@@ -25,7 +25,7 @@ const Trendingnews = ({id,data,mapper, toggleModal}) => {
             return    <Newsbuttons key={index}  actual={item} currentNews={currentNews} setCurrentNews={setCurrentNews}/> 
           })}
         </div>
-        <div className='flex flex-wrap gap-x-16 gap-y-5'>
+        <div className='flex flex-wrap gap-x-6 gap-y-5'>
           {data[currentNews].map((item,index)=>
             <NewsCard key={index} data={item} toggleModal={toggleModal} />
           )}

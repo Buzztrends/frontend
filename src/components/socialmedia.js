@@ -38,7 +38,7 @@ const Socialmedia = ({ id, data, mapper }) => {
     <>
       <div id={id} className='flex flex-col gap-2 scroll-mt-24'>
         <div className='text-2xl font-medium leading-9 tracking-wide text-font-color'>Social Media Trends</div>
-        <div className='flex flex-wrap gap-x-16 gap-y-5'>
+        <div className='flex flex-wrap gap-x-6 gap-y-5'>
           {data.map((item, index) =>
             <Socialmediacardnew key={index} title={item.title} trending={item.reason} hashtags={item?.validation.hashtag} setDataForChart={setDataForChart} />
           )}
