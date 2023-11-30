@@ -125,13 +125,30 @@ export default function GenerateContent({ searchParams }) {
 
 
     // To select product
+    const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState("");
 
     const handleSelectProduct = (event) => {
         setSelectedProduct(event.target.value);
     };
 
-    const products = ["option1", "option2"]
+    const fetchProducts = async()=>{
+        try{
+            const headers = {
+                'api-key': process.env.NEXT_PUBLIC_API_KEY,
+                'x-access-token': Cookies.get('authToken')
+            }
+    
+            const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER}/user/get_products`, { headers });   
+                    
+            if(res.status == 200 || res.status == 201){
+                setProducts(res.data['products']);
+            }
+        } catch(err){
+            console.log(err.message);
+        }
+    }
+
 
 
 
@@ -170,6 +187,8 @@ export default function GenerateContent({ searchParams }) {
     useEffect(() => {
         setCompanyId(Cookies.get('companyId'));
         setFormData({ ...formData, 'moment-for-generation': generateContentTitle || '' });
+
+        fetchProducts();     
     }, []);
 
     const updateFormData = (e) => {
