@@ -6,7 +6,7 @@ const Newscard = ({data,toggleModal}) => {
 
 //   console.log(data);
   return (
-    <div className='flex flex-col w-1/5 border border-gray-100 shadow-sidd cursor-pointer' onClick={()=>{document.getElementById('stats-modal').showModal(); toggleModal({data: data })}}>
+    <div className='flex flex-col w-[23%] border border-gray-100 shadow-sidd cursor-pointer' onClick={()=>{document.getElementById('stats-modal').showModal(); toggleModal({data: data })}}>
         
         {data.top_image && <img alt="" className='h-44 object-cover' src={data.top_image}  />}
         <div className='flex flex-col gap-3 p-3 font-poppins'>
