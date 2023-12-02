@@ -5,6 +5,7 @@ import Instapostmodel from './instapostmodel';
 import Postfeatures from './postfeatures';
 import Fbcard from './fbcard';
 import Linkedincard from './linkedincard';
+import Othersocialmediacard from './othersocialmediacard';
 
 const PreviewPost = ({socialMedia, caption}) => {
     const mediaCompo = (socialMedia)=>{
@@ -14,6 +15,9 @@ const PreviewPost = ({socialMedia, caption}) => {
             return <Linkedincard caption={caption}/>;
         } else if(socialMedia == "facebook"){
             return <Fbcard caption={caption}/>;
+        }
+        else{
+            return <Othersocialmediacard caption={caption} />;
         }
     }
 
