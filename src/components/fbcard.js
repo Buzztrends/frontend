@@ -53,7 +53,7 @@ const Fbcard = ({caption}) => {
         </div>
         <FaEllipsisH className='ml-auto'/>
       </div>
-      <div className='text-xs'>{caption}</div>
+      <div className="caption-text" dangerouslySetInnerHTML={{ __html: caption }}></div>
 <div className='relative'>
     <img alt="" src={selectedImages[num]} width={300} height={100}/>
     {selectedImages.length!=1 && <div  className='absolute right-0 top-1/2 cursor-pointer' onClick={()=>handleImages("inc")}><FaGreaterThan  /></div>}

@@ -55,7 +55,7 @@ const Linkedincard = ({caption}) => {
       </div>
       <div className='flex flex-col gap-1'>
       <div className='font-normal'>
-        {caption}
+      <div className="caption-text" dangerouslySetInnerHTML={{ __html: caption }}></div>
 
       </div>
       {/* <div className='text-blue-500'>#hastag #hastag #hashtag </div> */}

@@ -7,8 +7,9 @@ import TabComponent from "./tab-component";
 import { useState } from "react";
 import ReactDOM from "react-dom";
 
-export default function PostText({ postContent }) {
+export default function PostText({ postContent, callback }) {
     const [content, setContent] = useState(postContent);
+
 
     // useEffect(() => {
     //   ReactDOM.findDOMNode(document.querySelector(".my-component")).innerHTML = htmlString;
@@ -19,6 +20,7 @@ export default function PostText({ postContent }) {
         content: content,
         onUpdate: ({ editor }) => {
             setContent(editor.getHTML());
+            callback(editor.getHTML());
             // console.log(editor.getJSON());
         },
     });
