@@ -49,7 +49,7 @@ const Postfeatures = () => {
       {/* <button className='w-1/3 h-20 rounded-lg border-2 border-gray-400 bg-gradient-linear text-white p-2 text-xl self-center'>Publish</button> */}
       {/* <Button buttonText={"Publish"} /> */}
       <div className='grid grid-cols-2 gap-x-10 gap-y-5'>
-        <button className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-black text-center hover:bg-gradient-linear hover:text-white'>
+        <button className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-black text-center hover:bg-gradient-linear hover:text-white opacity-20'>
           Save
         </button>
 
@@ -66,7 +66,7 @@ const Postfeatures = () => {
           <span>Save to Campaigns</span>
         </button> */}
 
-        <button className='col-span-1 h-[70px] w-full rounded-[12px] border-2 border-black flex items-center p-4 justify-between hover:bg-gradient-linear hover:text-white'>
+        <button className=' opacity-20 col-span-1 h-[70px] w-full rounded-[12px] border-2 border-black flex items-center p-4 justify-between hover:bg-gradient-linear hover:text-white'>
           <span>Send for<br></br> approval</span>
           <FaCheck />
         </button>
