@@ -26,7 +26,7 @@ const PreviewPost = ({socialMedia, caption}) => {
         <div className='grid grid-cols-5 w-full gap-8'>
             
             <div className='col-span-3'>
-                <Postfeatures />
+                <Postfeatures caption={caption}/>
             </div>
             {mediaCompo(socialMedia)}
         </div>

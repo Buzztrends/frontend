@@ -9,11 +9,13 @@ import Button from './button';
 import { useContentContext } from "@/context/contentContext";
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
+import { Document, Packer, Paragraph, TextRun, Image } from "docx";
+import { saveAs } from 'filesaver.js';
 
-const Postfeatures = () => {
+const Postfeatures  = ({caption}) => {
   const {selectedImages} = useContentContext();
   // console.log(selectedImages);
-  const handleDownload = () => {
+  const handleDownload = async () => {
     // console.log(selectedImages[0]);
     // for (let i = 1; i <= selectedImages.length; i++) {
     //   setTimeout(() => {
@@ -23,23 +25,63 @@ const Postfeatures = () => {
     // }
 
     
-    for (const selectedImage of selectedImages) {
-      // Create a download link for each image in the array
-      const downloadLink = document.createElement('a');
-      downloadLink.href = selectedImage;
-      downloadLink.download = "selectedImage.split('/').pop()"; // Extract filename from URL
-      downloadLink.style.display = 'none';
+    // for (const selectedImage of selectedImages) {
+    //   // Create a download link for each image in the array
+    //   const downloadLink = document.createElement('a');
+    //   downloadLink.href = selectedImage;
+    //   downloadLink.download = "selectedImage.split('/').pop()"; // Extract filename from URL
+    //   downloadLink.style.display = 'none';
     
-      // Append the download link to the body of the document
-      document.body.appendChild(downloadLink);
+    //   // Append the download link to the body of the document
+    //   document.body.appendChild(downloadLink);
     
-      // Trigger the download by clicking the download link
-      downloadLink.click();
+    //   // Trigger the download by clicking the download link
+    //   downloadLink.click();
     
-      // Remove the download link from the body after the download is complete
-      URL.revokeObjectURL(downloadLink);
-      document.body.removeChild(downloadLink);
-    }
+    //   // Remove the download link from the body after the download is complete
+    //   URL.revokeObjectURL(downloadLink);
+    //   document.body.removeChild(downloadLink);
+    // }
+
+
+
+    const doc = new Document({
+      sections: [
+          {
+              properties: {},
+              children: [
+                  new Paragraph({
+                      children: [
+                          new TextRun(caption),
+                      ],
+                  }),
+              ],
+          },
+      ],
+  });
+//   const response = await fetch("https://st.depositphotos.com/2001755/3622/i/450/depositphotos_36220949-stock-photo-beautiful-landscape.jpg");
+//   const blob = await response.blob();
+//   const imageData = await blob.arrayBuffer();
+//   const image = new Image({
+//     data: imageData, // Replace with your image data
+//     width: 500, // Optional: Specify image width in pixels
+//     height: 300, // Optional: Specify image height in pixels
+//   });
+
+//   const paragraph = new Paragraph({
+//   children: [
+//     image,
+//   ],
+// });
+
+// doc.addParagraph(paragraph);
+
+
+  // console.log(doc);
+  Packer.toBlob(doc).then((blob) => {
+      saveAs(blob, "buzztrend_post.docx");
+  });
+
   };
   return (
     <div className='p-5 flex flex-col gap-8 justify-top items-center h-full mt-4'>
@@ -49,7 +91,7 @@ const Postfeatures = () => {
       {/* <button className='w-1/3 h-20 rounded-lg border-2 border-gray-400 bg-gradient-linear text-white p-2 text-xl self-center'>Publish</button> */}
       {/* <Button buttonText={"Publish"} /> */}
       <div className='grid grid-cols-2 gap-x-10 gap-y-5'>
-        <button className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-black text-center hover:bg-gradient-linear hover:text-white'>
+        <button className='col-span-1 h-[49px] w-full rounded-[12px] border-2 border-black text-center hover:bg-gradient-linear hover:text-white opacity-20'>
           Save
         </button>
 
@@ -66,7 +108,7 @@ const Postfeatures = () => {
           <span>Save to Campaigns</span>
         </button> */}
 
-        <button className='col-span-1 h-[70px] w-full rounded-[12px] border-2 border-black flex items-center p-4 justify-between hover:bg-gradient-linear hover:text-white'>
+        <button className=' opacity-20 col-span-1 h-[70px] w-full rounded-[12px] border-2 border-black flex items-center p-4 justify-between hover:bg-gradient-linear hover:text-white'>
           <span>Send for<br></br> approval</span>
           <FaCheck />
         </button>

@@ -62,7 +62,7 @@ const Othersocialmediacard = ({ caption }) => {
         </div>
 
         <div className="flex flex-col gap-1">
-          <div className="font-normal">{caption}</div>
+        <div className="caption-text" dangerouslySetInnerHTML={{ __html: caption }}></div>
         </div>
       </div>
     </div>

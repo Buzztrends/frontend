@@ -36,6 +36,10 @@ export default function GenerateContent({ searchParams }) {
     //     const generateContentTitle = searchParams.title;
     // }
 
+    const editCaption = (value) => {
+        setPostText(value);
+    }
+
     function loadingScroll() {
         setTimeout(() => {
             const loading = document.getElementById('content-loading');
@@ -483,7 +487,7 @@ export default function GenerateContent({ searchParams }) {
 
                         {isPostTextGenerated ?
                             <div className="flex">
-                                {<PostText postContent={postText.replace(/\n/g, '<br>')} />}
+                                {<PostText callback = {editCaption} postContent={postText.replace(/\n/g, '<br>')} />}
                                 {!areImagesGenerated && isLoading ? <Loading text={"Generating Images: "} showCards={false} /> : null}
                                 {areImagesGenerated && <div className="flex flex-col w-1/2 gap-4">
                                     {<AiImages images={aiImages} />}

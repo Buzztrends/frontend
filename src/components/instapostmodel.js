@@ -65,7 +65,7 @@ const Instapostmodel = ({caption}) => {
     </div>
     <div className='font-roboto text-base font-medium leading-5'>1 like</div>
     <div className='font-roboto text-xs leading-5'>
-       <span className='font-medium'> {username} </span> {caption}
+       <span className='font-medium'> {username} </span> <div className="caption-text" dangerouslySetInnerHTML={{ __html: caption }}></div>
     </div>
     </div>
             </div>
